@@ -1,13 +1,12 @@
 import React from 'react'
-import './page.css'
 import styles from '../page.module.css'
 
-const Home = () => {
+const Learn = () => {
     return (
         <div className={styles.topBottomMargin}>
-            
+            <h1>Learn</h1>
         </div>
     )
 }
 
-export default Home
+export default Learn

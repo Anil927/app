@@ -1,3 +1,13 @@
+@font-face {
+    font-family: customSans;
+    src: local("OpenSans-Regular"), url('./../../../fonts/OpenSans-Regular.ttf') format(truetype);
+  }
+  
+
+* {
+    font-family: customSans, sans-serif;
+}
+
 
 .top-navbar {
     background-color:  #007BFF ;
@@ -63,7 +73,7 @@ nav a:hover {
 .nav-heading {
     background-color: transparent;
     position: fixed;
-    top: 21px;
+    top: 19px;
     left: 56px;
     color: white;
     font-weight: 600;
