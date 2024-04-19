@@ -17,8 +17,8 @@ const SideNav = () => {
         pageHeadingName = 'Learn';
     } else if (pathName === '/code') {
         pageHeadingName = 'Code';
-    } else if (pathName === '/qna') {
-        pageHeadingName = 'QnA';
+    } else if (pathName === '/discuss') {
+        pageHeadingName = 'Discuss';
     } else if (pathName === '/profile') {
         pageHeadingName = 'Profile';
     }
@@ -36,8 +36,8 @@ const SideNav = () => {
             setPageHeading("Code")
             router.push('/code')
         }else if (e === 'four') {
-            setPageHeading("QnA")
-            router.push('/qna')
+            setPageHeading("Discuss")
+            router.push('/discuss')
         }else if (e === 'five') {
             setPageHeading("Profile")
             router.push('/profile')

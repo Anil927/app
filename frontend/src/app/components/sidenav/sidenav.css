@@ -24,7 +24,7 @@ nav {
     bottom: 0;
     box-shadow: 0 0 5px #666;
     height: var(100vh - 54px) !important;
-    left: -17.5rem;
+    left: -17rem;
     position: absolute;
     top: 0;
     overflow-y: hidden;
@@ -121,15 +121,3 @@ nav a:hover {
     z-index: 3;
 }
 
-.main-content {
-    z-index: 1;
-    margin-top: 60px;
-    margin-bottom: 54px;
-    height: var(100vh - 114px);
-    width: 100% !important;
-    overflow-y: auto;
-}
-
-.main-content > div {
-    overflow-y: auto;
-}
