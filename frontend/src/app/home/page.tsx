@@ -24,6 +24,8 @@ const Home = () => {
                 time='1h ago'
                 postContent='Hello, this is my first post'
                 postImagePath='https://via.placeholder.com/500'
+                noOfLikes={10}
+                noOfComments={20}
             />
             
             <FeedPost 
@@ -32,15 +34,18 @@ const Home = () => {
                 designation='Software Engineer'
                 time='1h ago'
                 postContent='Hello, this is my first post'
+                noOfLikes={10}
+                noOfComments={20}
             />
 
             <FeedPost 
-                profileImagePath='https://www.w3schools.com/howto/img_avatar.png'
                 username='John Doe'
                 designation='Software Engineer'
                 time='1h ago'
                 postContent='Hello, this is my first post'
                 postImagePath='https://via.placeholder.com/500'
+                noOfLikes={10}
+                noOfComments={20}
             />
         </div>
     )

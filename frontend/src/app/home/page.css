@@ -51,6 +51,6 @@ button {
   
   
   button:active {
-    background-color: #6eb9f7;
+    background-color: #addaff;
     transition: background 0s;
   }

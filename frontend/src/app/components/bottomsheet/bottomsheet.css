@@ -1,0 +1,149 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    /* Initial transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out forwards;
+    z-index: 12;
+    /* Fade-in effect */
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 100%;
+    min-height: 50vh;
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-radius: 25px 25px 0 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.3s ease-in-out;
+    z-index: 12;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Slide-down and fade-out effects */
+
+.slide-down {
+    animation: slideDown 0.3s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+.close-button {
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Final opacity */
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Initial opacity */
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0);
+        /* Final transparency */
+    }
+}
+
+
+
+.no-of-comments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-bottom: 0.4px solid rgb(170, 170, 170);
+    border-radius: 25px 25px 0 0;
+}
+
+.comment-area {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: stretch;
+    border-bottom: 0.4px solid rgb(170, 170, 170);
+}
+
+.avatar-and-comment-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+    margin-right: 10px;
+}
+
+.avatar-and-comment-area img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.cancel-and-comment-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    width: 75%;
+}
+
+.cancel-and-comment-btn > button:first-child {
+    background-color: transparent;
+    color: #000;
+    border: none;
+}
+
+.cancel-and-comment-btn > button:last-child {
+    background-color: #63acff;
+    color: #fff;
+    border: none;
+    border-radius: 20%;
+}

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './sidenav.css'
 import BottomTab from '../bottomtab/bottomtab'
 
@@ -29,20 +29,39 @@ const SideNav = () => {
         if (e === 'one') {
             setPageHeading('Home')
             router.push('/home')
-        }else if (e === 'two') {
+        } else if (e === 'two') {
             setPageHeading("Learn")
             router.push('/learn')
-        }else if (e === 'three') {
+        } else if (e === 'three') {
             setPageHeading("Code")
             router.push('/code')
-        }else if (e === 'four') {
+        } else if (e === 'four') {
             setPageHeading("Discuss")
             router.push('/discuss')
-        }else if (e === 'five') {
+        } else if (e === 'five') {
             setPageHeading("Profile")
             router.push('/profile')
         }
     }
+
+    // when the user presses back button in the browser, the pathName changes and the page heading should be updated accordingly
+    useEffect(() => {
+        if (pathName === '/home') {
+            setPageHeading('Home');
+        } else if (pathName === '/learn') {
+            setPageHeading('Learn');
+        }else if (pathName === '/code') {
+            setPageHeading('Code');
+        }else if (pathName === '/discuss') {
+            setPageHeading('Discuss');
+        }else if (pathName === '/profile') {
+            setPageHeading('Profile');
+        }
+    }, [pathName])
+
+
+
+
 
     return (
         <div>
