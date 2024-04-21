@@ -17,7 +17,7 @@
 .modal-content {
     background-color: #fff;
     width: 100%;
-    min-height: 50vh;
+    min-height: 60vh;
     bottom: 0;
     position: absolute;
     left: 0;
@@ -43,7 +43,7 @@
 
 .close-button {
     position: absolute;
-    top: 14px;
+    top: 11px;
     right: 10px;
     background: none;
     border: none;
@@ -100,7 +100,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: #f5f5f5;
+    background-color: #fff;
     border-bottom: 0.4px solid rgb(170, 170, 170);
     border-radius: 25px 25px 0 0;
 }
@@ -117,7 +117,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 25%;
     margin-right: 10px;
 }
 
@@ -125,14 +124,32 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    margin-right: 20px;
+}
+
+.avatar-and-comment-area > div {
+    width: 100%;
+}
+
+.avatar-and-comment-area textarea {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 10px;
+    border: 1px solid rgb(170, 170, 170);
+}
+
+.avatar-and-comment-area textarea:focus {
+    outline: none;
+    border: 1px solid #007BFF;
 }
 
 .cancel-and-comment-btn {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 20px;
-    width: 75%;
+    gap: 10px;
+    margin-top: 0.4em;
 }
 
 .cancel-and-comment-btn > button:first-child {
@@ -142,8 +159,83 @@
 }
 
 .cancel-and-comment-btn > button:last-child {
-    background-color: #63acff;
+    background-color: #2793ff;
     color: #fff;
     border: none;
-    border-radius: 20%;
+    border-radius: 20px;
+    padding: 5px 15px;
 }
+
+
+.user-comments {
+    height: calc(60vh - 160px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.user-comments::-webkit-scrollbar {
+    display: block !important;
+    width: 3px;
+}
+.user-comments::-webkit-scrollbar-thumb {
+    background-color: #007BFF;
+    border-radius: 2px;
+}
+
+.user-comments::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+
+
+
+/* for user done comment part */
+/* for Comment component */
+
+.comment-body {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.comment-body img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    align-self: flex-start;
+}
+
+.comment-body > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:self-start;
+    align-self: flex-start;
+}
+
+.comment-body > div > div:first-child {
+    font-size: 0.84em;
+    margin-bottom: 5px;
+}
+
+.comment-body > div > div:first-child > svg:first-child {
+    height: 1.7vmin;
+    fill: #059df5 ;
+}
+
+.comment-body > div > div:first-child > button > svg:last-child {
+    height: 3.6vmin;
+}
+
+
+.comment-body > div > div:last-child {
+    font-size: 0.9em;
+}
+
+
+
+
+
+

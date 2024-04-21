@@ -44,10 +44,12 @@ const FeedPost: React.FC<Props> = ({
 
     const openCommentModal = () => {
         setIsCommentModalOpen(true);
+        document.body.style.overflow = 'hidden';  // Disable scrolling
     };
 
     const closeCommentModal = () => {
         setIsCommentModalOpen(false);
+        document.body.style.overflow = 'auto';  // Enable scrolling
     };
 
     // For sharing feed posts, using webshare api

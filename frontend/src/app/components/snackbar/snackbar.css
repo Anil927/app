@@ -1,0 +1,27 @@
+.snackbar {
+    position: fixed;
+    bottom: -110%;
+    /* Initially hidden */
+    width: 90%;
+    left: 50%;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+    background-color: #2793ff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    animation: slideUp 0.5s ease-in-out forwards;
+    z-index: 1000;
+}
+
+
+@keyframes slideUp {
+    from {
+        bottom: -110%;
+    }
+
+    to {
+        bottom: 5%;
+    }
+}

@@ -1,18 +1,66 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './bottomsheet.css'
+import Snackbar from '../snackbar/snackbar';
 
 interface ModalProps {
     onClose: () => void;
     noOfComments: number;
 }
 
+let userProfileImagePath = null;
+
 const Modal: React.FC<ModalProps> = ({ onClose, noOfComments }) => {
 
-    let userProfileImagePath = null;
-
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const [showSnackbar, setShowSnackbar] = useState(false);
+    const [isEditedComment, setIsEditedComment] = useState(false);
+    const [editedCommentNo, setEditedCommentNo] = useState<number>(0);
+    
+
+    const [comments, setComments] = useState<string[]>([]);
+
+    const handleCancelComment = () => {
+        // Empty the textarea content and remove focus from the textarea
+        if (textareaRef.current) {
+            textareaRef.current.value = '';
+            textareaRef.current.blur();
+        }
+    };
+
+    const handleSubmitComment = () => {
+        if (textareaRef.current && textareaRef.current.value.trim() !== '' && comments.length < 3) {
+            // Add the comment to the comments array
+            setComments([...comments, textareaRef.current.value]);
+            // Empty the textarea content and remove focus from the textarea
+            textareaRef.current.value = '';
+        } else if (comments.length === 3) {
+            // Show snackbar if the user tries to add more than 3 comments
+            setShowSnackbar(true);
+            setTimeout(() => {
+                setShowSnackbar(false);
+            },2000);
+        } else if (textareaRef.current && isEditedComment) {
+            // Edit the comment
+            const newComments = [...comments];
+            newComments[editedCommentNo-1] = textareaRef.current.value;
+            setComments(newComments);
+            setIsEditedComment(false);
+            setEditedCommentNo(0);
+            textareaRef.current.value = '';
+        }
+    };
+
+    const handleEditComment = (commentNo : number) => {
+        if(textareaRef.current) {
+            textareaRef.current.value = comments[commentNo];
+            textareaRef.current.focus();
+            setIsEditedComment(true);
+            setEditedCommentNo(commentNo);
+        }
+    };
 
     useEffect(() => {
         setIsOpen(true);
@@ -26,7 +74,6 @@ const Modal: React.FC<ModalProps> = ({ onClose, noOfComments }) => {
             onClose();
         }, 300); // 300ms, same duration as the slide down animation
     };
-
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -59,16 +106,26 @@ const Modal: React.FC<ModalProps> = ({ onClose, noOfComments }) => {
                             <div className="avatar-and-comment-area">
                                 <img src={userProfileImagePath ?? "https://www.w3schools.com/howto/img_avatar.png"} alt='profile' />
                                 <div>
-                                    <textarea placeholder="Add a comment"></textarea>
+                                    <textarea maxLength={1000} ref={textareaRef} placeholder="Add a comment"></textarea>
                                 </div>
                             </div>
                             <div className="cancel-and-comment-btn">
-                                <button>Cancel</button>
-                                <button>Comment</button>
+                                <button onClick={handleCancelComment}>Cancel</button>
+                                <button onClick={handleSubmitComment}>Comment</button>
                             </div>
                         </div>
-                        <div className="other-comments">
-                            {/* <UserComment /> */}
+                        <div className="user-comments">
+                            {
+                                comments.length > 0 && comments.map((comment: string, index: number) => (
+                                    <>
+                                        <Comment key={index+1} commentContent={comment} handleEditComment={handleEditComment} commentNo={index+1}/>
+                                        {
+                                            showSnackbar && <Snackbar message="You can do maximum 3 comments" />
+                                        }
+                                    </>
+                                ))
+                            }
+                            {/* other user comments */}
                         </div>
                     </div>
                 </div>
@@ -78,3 +135,26 @@ const Modal: React.FC<ModalProps> = ({ onClose, noOfComments }) => {
 };
 
 export default Modal;
+
+
+
+
+interface CommentProps {
+    commentContent: string;
+    handleEditComment: (commentNo: number) => void;
+    commentNo: number;
+}
+
+const Comment: React.FC<CommentProps> = ({ commentContent, handleEditComment, commentNo }) => {
+    return (
+        <div className="comment">
+            <div className="comment-body">
+                <img src={userProfileImagePath ?? "https://www.w3schools.com/howto/img_avatar.png"} alt='profile' />
+                <div>
+                    <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>  &nbsp;Username <button onClick={() => handleEditComment(commentNo)}> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#5794ff" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" /></svg></button></div>
+                    <div>{commentContent}</div>
+                </div>
+            </div>
+        </div>
+    );
+}

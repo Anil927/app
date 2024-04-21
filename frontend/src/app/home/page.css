@@ -1,3 +1,16 @@
+* {
+    /* For browsers that support webkit-scrollbar */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari, and newer versions of Edge */
+* ::-webkit-scrollbar {
+    display: none;
+}
+
 .search-bar-and-post {
     width: 100%;
     padding: 7px 10px;
@@ -47,10 +60,10 @@ button {
     transition: background 0.8s;
     cursor: pointer;
     outline: none;
-  }
-  
-  
-  button:active {
+}
+
+
+button:active {
     background-color: #addaff;
     transition: background 0s;
-  }
+}
