@@ -1,0 +1,164 @@
+[
+    {
+        "postId": 1,
+        "comments": [
+            {
+                "id": 1,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code algo is awesome",
+                "time": "1 year ago"
+            },
+            {
+                "id": 2,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john dow",
+                "comment": "this code is good",
+                "time": "1 year ago"
+            },
+            {
+                "id": 3,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 4,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 5,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 6,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 7,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            }
+        ]
+    },
+    {
+        "postId": 2,
+        "comments": [
+            {
+                "id": 1,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john dow",
+                "comment": "this code algo is awesome",
+                "time": "1 year ago"
+            },
+            {
+                "id": 2,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john dow",
+                "comment": "this code is good",
+                "time": "1 year ago"
+            },
+            {
+                "id": 3,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 4,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 5,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 6,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 7,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            }
+        ]
+    },
+    {
+        "postId": 3,
+        "comments": [
+            {
+                "id": 1,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john die",
+                "comment": "this code algo is awesome",
+                "time": "1 year ago"
+            },
+            {
+                "id": 2,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john dow",
+                "comment": "this code is good",
+                "time": "1 year ago"
+            },
+            {
+                "id": 3,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 4,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 5,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 6,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            },
+            {
+                "id": 7,
+                "otherUserProfileImagePath": "https://www.w3schools.com/howto/img_avatar.png",
+                "user": "john doe",
+                "comment": "this code is bad",
+                "time": "1 year ago"
+            }
+        ]
+    }
+]

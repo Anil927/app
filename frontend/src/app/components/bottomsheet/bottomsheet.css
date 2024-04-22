@@ -14,27 +14,28 @@
     /* Fade-in effect */
 }
 
+
 .modal-content {
     background-color: #fff;
     width: 100%;
     min-height: 60vh;
-    bottom: 0;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     border-radius: 25px 25px 0 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: slideUp 0.3s ease-in-out;
+    animation: slideUpBottomSheet 0.3s ease-in-out forwards;
     z-index: 12;
     display: flex;
     flex-direction: column;
+    bottom: 0;
 }
 
 
 /* Slide-down and fade-out effects */
 
 .slide-down {
-    animation: slideDown 0.3s ease-in-out forwards;
+    animation: slideDownBottomSheet 0.3s ease-in-out forwards;
 }
 
 .fade-out {
@@ -50,23 +51,24 @@
     cursor: pointer;
 }
 
-@keyframes slideUp {
+@keyframes slideUpBottomSheet {
     from {
-        transform: translateY(100%);
+        bottom: -100%;
     }
 
     to {
-        transform: translateY(0);
+        bottom: 0%;
     }
 }
 
-@keyframes slideDown {
+
+@keyframes slideDownBottomSheet {
     from {
-        transform: translateY(0);
+        bottom: 0%;
     }
 
     to {
-        transform: translateY(100%);
+        bottom: -100%;
     }
 }
 
@@ -173,21 +175,6 @@
     overflow-x: hidden;
 }
 
-.user-comments::-webkit-scrollbar {
-    display: block !important;
-    width: 3px;
-}
-.user-comments::-webkit-scrollbar-thumb {
-    background-color: #007BFF;
-    border-radius: 2px;
-}
-
-.user-comments::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
-
-
-
 
 /* for user done comment part */
 /* for Comment component */
@@ -225,6 +212,10 @@
     fill: #059df5 ;
 }
 
+.comment-body > div > div:first-child > span {
+    opacity: 0.6;
+}
+
 .comment-body > div > div:first-child > button > svg:last-child {
     height: 3.6vmin;
 }
@@ -233,6 +224,20 @@
 .comment-body > div > div:last-child {
     font-size: 0.9em;
 }
+
+
+
+.no-comments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.1em;
+    opacity: 1;
+    color: #000;
+}
+
+
 
 
 
