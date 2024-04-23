@@ -1,5 +1,7 @@
+'use Client'
 import React from 'react'
 import styles from '../page.module.css'
+import Streak from '../profile/streak/streak'
 
 const Learn = () => {
     return (

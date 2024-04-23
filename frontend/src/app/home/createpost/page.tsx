@@ -3,13 +3,15 @@ import React, { useState, useRef } from 'react';
 import './page.css'; // Import your CSS file
 import styles from '../../page.module.css'
 import Snackbar from '@/app/components/snackbar/snackbar';
+import { useRouter } from 'next/navigation';
 
 const CreatePost: React.FC = () => {
     const [text, setText] = useState<string>('');
     const [image, setImage] = useState<File | null>(null);
     const [tags, setTags] = useState<string[]>([]);
     const tagInputRef = useRef<HTMLInputElement>(null);
-    const [showPostSuccessfulMsg, setShowSuccessfulMsg] = useState(false);
+    const [showPostSuccessfulMsg, setShowPostSuccessfulMsg] = useState(false);
+    const [showPostErrorMsg, setShowPostErrorMsg] = useState(false);
 
     const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
@@ -32,14 +34,21 @@ const CreatePost: React.FC = () => {
         setTags(tags.filter((t) => t !== tag));
     }
 
+    const router = useRouter()
 
     const handleSubmit = () => {
-        if (text.trim() !== '') {
-            setShowSuccessfulMsg(true);
+        if (text.trim() !== '' && tags.length !== 0) {
+            setShowPostSuccessfulMsg(true);
+            setTimeout(() => {
+                setShowPostSuccessfulMsg(false);
+                router.push('/home')
+            }, 2000);
+        } else if ( text.trim() === '' || tags.length === 0) {
+            setShowPostErrorMsg(true);
+            setTimeout(() => {
+                setShowPostErrorMsg(false);
+            } , 2000);
         }
-        setTimeout(() => {
-            setShowSuccessfulMsg(false);
-        }, 2000);
         setText('');
         setImage(null);
     };
@@ -115,6 +124,9 @@ const CreatePost: React.FC = () => {
 
                 {
                     showPostSuccessfulMsg && <Snackbar message='Posted Successfully' />
+                }
+                {
+                    showPostErrorMsg && <Snackbar message='Content or Tags cannot be empty' />
                 }
             </div>
         </div>

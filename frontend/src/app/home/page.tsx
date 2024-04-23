@@ -7,9 +7,8 @@ import Link from 'next/link'
 
 const Home = () => {
 
-
     return (
-        <div className={styles.topBottomMargin}>
+        <div className={styles.topBottomMargin} >
 
             <div className='search-bar-and-post'>
                 <div className='search-bar'>
