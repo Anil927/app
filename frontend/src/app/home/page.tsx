@@ -2,9 +2,12 @@ import React from 'react'
 import './page.css'
 import styles from '../page.module.css'
 import FeedPost from '../components/feedpost/feedpost'
+import Link from 'next/link'
 
 
 const Home = () => {
+
+
     return (
         <div className={styles.topBottomMargin}>
 
@@ -13,7 +16,7 @@ const Home = () => {
                     <input placeholder='search people, posts' type='text' />
                 </div>
                 <div className='post'>
-                    <button>post</button>
+                    <Link href='/home/createpost'><button>post</button></Link>
                 </div>
             </div>
 

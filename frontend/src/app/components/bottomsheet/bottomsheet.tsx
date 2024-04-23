@@ -141,7 +141,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, noOfComments, callback, postId }
                             {
                                 comments.length > 0 && comments.map((comment: string, index: number) => (
                                     <>
-                                        <UserComment key={`${comment}-${comments.length}`} commentContent={comment} handleEditComment={handleEditComment} commentNo={index + 1} />
+                                        <UserComment key={comments.indexOf(comment)} commentContent={comment} handleEditComment={handleEditComment} commentNo={index + 1} />
                                         {
                                             showSnackbar && <Snackbar message="You can do maximum 3 comments" />
                                         }
