@@ -1,4 +1,4 @@
-ul {
+div.main ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -9,7 +9,7 @@ ul {
     margin: 0;
 }
 
-ul:after {
+div.main ul:after {
     content: "";
     display: block;
     width: 20%;
@@ -23,11 +23,11 @@ ul:after {
     color: #149EF1;
 }
 
-ul > li {
+div.main ul > li {
     width: 20% !important;
 }
 
-ul > li  label {
+div.main ul > li  label {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,23 +35,23 @@ ul > li  label {
 
 }
 
-ul:has(#one:checked):after {
+div.main ul:has(#one:checked):after {
     --left: 0%;
 }
 
-ul:has(#two:checked):after {
+div.main ul:has(#two:checked):after {
     --left: 20%;
 }
 
-ul:has(#three:checked):after {
+div.main ul:has(#three:checked):after {
     --left: 40%;
 }
 
-ul:has(#four:checked):after {
+div.main ul:has(#four:checked):after {
     --left: 60%;
 }
 
-ul:has(#five:checked):after {
+div.main ul:has(#five:checked):after {
     --left: 80%;
 }
 
@@ -60,7 +60,7 @@ input[type="radio"] {
     display: none;
 }
 
-svg {
+div.main svg {
     height: 5vmin;
     fill: hsl(200, 50%, 80%);
     transition: fill 0.2s ease;

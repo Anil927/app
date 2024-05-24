@@ -26,7 +26,7 @@ const SideNav = () => {
     const [pageHeading, setPageHeading] = useState(pageHeadingName)
 
     const handleTabChange = async (e: any) => {
-        if (e === 'one') {
+        if (e === 'one' && pathName !== '/home/createpost') {
             setPageHeading('Home')
             router.push('/home')
         } else if (e === 'two') {
@@ -38,7 +38,7 @@ const SideNav = () => {
         } else if (e === 'four') {
             setPageHeading("Discuss")
             router.push('/discuss')
-        } else if (e === 'five') {
+        } else if (e === 'five' && pathName !== '/profile/useractivity') {
             setPageHeading("Profile")
             router.push('/profile')
         }
@@ -46,15 +46,15 @@ const SideNav = () => {
 
     // when the user presses back button in the browser, the pathName changes and the page heading should be updated accordingly
     useEffect(() => {
-        if (pathName === '/home') {
+        if (pathName.includes('/home')) {
             setPageHeading('Home');
-        } else if (pathName === '/learn') {
+        } else if (pathName.includes('/learn')) {
             setPageHeading('Learn');
-        }else if (pathName === '/code') {
+        }else if (pathName.includes('/code')) {
             setPageHeading('Code');
-        }else if (pathName === '/discuss') {
+        }else if (pathName.includes('/discuss')) {
             setPageHeading('Discuss');
-        }else if (pathName === '/profile') {
+        }else if (pathName.includes('/profile')) {
             setPageHeading('Profile');
         }
     }, [pathName])

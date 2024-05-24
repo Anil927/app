@@ -18,17 +18,21 @@ const Streak: React.FC = () => {
         const days = [];
         const startDay = getDay(startOfMonth(currentDate));
         const totalDays = getDaysInMonth(currentDate);
+        
+        const currentMonthStreak = [1,3,4,5,6,7,12,14,17,23,27,30] // this should be fetched from the backend 
 
         for (let i = 0; i < startDay; i++) {
             days.push(<div key={`empty-${i}`} className="empty-day"></div>);
         }
 
         for (let i = 1; i <= totalDays; i++) {
-            days.push(<div key={i} className="day">{i}</div>);
+            days.push(<div key={i} className={currentMonthStreak.includes(i) ? "day active" : "day"}>{i}</div>);
         }
 
         return days;
     };
+
+
 
     return (
         <div className="calendar-container">

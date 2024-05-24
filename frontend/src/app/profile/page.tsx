@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import './page.css';
 import styles from '../page.module.css';
 import Streak from './streak/streak';
+import Link from 'next/link';
 
 const Profile: React.FC = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -20,10 +21,6 @@ const Profile: React.FC = () => {
             setBio(inputRef.current.value);
             setIsEditing(false);
         }
-    };
-
-    const handleSeeActivity = () => {
-        console.log('See activity clicked');
     };
 
     return (
@@ -70,7 +67,7 @@ const Profile: React.FC = () => {
                 </div>
                 <div>
                     <span style={{ fontSize: "12px" }}>code bits, posts, questions etc.</span>
-                    <button onClick={handleSeeActivity}>See Activity</button>
+                    <Link href="/profile/useractivity"><button>See Activity</button></Link>
                 </div>
 
             </div>

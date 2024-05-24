@@ -105,7 +105,7 @@
     width: 100%;
     flex-direction: column;
     justify-content: center;
-    background-color: while;
+    background-color: white;
     padding: 20px;
     row-gap: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -117,7 +117,7 @@
     align-items: center;
 }
 
-.profile-additional-details > div > button {
+.profile-additional-details > div button {
     padding: 3px 20px;
     border: none;
     border-radius: 3px;
@@ -141,4 +141,6 @@
 .streak-container > span {
     font-weight: 600;
     margin-bottom: 12px;
+    color: #149EF1;
+    font-size: 1.1em;
 }

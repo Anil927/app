@@ -126,7 +126,7 @@ const CreatePost: React.FC = () => {
                     showPostSuccessfulMsg && <Snackbar message='Posted Successfully' />
                 }
                 {
-                    showPostErrorMsg && <Snackbar message='Content or Tags cannot be empty' />
+                    showPostErrorMsg && <Snackbar message='Content and Tags cannot be empty' />
                 }
             </div>
         </div>

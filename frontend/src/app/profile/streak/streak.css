@@ -9,6 +9,19 @@
     margin-bottom: 20px;
 }
 
+.calendar-header > div {
+    font-weight: 700;
+}
+
+.calendar-header > button {
+    background-color: #7db343;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}
+
 .calendar-body {
     display: flex;
     flex-direction: column;
@@ -30,20 +43,27 @@
 .days-grid {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
+    grid-gap: 7px;
 }
 
 .day {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    border: 1px solid #ccc;
+    height: 34px;
+    box-sizing: border-box;
+}
+
+.day.active {
+    background-color: #149EF1;
+    color: white;
+    border-radius: 50%;
     box-sizing: border-box;
 }
 
 .empty-day {
     display: flex;
-    height: 40px;
+    height: 34px;
     background-color: #f7f7f7;
     box-sizing: border-box;
 }

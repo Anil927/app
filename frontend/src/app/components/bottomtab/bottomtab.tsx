@@ -20,7 +20,6 @@ const BottomTab = ({
         handleTabChange(e.target.id)
     }
 
-
     const radioOneRef = useRef<HTMLInputElement>(null);
     const radioTwoRef = useRef<HTMLInputElement>(null);
     const radioThreeRef = useRef<HTMLInputElement>(null);
@@ -51,7 +50,7 @@ const BottomTab = ({
 
     // when the user presses back button in the browser, the pathName changes and the radio button should be checked accordingly
     useEffect(() => {
-        if (pathName === '/home') {
+        if (pathName === '/home' || pathName === '/home/createpost') {
             checkRadioButtonById('one');
         } else if (pathName === '/learn') {
             checkRadioButtonById('two');
@@ -59,7 +58,7 @@ const BottomTab = ({
             checkRadioButtonById('three');
         } else if (pathName === '/discuss') {
             checkRadioButtonById('four');
-        } else if (pathName === '/profile') {
+        } else if (pathName === '/profile' || pathName === '/profile/useractivity') {
             checkRadioButtonById('five');
         }
     }, [pathName])
