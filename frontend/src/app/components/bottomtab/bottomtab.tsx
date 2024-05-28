@@ -54,7 +54,7 @@ const BottomTab = ({
             checkRadioButtonById('one');
         } else if (pathName === '/learn') {
             checkRadioButtonById('two');
-        } else if (pathName === '/code') {
+        } else if (pathName === '/code' || pathName === '/code/codearea') {
             checkRadioButtonById('three');
         } else if (pathName === '/discuss') {
             checkRadioButtonById('four');

@@ -6,7 +6,9 @@ div.main ul {
     background-color: transparent;
     isolation: isolate;
     padding: 6px 0;
+    height: 50px;
     margin: 0;
+    box-sizing: border-box;
 }
 
 div.main ul:after {

@@ -1,66 +1,61 @@
-
-.tab-wrap {
-  width: 100%;
-  position: relative;
-  display: flex;
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    background-color: #149EF1;
+    position: fixed;
+    height: 56px;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-input[type=radio][name=tabs] {
-  position: absolute;
-  z-index: -1;
-}
-input[type=radio][name=tabs]:checked + .tab-label-content label {
-  color: white;
-}
-input[type=radio][name=tabs]:checked + .tab-label-content .tab-content {
-  display: block;
-}
-input[type=radio][name=tabs]:nth-of-type(1):checked ~ .slide {
-  left: calc((100% / 3) * 0);
-}
-input[type=radio][name=tabs]:nth-of-type(2):checked ~ .slide {
-  left: calc((100% / 3) * 1);
-}
-input[type=radio][name=tabs]:nth-of-type(3):checked ~ .slide {
-  left: calc((100% / 3) * 2);
-}
-input[type=radio][name=tabs]:first-of-type:checked ~ .slide {
-  left: 0;
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #149EF1;
+    outline: none;
+    color: white;
+    font-size: 1em;
+    transition: background 0.3s;
+    width: calc(100% / 3);
 }
 
-.tab-label-content > label {
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: #149EF1;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 56px;
-  transition: color 0.2s ease;
-  width: 100%;
-  overflow: hidden;
+button.tab:nth-of-type(1):focus~.slider-useractivity {
+    left: calc((100% / 3) * 0);
 }
 
-.slide {
-  background: #f9e745;
-  width: calc(100% / 3);
-  height: 4px;
-  position: absolute;
-  left: 0;
-  top: calc(100% - 4px);
-  transition: left 0.3s ease-out;
+button.tab:nth-of-type(2):focus~.slider-useractivity {
+    left: calc((100% / 3) * 1);
 }
 
-.tab-label-content {
-  width: 100%;
+button.tab:nth-of-type(3):focus~.slider-useractivity {
+    left: calc((100% / 3) * 2);
 }
 
-.tab-label-content .tab-content {
-  position: absolute;
-  left: 0;
-  line-height: 130%;
-  display: none;
-  overflow: auto;
+.slider-useractivity {
+    background: #f9e745;
+    width: calc(100% / 3);
+    height: 4px;
+    position: absolute;
+    left: 0;
+    top: calc(100% - 4px);
+    transition: left 0.3s ease-out;
+}
+
+.pre-tag-wrapper > pre {
+    padding: 0 !important; 
+    margin: 0 !important;    
+}
+
+.swipeable-views {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+.tabpanel {
+    min-width: 100%;
+    height: calc(100% - 155px);
+    overflow-x: auto;
 }

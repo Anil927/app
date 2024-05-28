@@ -1,34 +1,65 @@
 'use client'
 import React from 'react'
 import './codearea.css'
-import '../../profile/useractivity/page.css'
-
+import styles from "@/app/page.module.css"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-interface Props {
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+const TabPanel: React.FC<TabPanelProps> = ({ children, value, index, ...other }) => {
+    return (
+        <div
+            style={{ overflow: 'auto' }}
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+            className='tabpanel'
+        >
+            {value === index && (
+                <div className='pre-tag-wrapper' style={{ marginTop: '56px' }}>
+                    {children}
+                </div>
+            )}
+        </div>
+    );
+};
+
+
+
+interface CodeAreaProps {
     id: number
     fileType: string
 }
 
-const CodeArea: React.FC<Props> = ({fileType, id}) => {
+const CodeArea: React.FC<CodeAreaProps> = ({ fileType, id }) => {
 
-    const slideStyle = {
-        width: fileType === 'html' ? 'calc(100% / 3)' : '100%'
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (index: number) => {
+        setValue(index);
     };
 
-    let tabCode;
+    const handleCommentButtonClick = () => {
+        // Open the comment modal
+        console.log('Comment button clicked')
+    }
+
+    let tabPanelCode;
 
     if (fileType === 'html') {
-        tabCode =
-            <div className="tab-wrap">
-                <input type="radio" name="tabs" id="tab1" defaultChecked />
-                <div className="tab-label-content" id="tab1-content">
-                    <label htmlFor="tab1">html</label>
-                    <div className="tab-content">
-                        {/* some html code within in pre tag for demo */}
-                        <SyntaxHighlighter language="html" style={solarizedlight} showLineNumbers>
-                            {`
+        tabPanelCode =
+            <>
+                <TabPanel value={value} index={0}>
+                    <SyntaxHighlighter language="html" style={solarizedlight} showLineNumbers>
+                        {`
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,35 +85,15 @@ const CodeArea: React.FC<Props> = ({fileType, id}) => {
 <p>This is a paragraph.</p>
 <h1>This is a Heading</h1>
 <p>This is a paragraph.</p>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
 
 </body>
 </html>
 `}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-
-                <input type="radio" name="tabs" id="tab2" />
-                <div className="tab-label-content" id="tab2-content">
-                    <label htmlFor="tab2">css</label>
-                    <div className="tab-content">
-                        {/* some css code within in pre tag for demo */}
-                        <SyntaxHighlighter language="css" style={solarizedlight} showLineNumbers>
-                            {`
+                    </SyntaxHighlighter>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <SyntaxHighlighter language="css" style={solarizedlight} showLineNumbers>
+                        {`
 body {
     background-color: lightblue;
 }
@@ -92,67 +103,22 @@ h1 {
     text-align: center;
 }
 `}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-
-                <input type="radio" name="tabs" id="tab3" />
-                <div className="tab-label-content" id="tab3-content">
-                    <label htmlFor="tab3">javascript</label>
-                    <div className="tab-content">
-                        {/* some js code within in pre tag for demo */}
-                        <SyntaxHighlighter language="javascript" style={solarizedlight} showLineNumbers>
-                            {`
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
+                    </SyntaxHighlighter>
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <SyntaxHighlighter language="javascript" style={solarizedlight} showLineNumbers>
+                        {`
 document.getElementById("demo").innerHTML = "Hello JavaScript!";
 `}
-
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-                <div className="slide" style={slideStyle}></div>
-            </div>
-
+                    </SyntaxHighlighter>
+                </TabPanel>
+            </>
     } else if (fileType === 'python') {
-        tabCode =
-            <div className="tab-wrap">
-                <input type="radio" name="tabs" id="tab1" defaultChecked />
-                <div className="tab-label-content" id="tab1-content">
-                    <label htmlFor="tab1">python</label>
-                    <div className="tab-content">
-                        {/* some python code within in pre tag for demo */}
-                        <SyntaxHighlighter language="python" style={solarizedlight} showLineNumbers>
-                            {`
+        tabPanelCode =
+            <>
+                <TabPanel value={value} index={0}>
+                    <SyntaxHighlighter language="python" style={solarizedlight} showLineNumbers>
+                        {`
 # writ the most efficient python code to check prime number
 # it will be used in production
 def is_prime(n):
@@ -185,43 +151,53 @@ def test_is_prime():
     assert is_prime(11) == True
     print('All test cases passed')
 `}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-                <div className="slide" style={slideStyle}></div>
-            </div>
-
+                    </SyntaxHighlighter>
+                </TabPanel>
+            </>
     } else if (fileType === 'javascript') {
-        tabCode =
-            <div className="tab-wrap">
-                <input type="radio" name="tabs" id="tab1" defaultChecked />
-                <div className="tab-label-content" id="tab1-content">
-                    <label htmlFor="tab1">javascript</label>
-                    <div className="tab-content">
-                        {/* some javascript code within in pre tag for demo */}
-
-                        <SyntaxHighlighter language="javascript" style={solarizedlight} showLineNumbers >
-                            {`
+        tabPanelCode =
+            <>
+                <TabPanel value={value} index={0}>
+                    <SyntaxHighlighter language="javascript" style={solarizedlight} showLineNumbers>
+                        {`
 document.getElementById("demo").innerHTML = "Hello JavaScript!";
 `}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-                <div className="slide" style={slideStyle}></div>
-            </div>
+                    </SyntaxHighlighter>
+                </TabPanel>
+            </>
+    } else {
+        tabPanelCode = <></>
     }
 
+    const dynamicWidthStyle = { width: fileType === 'html' ? 'calc(100% / 3)' : '100%' }
+
+
     return (
-        <div>
-            {tabCode}
+        <div className={styles.topBottomMargin}>
+            <div className="tabs">
+                {
+                    (fileType === 'python' || fileType === 'javascript') && <button className={value === 0 ? 'tab active' : 'tab'} onClick={() => handleChange(0)} style={dynamicWidthStyle}>{fileType}</button>
+                }
+                {
+                    fileType === 'html' &&
+                    <>
+                        <button className={value === 0 ? 'tab active' : 'tab'} onClick={() => handleChange(0)} style={dynamicWidthStyle}>{fileType}</button>
+                        <button className={value === 1 ? 'tab active' : 'tab'} onClick={() => handleChange(1)} style={dynamicWidthStyle}>css</button>
+                        <button className={value === 2 ? 'tab active' : 'tab'} onClick={() => handleChange(2)} style={dynamicWidthStyle}>javascript</button>
+                    </>
+                }
+                <div className="slider-codearea" style={{ width: fileType === 'html' ? 'calc(100% / 3)' : '100%' }}></div>
+            </div>
+            {tabPanelCode}
             {/* floating comment button */}
             <div className="floating-comment-button">
                 <div className="comment-actions">
-                    <button className="comment-btn"><img src='./code/alternate-comment.svg' alt='' />Comment</button>
+                    <img src='./code/alternate-comment.svg' alt='' /><button onClick={handleCommentButtonClick} className="comment-btn">Comment</button>
                 </div>
             </div>
         </div>
-    )
+    );
+
 }
 
 export default CodeArea

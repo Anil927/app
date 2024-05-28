@@ -12,7 +12,10 @@ const CodeListItem: React.FC<Props> = ({ id, onClick }) => {
     const title = 'title here' // Dummy data for now, this needs to be fetched from the backend
     const views = 108 // Dummy data for now, this needs to be fetched from the backend
     const commentIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] // Dummy data for now, this needs to be fetched from the backend
-    const fileType = 'html' // Dummy data for now, this needs to be fetched from the backend
+    
+    // Generate random file type out of html, python, javascript. This needs to be fetched from the backend
+    const fileTypes = ['html', 'python', 'javascript']
+    const fileType = fileTypes[Math.floor(Math.random() * fileTypes.length)]
 
     const handleClick = () => {
         onClick(id, fileType)
