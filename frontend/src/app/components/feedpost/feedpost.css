@@ -71,6 +71,10 @@ body {
     padding: 6px 3px ;
 }
 
+.feed-post-content svg {
+    fill: rgb(174, 168, 168);
+}
+
 .feed-post-content-left {
     display: flex;
     justify-content: space-between;
@@ -92,7 +96,7 @@ body {
 
 
 .feed-post-content svg {
-    height: 4.4vmin;
+    height: 4.3vmin;
     margin-right: 4px;
 }
 

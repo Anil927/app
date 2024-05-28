@@ -1,0 +1,117 @@
+.tab-wrap {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+input[type=radio][name=tabs] {
+    position: absolute;
+    z-index: 7;
+}
+
+input[type=radio][name=tabs]:checked+.tab-label-content label {
+    color: white;
+}
+
+input[type=radio][name=tabs]:checked+.tab-label-content .tab-content {
+    display: block;
+}
+
+input[type=radio][name=tabs]:nth-of-type(1):checked~.slide {
+    left: calc((100% / 3) * 0);
+}
+
+input[type=radio][name=tabs]:nth-of-type(2):checked~.slide {
+    left: calc((100% / 3) * 1);
+}
+
+input[type=radio][name=tabs]:nth-of-type(3):checked~.slide {
+    left: calc((100% / 3) * 2);
+}
+
+input[type=radio][name=tabs]:first-of-type:checked~.slide {
+    left: 0;
+}
+
+.tab-label-content>label {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #149EF1;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 56px;
+    transition: color 0.2s ease;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    background: #f9e745;
+    width: calc(100% / 3);
+    height: 4px;
+    position: absolute;
+    left: 0;
+    top: calc(100% - 4px);
+    transition: left 0.3s ease-out;
+}
+
+.tab-label-content {
+    width: 100%;
+}
+
+.tab-label-content .tab-content {
+    position: absolute;
+    left: 0;
+    line-height: 130%;
+    display: none;
+    overflow: auto;
+}
+
+
+.tab-content {
+    width: 100% !important;
+    overflow: auto !important;
+}
+
+.tab-content pre {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: calc(100% - 156px) !important;
+}
+
+.tab-content pre code {
+    width: 100% !important;
+    left: 0 !important;
+}
+
+
+.floating-comment-button {
+    position: fixed;
+    right: 6px;
+    bottom: 40px;
+    color: white;
+    z-index: 10;
+}
+
+.floating-comment-button .comment-actions > .comment-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    background-color: #7db343;
+    padding: 4px 8px;
+    border-radius: 7px;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.floating-comment-button .comment-actions > .comment-btn > svg {
+    height:  4vmin !important;
+    fill: white;
+}

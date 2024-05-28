@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from "@/app/page.module.css"
 import './page.css'
-import FeedPost from '@/app/components/feedpost/feedpost'
 import UserCodes from './usercodes/usercodes'
 import UserPosts from './userposts/userposts'
 import UserQuestions from './userquestions/userquestions'
@@ -38,9 +37,6 @@ const UserActivity = () => {
                 <div className="slide"></div>
 
             </div>
-
-
-
         </div>
     )
 }
