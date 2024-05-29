@@ -43,9 +43,32 @@ const UserActivity: React.FC = () => {
     return (
         <div className={styles.topBottomMargin}>
             <div className="tabs">
-                <button className={value === 0 ? 'tab active' : 'tab'} onClick={() => handleChange(0)}>Codes</button>
-                <button className={value === 1 ? 'tab active' : 'tab'} onClick={() => handleChange(1)}>Posts</button>
-                <button className={value === 2 ? 'tab active' : 'tab'} onClick={() => handleChange(2)}>Questions</button>
+            <input
+                            type="checkbox"
+                            id="tab-0"
+                            className="tab"
+                            onChange={() => handleChange(0)}
+                            checked={value === 0}
+                        />
+                        <label htmlFor="tab-0">html</label>
+
+                        <input
+                            type="checkbox"
+                            id="tab-1"
+                            className="tab"
+                            onChange={() => handleChange(1)}
+                            checked={value === 1}
+                        />
+                        <label htmlFor="tab-1">css</label>
+
+                        <input
+                            type="checkbox"
+                            id="tab-2"
+                            className="tab"
+                            onChange={() => handleChange(2)}
+                            checked={value === 2}
+                        />
+                        <label htmlFor="tab-2">javascript</label>
                 <div className="slider-useractivity"></div>
             </div>
             <TabPanel value={value} index={0}>

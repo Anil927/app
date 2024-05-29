@@ -9,7 +9,11 @@
     box-sizing: border-box;
 }
 
-.tab {
+input[type='checkbox'].tab {
+    display: none;
+}
+
+input[type='checkbox'].tab + label {
     padding: 10px 20px;
     cursor: pointer;
     border: none;
@@ -19,18 +23,30 @@
     font-size: 1em;
     transition: background 0.3s;
     width: calc(100% / 3);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-button.tab:nth-of-type(1):focus~.slider-useractivity {
-    left: calc((100% / 3) * 0);
+input[type='checkbox'].tab:checked + label {
+    background-color: #149EF1;
 }
 
-button.tab:nth-of-type(2):focus~.slider-useractivity {
-    left: calc((100% / 3) * 1);
+input[type='checkbox'].tab:checked ~ .slider-useractivity {
+    left: calc(100% / 3 * var(--tab-index));
 }
 
-button.tab:nth-of-type(3):focus~.slider-useractivity {
-    left: calc((100% / 3) * 2);
+input[type='checkbox'].tab:nth-of-type(1):checked ~ .slider-useractivity {
+    left: calc(100% / 3 * 0);
+}
+
+input[type='checkbox'].tab:nth-of-type(2):checked ~ .slider-useractivity {
+    left: calc(100% / 3 * 1);
+}
+
+input[type='checkbox'].tab:nth-of-type(3):checked ~ .slider-useractivity {
+    left: calc(100% / 3 * 2);
 }
 
 .slider-useractivity {

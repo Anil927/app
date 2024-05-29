@@ -44,13 +44,6 @@ const CodeArea: React.FC<CodeAreaProps> = ({ fileType, id }) => {
     };
 
     const handleCommentButtonClick = (e: any) => {
-        // Save the currently active tab
-        const activeTab = document.querySelector('.tab.active') as HTMLElement;
-        // Refocus the active tab to ensure the slider does not reset
-        if (activeTab) {
-            activeTab.focus();
-        }
-
         // Add your comment logic here
     };
 
@@ -73,14 +66,6 @@ def is_prime(n):
 `
 
     const handleCopyButtonClick = () => {
-        // Save the currently active tab
-        const activeTab = document.querySelector('.tab.active') as HTMLElement;
-
-        // Refocus the active tab to ensure the slider does not reset
-        if (activeTab) {
-            activeTab.focus();
-        }
-
 
         const codeElement = document.querySelector(`#simple-tabpanel-${value} pre code`);
         try {
@@ -91,7 +76,6 @@ def is_prime(n):
             console.error('Failed to copy: ', err);
         }
     };
-
 
 
     let tabPanelCode;
@@ -214,31 +198,54 @@ document.getElementById("demo").innerHTML = "Hello JavaScript!";
         tabPanelCode = <></>;
     }
 
-    const dynamicWidthStyle = { width: fileType === 'html' ? 'calc(100% / 3)' : '100%' };
-
     return (
         <div className={styles.topBottomMargin}>
             <div className="tabs">
                 {(fileType === 'python' || fileType === 'javascript') && (
-                    <button className={value === 0 ? 'tab active' : 'tab'} onClick={() => handleChange(0)} style={dynamicWidthStyle}>
-                        {fileType}
-                    </button>
+                    <>
+                        <input
+                            type="checkbox"
+                            id="tab-0"
+                            className="tab"
+                            onChange={() => handleChange(0)}
+                            checked={value === 0}
+                        />
+                        <label htmlFor="tab-0" style={{ width: '100%' }}>{fileType}</label>
+                    </>
                 )}
                 {fileType === 'html' && (
                     <>
-                        <button className={value === 0 ? 'tab active' : 'tab'} onClick={() => handleChange(0)} style={dynamicWidthStyle}>
-                            {fileType}
-                        </button>
-                        <button className={value === 1 ? 'tab active' : 'tab'} onClick={() => handleChange(1)} style={dynamicWidthStyle}>
-                            css
-                        </button>
-                        <button className={value === 2 ? 'tab active' : 'tab'} onClick={() => handleChange(2)} style={dynamicWidthStyle}>
-                            javascript
-                        </button>
+                        <input
+                            type="checkbox"
+                            id="tab-0"
+                            className="tab"
+                            onChange={() => handleChange(0)}
+                            checked={value === 0}
+                        />
+                        <label htmlFor="tab-0">html</label>
+
+                        <input
+                            type="checkbox"
+                            id="tab-1"
+                            className="tab"
+                            onChange={() => handleChange(1)}
+                            checked={value === 1}
+                        />
+                        <label htmlFor="tab-1">css</label>
+
+                        <input
+                            type="checkbox"
+                            id="tab-2"
+                            className="tab"
+                            onChange={() => handleChange(2)}
+                            checked={value === 2}
+                        />
+                        <label htmlFor="tab-2">javascript</label>
                     </>
                 )}
                 <div className="slider-codearea" style={{ width: fileType === 'html' ? 'calc(100% / 3)' : '100%' }}></div>
             </div>
+
             <div className="copy-button-wrapper">
                 <button onClick={handleCopyButtonClick} className="copy-btn">
                     <img src="/code/copy.svg" alt="copy" />
