@@ -23,7 +23,7 @@ const accordionItems: AccordionItem[] = [
         ]
     },
     {
-        id: 1, label: 'PYTHON', labelImg: './learn/termux.png', content: [
+        id: 1, label: 'PYTHON', labelImg: '/code/python.svg', content: [
             [
                 { id: 0, title: 'Video 1', url: 'https://example.com/video1' },
                 { id: 1, title: 'Video 2', url: 'https://example.com/video2' },
@@ -35,7 +35,7 @@ const accordionItems: AccordionItem[] = [
         ]
     },
     {
-        id: 2, label: 'HTML CSS JS', labelImg: './learn/termux.png', content: [
+        id: 2, label: 'HTML CSS JS', labelImg: './code/html-5.svg', content: [
             [
                 { id: 0, title: 'Video 1', url: 'https://example.com/video1' },
                 { id: 1, title: 'Video 2', url: 'https://example.com/video2' },
@@ -59,7 +59,7 @@ const accordionItems: AccordionItem[] = [
         ]
     },
     {
-        id: 4, label: 'LINUX', labelImg: './learn/termux.png', content: [
+        id: 4, label: 'JAVA', labelImg: './learn/termux.png', content: [
             [
                 { id: 0, title: 'Video 1', url: 'https://example.com/video1' },
                 { id: 1, title: 'Video 2', url: 'https://example.com/video2' },

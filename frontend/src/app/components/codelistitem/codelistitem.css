@@ -28,7 +28,13 @@
 .code-list-item-views-comments {
     display: flex;
     justify-content: center;
+    align-items: center;
     column-gap: 20px;
+}
+
+.code-list-item-comments {
+    align-self: flex-end;
+    margin-top: 4px;
 }
 
 .code-list-item-views,
@@ -43,6 +49,10 @@
 
 .code-list-item-views img,
 .code-list-item-comments img {
-    width: 14px;
+    width: 15px;
     aspect-ratio: 1;
+}
+
+.code-list-item-comments > div {
+    margin-top: -4px;
 }

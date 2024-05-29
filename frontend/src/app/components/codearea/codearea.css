@@ -21,6 +21,10 @@
     width: calc(100% / 3);
 }
 
+.tab:focus {
+    outline: none;
+}
+
 button.tab:nth-of-type(1):focus~.slider-codearea {
     left: calc((100% / 3) * 0);
 }
@@ -69,17 +73,43 @@ button.tab:nth-of-type(3):focus~.slider-codearea {
     justify-content: space-between;
     align-items: center;
     position: absolute;
+    column-gap: 5px;
     right: 10px;
-    bottom: 20px;
+    bottom: 24px;
     background-color: #7db343;
     padding: 4px 8px;
-    border-radius: 7px;
+    border-radius: 4px;
     color: white;
     border: none;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-.floating-comment-button .comment-actions > .comment-btn > svg {
-    height:  4vmin !important;
-    fill: white;
+.floating-comment-button .comment-actions > .comment-btn > div {
+    margin-top: 2px;
+    align-self: flex-start;
+    font-size: 1em;
+}
+
+.copy-button-wrapper {
+    position: fixed;
+    top: 120px; 
+    right: 10px;
+}
+
+.copy-btn {
+    position: absolute;
+    right: 4px;
+    padding: 2px 3px;
+    background-color: #149EF1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.copy-btn:hover {
+    background-color: #0056b3;
 }

@@ -23,11 +23,11 @@ const CodeListItem: React.FC<Props> = ({ id, onClick }) => {
 
     let src;
     if (fileType === 'html') {
-        src = './code/html-5.svg'
+        src = '/code/html-5.svg'
     } else if (fileType === 'python') {
-        src = './code/python.svg'
+        src = '/code/python.svg'
     } else if (fileType === 'javascript') {
-        src = './code/javascript.svg'
+        src = '/code/javascript.svg'
     }
 
     return (
@@ -41,10 +41,10 @@ const CodeListItem: React.FC<Props> = ({ id, onClick }) => {
                 </div>
                 <div className="code-list-item-views-comments">
                     <div className="code-list-item-views">
-                        <img src="./code/eye.svg" alt="views" /> <div>{views}</div>
+                        <img src="/code/eye.svg" alt="views" /> <div>{views}</div>
                     </div>
                     <div className="code-list-item-comments">
-                        <img src="./code/comments.svg" alt="comments" /> <div>{commentIds.length}</div>
+                        <img src="/code/comment-black.svg" alt="comments" /> <div>{commentIds.length}</div>
                     </div>
                 </div>
             </div>
