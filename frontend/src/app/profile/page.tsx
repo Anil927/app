@@ -23,11 +23,17 @@ const Profile: React.FC = () => {
         }
     };
 
+    const handleEditProfileImage = () => {
+        console.log('Edit profile image');
+    };
+
     return (
         <div className={styles.topBottomMargin}>
             <div className="profile-container">
                 <div className="profile-header">
                     <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Profile" className="profile-image" />
+                    {/* create a circle filled with color green */}
+                    <img className='profile-image-edit' onClick={handleEditProfileImage} src="/profile/camera-fill.svg" alt="edit" />
                     <h2 className="profile-username">Username</h2>
                     {isEditing ? (
                         <div>

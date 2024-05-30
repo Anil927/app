@@ -42,7 +42,7 @@ const UserActivity: React.FC = () => {
 
     return (
         <div className={styles.topBottomMargin}>
-            <div className="tabs">
+            <div className="user-activity tabs">
             <input
                             type="checkbox"
                             id="tab-0"

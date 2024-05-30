@@ -1,7 +1,6 @@
 "use client"
 import React from 'react'
 import './page.css'
-import styles from '../page.module.css'
 import CodeListItem from '../components/codelistitem/codelistitem'
 import { useRouter } from 'next/navigation'
 import CodeUplodModal from './codeuploadmodal/codeuploadmodal'
@@ -53,9 +52,22 @@ const Code = () => {
 
     const handleCloseModal = () => setIsModalOpen(false);
 
+    const handleSearchCode = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const search = (e.currentTarget as HTMLFormElement).search.value;
+        console.log(search);
+        // Perform the search logic here
+    };
+
 
     return (
-        <div className={styles.topBottomMargin}>
+        <div style={{margin: '90px 0 51px 0'}}>
+
+            {/* For top search bar */}
+            <form onSubmit={handleSearchCode} role="search">
+                <input id="search" type="search" placeholder="Search..." required />
+                <button id='search-btn' type="submit">Go</button>
+            </form>
 
             {/* For floating action button */}
             <div className="floating-action-button">
@@ -67,7 +79,7 @@ const Code = () => {
                         checked={isAdminToggleChecked}
                         onChange={handleCheckboxChange}
                     />
-                    <a className="adminButton" href="#!"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg></a>
+                    <a className="adminButton" href="#" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg></a>
                     <div className="adminButtons">
                         <a href="#" title="python" onClick={(e) => { e.preventDefault(); handleOpenModal(e.currentTarget.title) }}><img src="./code/python.svg" alt="python" /></a>
                         <a href="#" title="html" onClick={(e) => { e.preventDefault(); handleOpenModal(e.currentTarget.title) }}><img src="./code/html-5.svg" alt="html" /></a>

@@ -200,7 +200,7 @@ document.getElementById("demo").innerHTML = "Hello JavaScript!";
 
     return (
         <div className={styles.topBottomMargin}>
-            <div className="tabs">
+            <div className="codearea tabs">
                 {(fileType === 'python' || fileType === 'javascript') && (
                     <>
                         <input
