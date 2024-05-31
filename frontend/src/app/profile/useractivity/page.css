@@ -9,12 +9,12 @@
     box-sizing: border-box;
 }
 
-.user-activity.tabs .user-activity.tabs input[type='checkbox'].tab {
+.user-activity.tabs input[type='checkbox'].tab {
     display: none;
 }
 
 .user-activity.tabs input[type='checkbox'].tab + label {
-    padding: 10px 20px;
+    padding: 10px;
     cursor: pointer;
     border: none;
     background-color: #149EF1;
@@ -22,7 +22,7 @@
     color: white;
     font-size: 1em;
     transition: background 0.3s;
-    width: calc(100% / 3);
+    width: 25%;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -34,24 +34,28 @@
 }
 
 .user-activity.tabs input[type='checkbox'].tab:checked ~ .slider-useractivity {
-    left: calc(100% / 3 * var(--tab-index));
+    left: calc(100% / 4 * var(--tab-index));
 }
 
 .user-activity.tabs input[type='checkbox'].tab:nth-of-type(1):checked ~ .slider-useractivity {
-    left: calc(100% / 3 * 0);
+    left: calc(100% / 4 * 0);
 }
 
 .user-activity.tabs input[type='checkbox'].tab:nth-of-type(2):checked ~ .slider-useractivity {
-    left: calc(100% / 3 * 1);
+    left: calc(100% / 4 * 1);
 }
 
 .user-activity.tabs input[type='checkbox'].tab:nth-of-type(3):checked ~ .slider-useractivity {
-    left: calc(100% / 3 * 2);
+    left: calc(100% / 4 * 2);
+}
+
+.user-activity.tabs input[type='checkbox'].tab:nth-of-type(4):checked ~ .slider-useractivity {
+    left: calc(100% / 4 * 3);
 }
 
 .slider-useractivity {
     background: #f9e745;
-    width: calc(100% / 3);
+    width: calc(100% / 4);
     height: 4px;
     position: absolute;
     left: 0;

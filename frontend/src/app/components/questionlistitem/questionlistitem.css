@@ -7,6 +7,7 @@
     column-gap: 8px;
     border-bottom: 0.5px solid rgb(227, 214, 214);
     padding: 10px;
+    background-color: white;
 }
 
 .question .question-icon {

@@ -61,7 +61,7 @@ const Code = () => {
 
 
     return (
-        <div style={{margin: '90px 0 51px 0'}}>
+        <div style={{margin: '90px 0 50px 0'}}>
 
             {/* For top search bar */}
             <form onSubmit={handleSearchCode} role="search">
