@@ -19,19 +19,19 @@ const Home = () => {
                 </div>
             </div>
 
-            <FeedPost 
+            <FeedPost
                 postId={1}
                 profileImagePath='https://www.w3schools.com/howto/img_avatar.png'
                 username='John Doe'
                 designation='Software Engineer'
                 time='1h ago'
                 postContent='Hello, this is my first post'
-                postImagePath='https://via.placeholder.com/500'
+                postImagePath='./code/html-5.svg'
                 noOfLikes={10}
                 noOfComments={20}
             />
-            
-            <FeedPost 
+
+            <FeedPost
                 postId={2}
                 profileImagePath='https://www.w3schools.com/howto/img_avatar.png'
                 username='John Doe'
@@ -42,13 +42,24 @@ const Home = () => {
                 noOfComments={0}
             />
 
-            <FeedPost 
+            <FeedPost
                 postId={3}
                 username='John Doe'
                 designation='Software Engineer'
                 time='1h ago'
                 postContent='Hello, this is my first post'
                 postImagePath='https://via.placeholder.com/500'
+                noOfLikes={10}
+                noOfComments={20}
+            />
+
+            <FeedPost
+                postId={3}
+                username='John Doe'
+                designation='Software Engineer'
+                time='1h ago'
+                postContent='Hello, this is my first post'
+                postImagePath='./code/css3.svg'
                 noOfLikes={10}
                 noOfComments={20}
             />

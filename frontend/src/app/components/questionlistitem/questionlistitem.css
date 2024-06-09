@@ -5,14 +5,18 @@
     flex-direction: row;
     justify-content: flex-start;
     column-gap: 8px;
-    border-bottom: 0.5px solid rgb(227, 214, 214);
+    border-bottom: 0.8px solid #2b3034;
     padding: 10px;
-    background-color: white;
+    background-color: #333a40;
+    color: #afb4b7;
+    font-size: 0.7em;
+    font-weight: bold;
+    letter-spacing: 0.4px;
 }
 
 .question .question-icon {
     align-self: flex-start;
-    margin-top: 2px;                                                                                          
+    margin-top: 4px;                                                                                          
 }
 
 .question .question-content {
@@ -21,7 +25,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    row-gap: 5px;
+    row-gap: 10px;
 }
 
 .question .question-content .question-title {
@@ -34,9 +38,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.7em;
+    font-size: 0.9em;
     font-weight: 600;
-    color: rgb(144, 127, 127);
     width: 100%;
 }
 

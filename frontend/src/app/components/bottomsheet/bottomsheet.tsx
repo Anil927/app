@@ -12,7 +12,7 @@ interface ModalProps {
     callback: (commentsCount: number) => void;
 }
 
-let userProfileImagePath = null;
+let userProfileImagePath: string = '';
 
 const Modal: React.FC<ModalProps> = ({ onClose, noOfComments, callback, postId }) => {
 
@@ -118,7 +118,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, noOfComments, callback, postId }
         <>
             {isOpen && (
                 <div className={`modal-overlay ${isClosing ? 'fade-out' : ''}`}>
-                    <div className={`modal-content ${isClosing ? 'slide-down' : ''}`}>
+                    <div className={`modal-content ${isClosing ? 'slide-down' : ''}`} style={{ backgroundColor: localStorage.getItem('theme') === 'dark' ? '#121212' : 'white'}}>
                         <button className="close-button" onClick={handleClose}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill='#007BFF' d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
                         </button>

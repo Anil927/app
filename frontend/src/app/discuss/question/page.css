@@ -6,6 +6,8 @@
     justify-content: flex-start;
     column-gap: 8px;
     padding: 10px 10px 5px 10px;
+    background-color: #333a40;
+    color: #afb4b7;
 }
 
 .question-answer .question-icon {
@@ -44,7 +46,7 @@
     margin-right: 5px;
 }
 
-.views {
+.question-views {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

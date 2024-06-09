@@ -1,12 +1,10 @@
 'use client'
-
 import React, { useState } from 'react';
-import styles from "@/app/page.module.css"
-import './page.css'
 import UserCodes from './usercodes/usercodes'
 import UserPosts from './userposts/userposts'
 import UserQuestions from './userquestions/userquestions'
 import UserAnswers from './useranswers/useranswers';
+import './page.css';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -42,7 +40,7 @@ const UserActivity: React.FC = () => {
     };
 
     return (
-        <div className={styles.topBottomMargin}>
+        <div style={{margin: '50px 0 46px 0'}}>
             <div className="user-activity tabs">
                 <input
                     type="checkbox"

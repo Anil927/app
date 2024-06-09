@@ -1,7 +1,7 @@
 'use client'
+import styles from '../page.module.css';
 import React, { useRef, useState } from 'react';
 import './page.css';
-import styles from '../page.module.css';
 import Streak from './streak/streak';
 import Link from 'next/link';
 
@@ -72,8 +72,12 @@ const Profile: React.FC = () => {
                     <Streak />
                 </div>
                 <div>
-                    <span style={{ fontSize: "12px" }}>code bits, posts, questions etc.</span>
+                    <span style={{ fontSize: "12px" }}>Your code bits, posts, questions etc.</span>
                     <Link href="/profile/useractivity"><button>See Activity</button></Link>
+                </div>
+                <div>
+                    <span style={{ fontSize: "12px" }}>Downloaded code bits, posts, questions etc.</span>
+                    <Link href="/profile/userdownloads"><button>Downloads</button></Link>
                 </div>
 
             </div>

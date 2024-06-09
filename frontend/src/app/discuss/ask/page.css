@@ -1,0 +1,85 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.text-input {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-bottom: 0.8px solid #afb4b7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #2b3035;
+    color: #afb4b7;
+    font-size: 1.1em;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.text-input:focus {
+    border-color: white;
+}
+
+
+/* For handling tags */
+
+.question-tags-container {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #333a40;
+    width: 100%;
+    color: #afb4b7;
+}
+
+.question-tags-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.question-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.question-tag-item {
+    padding: 4px 6px;
+    background-color: #272727;
+    color: #afb4b7;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #b3bbc4;
+    }
+}
+
+.question-tags-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    background-color: #2b3035;
+    color: #afb4b7;
+}
+
+.question-tags-input:focus {
+    outline: none;
+    border: 1px solid #149EF1;
+}
+
+.question-tags-hint {
+    margin-top: 8px;
+    font-size: 0.8em;
+    color: #bcc4c9;
+}
+
+

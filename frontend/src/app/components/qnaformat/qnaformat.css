@@ -1,0 +1,131 @@
+.qna-format {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 16px 8px;
+    background-color: #333a40;
+    color: #afb4b7;
+    border-bottom: 01px solid #2b3034;
+}
+
+.qna-format .qna-analytics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
+    padding: 8px 8px 8px 0px;
+    row-gap: 5px;
+    align-self: flex-start;
+}
+
+.qna-format .qna-analytics .vote-count {
+    font-weight: 800;
+}
+
+.qna-format .qna-analytics img {
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+}
+
+.qna-format .qna-analytics .qna-bookmark {
+    margin-top: -5px;
+}
+
+.qna-format .qna-analytics .qna-bookmark > svg {
+    height: 5vmin;
+    fill: rgb(174, 168, 168);
+    cursor: pointer;
+}
+
+.qna-format .qna-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    box-sizing: border-box;
+    /* padding: 5px 10px 5px 5px; */
+    row-gap: 5px;
+}
+
+.qna-format .qna-content .qna-content-main {
+    text-align: justify;
+    width: 100% !important;
+    box-sizing: border-box;
+} 
+
+.qna-format .qna-content .qna-content-main img {
+    max-width: 100%;
+}
+
+
+.qna-format .qna-content .qna-content-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    column-gap: 20px;
+}
+
+.qna-format .qna-content .qna-content-profile .qna-content-profile-edit {
+    margin-top: -3px;
+}
+
+.qna-format .qna-content .qna-content-profile .qna-content-profile-edit .qna-edit-button {
+    align-self: flex-start;
+    color: #149ef1;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 0.8em;
+}
+
+.qna-format .qna-content .qna-content-profile-info {
+    align-self: flex-end;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 5px;
+}
+
+.qna-content-profile-info .qna-info-time {
+    font-size: 0.8em;
+    color: rgb(144, 127, 127);
+}
+
+.qna-content-profile-info .qna-info-user {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.qna-content-profile-info .qna-info-user .qna-user-profile > img {
+    width: 36px;
+    border-radius: 3px;
+}
+
+.qna-content-profile-info .qna-info-user .qna-user-name-level {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 3px;
+    padding-bottom: 3px;
+    box-sizing: border-box;
+}
+
+.qna-info-user .qna-user-name-level .qna-user-name {
+    font-size: 0.85em;
+    color: #149ef1;
+    font-weight: 600;
+}
+
+.qna-info-user .qna-user-name-level .qna-user-level {
+    font-size: 0.7em;
+    color: #777;
+    font-weight: 600;
+}
+
+

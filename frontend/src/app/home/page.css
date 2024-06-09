@@ -1,3 +1,4 @@
+
 * {
     /* For browsers that support webkit-scrollbar */
     scrollbar-width: none;
@@ -21,6 +22,7 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    background-color: #333a40;
 }
 
 .search-bar {
@@ -32,7 +34,9 @@
 }
 
 .search-bar input {
-    border: 2px solid rgb(184, 184, 184);
+    border: 2px solid #afb4b7;
+    color: #afb4b7;
+    background-color: #2b3035;
     border-radius: 3px;
     padding: 8px 12px;
     width: 100%;
@@ -66,6 +70,6 @@ button {
 
 
 button:active {
-    background-color: #bdccd8;
+    /* background-color: #bdccd8; */
     transition: background 0s;
 }

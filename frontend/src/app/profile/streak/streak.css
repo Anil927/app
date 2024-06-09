@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 34px;
+    height: 38px;
     box-sizing: border-box;
 }
 
@@ -64,6 +64,6 @@
 .empty-day {
     display: flex;
     height: 34px;
-    background-color: #f7f7f7;
+    /* background-color: #fff; */
     box-sizing: border-box;
 }

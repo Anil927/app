@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import CodeUplodModal from './codeuploadmodal/codeuploadmodal'
 import Snackbar from '../components/snackbar/snackbar'
 
+
 const Code = () => {
 
     const router = useRouter()
@@ -61,7 +62,7 @@ const Code = () => {
 
 
     return (
-        <div style={{margin: '90px 0 50px 0'}}>
+        <div style={{margin: '50px 0 50px 0'}}>
 
             {/* For top search bar */}
             <form onSubmit={handleSearchCode} role="search">
@@ -79,7 +80,7 @@ const Code = () => {
                         checked={isAdminToggleChecked}
                         onChange={handleCheckboxChange}
                     />
-                    <a className="adminButton" href="#" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" /></svg></a>
+                    <a className="adminButton" href="#" onClick={(e) => e.preventDefault()}>+</a>
                     <div className="adminButtons">
                         <a href="#" title="python" onClick={(e) => { e.preventDefault(); handleOpenModal(e.currentTarget.title) }}><img src="./code/python.svg" alt="python" /></a>
                         <a href="#" title="html" onClick={(e) => { e.preventDefault(); handleOpenModal(e.currentTarget.title) }}><img src="./code/html-5.svg" alt="html" /></a>

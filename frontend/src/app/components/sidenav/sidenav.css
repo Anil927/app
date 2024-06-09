@@ -1,3 +1,8 @@
+:root {
+    touch-action: pan-x pan-y;
+}
+
+
 @font-face {
     font-family: customSans;
     src: local("OpenSans-Regular"), url('./../../../fonts/OpenSans-Regular.ttf') format(truetype);
@@ -8,9 +13,8 @@ body {
     font-family: customSans, sans-serif;
 }
 
-
 .top-navbar {
-    background-color: #149EF1;
+    background-color: #139EF1;
     height: 50px;
     left: 0;
     right: 0;
@@ -29,6 +33,7 @@ body {
     font-size: 19px;
     z-index: 7;
 }
+
 
 
 nav {
@@ -114,7 +119,8 @@ nav a {
 #drawer {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #333a40;
+
 }
 
 #drawer #nav-collapse {
@@ -153,18 +159,18 @@ nav a {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: white;
+    /* background-color: white; */
     padding: 20px 10px;
     box-sizing: border-box;
 }
 
 #drawer .drawer-buttons button {
+    color: #afb4b7;
     padding: 10px;
     text-align: left;
-    color: black;
     text-decoration: none;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -178,13 +184,16 @@ nav a {
 }
 
 
+
+
 .bottom-tab {
     bottom: 0;
     left: 0;
     right: 0;
     position: fixed;
     width: 100% !important;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
+    background-color: #2b3035;
     z-index: 3;
+    color: #afb4b7;
+    font-weight: bold;
 }

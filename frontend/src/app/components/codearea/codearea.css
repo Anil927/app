@@ -1,6 +1,5 @@
 .codearea.tabs {
     display: flex;
-    border-bottom: 1px solid #ccc;
     background-color: #149EF1;
     position: fixed;
     height: 56px;
@@ -17,10 +16,10 @@
     padding: 10px 20px;
     cursor: pointer;
     border: none;
-    background-color: #149EF1;
+    color: rgb(255, 255, 255, 0.6);
     outline: none;
-    color: white;
     font-size: 1em;
+    font-weight: 600;
     transition: background 0.3s;
     width: calc(100% / 3);
     text-align: center;
@@ -30,7 +29,7 @@
 }
 
 .codearea.tabs input[type='checkbox'].tab:checked + label {
-    background-color: #149EF1;
+    color: white;
 }
 
 .codearea.tabs input[type='checkbox'].tab:checked ~ .slider-codearea {
@@ -50,18 +49,19 @@
 }
 
 .slider-codearea {
-    background: #f9e745;
+    background: #fff;
     width: calc(100% / 3);
-    height: 4px;
+    height: 3px;
     position: absolute;
     left: 0;
-    top: calc(100% - 4px);
+    top: calc(100% - 3px);
     transition: left 0.3s ease-out;
 }
 
 .pre-tag-wrapper > pre {
     padding: 0 !important;
-    margin: 0 !important;    
+    margin: 0 !important;   
+    border-radius: 0 !important;
 }
 
 .tabpanel {
@@ -75,7 +75,7 @@
 .floating-comment-button {
     position: fixed;
     right: 6px;
-    bottom: 40px;
+    bottom: 50px;
     color: white;
     z-index: 10;
 }

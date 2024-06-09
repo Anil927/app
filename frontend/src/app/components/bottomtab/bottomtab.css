@@ -3,10 +3,8 @@ div.main ul {
     justify-content: space-around;
     align-items: center;
     list-style: none;
-    background-color: transparent;
     isolation: isolate;
-    padding: 6px 0;
-    height: 50px;
+    padding: 9px 0;
     margin: 0;
     box-sizing: border-box;
 }
@@ -21,8 +19,8 @@ div.main ul:after {
     top: 0;
     z-index: -1;
     transition: left 0.2s ease;
-    background-color: rgb(219, 236, 252);
-    color: #149EF1;
+    /* background-color: rgb(219, 236, 252); */
+    color: #139ef0;
 }
 
 div.main ul > li {
@@ -34,7 +32,6 @@ div.main ul > li  label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 div.main ul:has(#one:checked):after {
@@ -64,8 +61,9 @@ input[type="radio"] {
 
 div.main svg {
     height: 5vmin;
-    fill: hsl(200, 50%, 80%);
+    fill: #adb1b4;
     transition: fill 0.2s ease;
+    margin-bottom: 4px;
 }
 
 :checked+label svg
@@ -78,5 +76,5 @@ div.main svg {
 }
 
 label > div {
-    font-size: 0.8em !important;
+    font-size: 0.7em !important;
 }

@@ -114,7 +114,7 @@ const CreatePost: React.FC = () => {
                             className="tags-input"
                             onKeyDown={handleTagInput}
                         />
-                    <p className="tags-hint">e.g: JavaScript, React, Sorting Algorithm, Quick Sort, Python</p>
+                    <p className="tags-hint">Info: About which your post is related to, e.g: JavaScript, Html, Css, Sorting Algorithm, Quick Sort, Python, etc.</p>
                 </div>
 
                 {/* Post Button */}

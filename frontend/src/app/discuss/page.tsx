@@ -3,6 +3,7 @@ import React from 'react'
 import './page.css'
 import QuestionListItem from '../components/questionlistitem/questionlistitem';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 const Discuss = () => {
@@ -24,12 +25,16 @@ const Discuss = () => {
         // Perform the search logic here
     };
 
+    const handleAskQuestionButtonClick = () => {
+        // Perform the logic to navigate to the ask question page here
+    };
+
     return (
-        <div style={{margin: '90px 0 51px 0'}}>
+        <div style={{margin: '50px 0 51px 0'}}>
 
             {/* For top search bar */}
-            <form onSubmit={handleSearchCode} role="search">
-                <input id="search" type="search" placeholder="Search..." required />
+            <form onSubmit={handleSearchCode} role="search" >
+                <input id="search" type="search" placeholder="Search..." required  />
                 <button id='search-btn' type="submit">Go</button>
             </form>
 
@@ -37,6 +42,15 @@ const Discuss = () => {
             {questionListItemIds.map((id) => (
                 <QuestionListItem key={id} id={id} onClick={handleQuestionListItemClick} />
             ))}
+
+            {/* For floating ask question button */}
+            <Link href='/discuss/ask'>
+            <button className="floating-ask-question-button">
+                <div className="ask-question-actions">
+                    <span className="ask-question-text">Ask question ?</span>
+                </div>
+            </button>
+            </Link>
         </div>
     )
 }

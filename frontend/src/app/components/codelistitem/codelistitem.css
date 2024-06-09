@@ -4,9 +4,13 @@
     column-gap: 20px;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 0.8px solid #2b3034;
+    background-color: #333a40;
     padding-left: 1.2em;
-    background-color: white !important;
+    color: #afb4b7;
+    font-size: 0.9em;
+    font-weight: bolder;
+    letter-spacing: 0.4px;
 }
 
 .code-list-item-icon img {
@@ -19,6 +23,7 @@
     flex-direction: column;
     justify-content: center;
     row-gap: 5px;
+    width: 100%;
 }
 
 .code-list-item-title {
@@ -26,9 +31,17 @@
     text-decoration: none;
 }
 
+.code-list-item-views-comments-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
 .code-list-item-views-comments {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     column-gap: 20px;
 }
@@ -48,12 +61,26 @@
     font-size: 0.7em;
 }
 
+.code-list-item-time {
+    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 5px;
+    font-size: 0.7em;
+}
+
+.code-list-item-time>svg {
+    height: 12px;
+    aspect-ratio: 1;
+}
+
 .code-list-item-views img,
 .code-list-item-comments img {
     width: 15px;
     aspect-ratio: 1;
 }
 
-.code-list-item-comments > div {
+.code-list-item-comments>div {
     margin-top: -4px;
 }

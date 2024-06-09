@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
 import './codearea.css';
-import styles from "@/app/page.module.css";
+import styles from "../../page.module.css";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { vscDarkPlus as pojoaque } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -84,7 +84,7 @@ def is_prime(n):
         tabPanelCode = (
             <>
                 <TabPanel value={value} index={0}>
-                    <SyntaxHighlighter language="html" style={solarizedlight} showLineNumbers>
+                    <SyntaxHighlighter language="html" style={pojoaque} showLineNumbers  customStyle={{fontSize: '0.6em', minHeight: 'calc(100vh - 160px)'}}>
                         {`
 <!DOCTYPE html>
 <html>
@@ -118,7 +118,7 @@ def is_prime(n):
                     </SyntaxHighlighter>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <SyntaxHighlighter language="css" style={solarizedlight} showLineNumbers>
+                    <SyntaxHighlighter language="css" style={pojoaque} showLineNumbers  customStyle={{fontSize: '0.6em', minHeight: 'calc(100vh - 160px)'}}>
                         {`
 body {
     background-color: lightblue;
@@ -131,8 +131,8 @@ h1 {
 `}
                     </SyntaxHighlighter>
                 </TabPanel>
-                <TabPanel value={value} index={2}>
-                    <SyntaxHighlighter language="javascript" style={solarizedlight} showLineNumbers>
+                <TabPanel value={value} index={2}> 
+                    <SyntaxHighlighter language="javascript" style={pojoaque} showLineNumbers  customStyle={{fontSize: '0.6em', minHeight: 'calc(100vh - 160px)'}}>
                         {`
 document.getElementById("demo").innerHTML = "Hello JavaScript!";
 `}
@@ -144,7 +144,7 @@ document.getElementById("demo").innerHTML = "Hello JavaScript!";
         tabPanelCode = (
             <>
                 <TabPanel value={value} index={0}>
-                    <SyntaxHighlighter language="python" style={solarizedlight} showLineNumbers>
+                    <SyntaxHighlighter language="python" style={pojoaque} showLineNumbers  customStyle={{fontSize: '0.6em', minHeight: 'calc(100vh - 160px)'}}>
                         {`
 # Write the most efficient python code to check prime number
 # it will be used in production
@@ -186,9 +186,49 @@ def test_is_prime():
         tabPanelCode = (
             <>
                 <TabPanel value={value} index={0}>
-                    <SyntaxHighlighter language="javascript" style={solarizedlight} showLineNumbers>
+                    <SyntaxHighlighter language="javascript" style={pojoaque} showLineNumbers  customStyle={{fontSize: '0.6em', minHeight: 'calc(100vh - 160px)'}}>
                         {`
 document.getElementById("demo").innerHTML = "Hello JavaScript!";
+
+// Write the most efficient javascript code to check prime number
+// it will be used in production
+
+function isPrime(n) {
+    if (n <= 1) {
+        return false;
+    }
+    if (n <= 3) {
+        return true;
+    }
+    if (n % 2 === 0 || n % 3 === 0) {
+        return false;
+    }
+    let i = 5;
+    while (i * i <= n) {
+        if (n % i === 0 || n % (i + 2) === 0) {
+            return false;
+        }
+        i += 6;
+    }
+    return true;
+}
+
+// This is a test code
+
+function testIsPrime() {
+    console.assert(isPrime(2) === true);
+    console.assert(isPrime(3) === true);
+    console.assert(isPrime(4) === false);
+    console.assert(isPrime(5) === true);
+    console.assert(isPrime(6) === false);
+    console.assert(isPrime(7) === true);
+    console.assert(isPrime(8) === false);
+    console.assert(isPrime(9) === false);
+    console.assert(isPrime(10) === false);
+    console.assert(isPrime(11) === true);
+    console.log('All test cases passed');
+}
+
 `}
                     </SyntaxHighlighter>
                 </TabPanel>

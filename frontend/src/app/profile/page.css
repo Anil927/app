@@ -14,7 +14,6 @@
     color: white
 }
 
-
 .profile-image {
     width: 120px;
     height: 120px;
@@ -101,10 +100,11 @@
 }
 
 .profile-additional-details {
-    padding: 20px;
+    padding: 20px 20px 23px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: rgba(26, 25, 25, 0.95);
 }
 
 .profile-additional-details > div {
@@ -112,25 +112,26 @@
     width: 100%;
     flex-direction: column;
     justify-content: center;
-    background-color: white;
     padding: 20px;
     row-gap: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     border-radius: 7px;
+    background-color: #333a40;
+    color: #afb4b7;
 }
 
-.profile-additional-details > div:nth-child(2) {
+.profile-additional-details > div:nth-child(2),
+.profile-additional-details > div:nth-child(3){
     align-items: center;
 }
 
 .profile-additional-details > div button {
-    padding: 6px 20px 3px 20px;
+    padding: 6px 20px 6px 20px;
     border: none;
     border-radius: 3px;
     background-color: #7DB343;
     color: white;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 
