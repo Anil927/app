@@ -41,7 +41,7 @@
 
 .feed-post-header-right button {
     background-color: transparent;
-    color: gray;
+    color: #afb4b7;
     border: 1px solid #139EF1;
     padding: 4px 10px;
     border-radius: 4px;
@@ -68,7 +68,7 @@
 }
 
 .feed-post-content svg {
-    fill: rgb(174, 168, 168);
+    fill: #8b9093;
 }
 
 .feed-post-content-left {
@@ -77,29 +77,13 @@
     align-items: center;
 }
 
-.feed-post-content-left button {
+.feed-post-content-left > button ,
+.feed-post-content-right > button {
     background-color: transparent;
-    color: gray;
     border: none;
-    margin-right: 3px;
-}
-
-.feed-post-content-left>button {
+    color: #afb4b7;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-}
-
-
-.feed-post-content svg {
-    height: 4.3vmin;
-    margin-right: 4px;
-}
-
-.feed-post-content-right button {
-    background-color: transparent;
-    color: gray;
-    border: none;
-    display: flex;
-    align-items: center;
+    column-gap: 4px;
 }

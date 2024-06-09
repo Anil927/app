@@ -1,28 +1,28 @@
 "use client"
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './page.css'
 import CodeListItem from '../components/codelistitem/codelistitem'
 import { useRouter } from 'next/navigation'
 import CodeUplodModal from './codeuploadmodal/codeuploadmodal'
 import Snackbar from '../components/snackbar/snackbar'
-
+import Image from 'next/image'
 
 const Code = () => {
-
     const router = useRouter()
 
     const handleCodeListItemClick = (id: number, fileType: string) => {
         router.push(`/code/codearea?fileType=${fileType}&id=${id}`)
     }
 
-    const codeListItemIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] // Dummy data for now, this needs to be fetched from the backend
+    const codeListItemIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
 
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
-    const [title, setTitle] = React.useState('');
-    const [isAdminToggleChecked, setIsAdminToggleChecked] = React.useState(false);
-    const [showFileChooseSuccessMsg, setShowFileChooseSuccessMsg] = React.useState(false);
-    const [showFileChooseErrorMsg, setShowFileChooseErrorMsg] = React.useState(false);
-    // const [uploadStatus, setUploadStatus] = React.useState(false); // To show the success or error message after file upload
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [title, setTitle] = useState('');
+    const [isAdminToggleChecked, setIsAdminToggleChecked] = useState(false);
+    const [showFileChooseSuccessMsg, setShowFileChooseSuccessMsg] = useState(false);
+    const [showFileChooseErrorMsg, setShowFileChooseErrorMsg] = useState(false);
+    const [showSearchBar, setShowSearchBar] = useState(true);
+    const [lastScrollTop, setLastScrollTop] = useState(0);
 
     const handleOpenModal = (title: string) => {
         setTitle(title);
@@ -35,20 +35,18 @@ const Code = () => {
     };
 
     const handleCodePublish = (files: (File | null)[]) => {
-        // Perform the file upload logic here
         if (files[0]) {
             setShowFileChooseSuccessMsg(true);
             setTimeout(() => {
                 setShowFileChooseSuccessMsg(false);
             }, 2000);
-            // API call to upload the file
         } else {
             setShowFileChooseErrorMsg(true);
             setTimeout(() => {
                 setShowFileChooseErrorMsg(false);
             }, 2000);
         }
-        setIsModalOpen(false); // Close the modal after successful upload
+        setIsModalOpen(false);
     };
 
     const handleCloseModal = () => setIsModalOpen(false);
@@ -57,20 +55,42 @@ const Code = () => {
         e.preventDefault();
         const search = (e.currentTarget as HTMLFormElement).search.value;
         console.log(search);
-        // Perform the search logic here
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down
+                if (scrollTop - lastScrollTop > 500) {
+                    setShowSearchBar(false);
+                    setLastScrollTop(scrollTop);
+                }
+            } else {
+                // Scrolling up
+                if (lastScrollTop - scrollTop > 500) {
+                    setShowSearchBar(true);
+                    setLastScrollTop(scrollTop);
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollTop]);
 
     return (
-        <div style={{margin: '50px 0 50px 0'}}>
-
-            {/* For top search bar */}
-            <form onSubmit={handleSearchCode} role="search">
+        <div style={{ margin: '50px 0 50px 0' }}>
+            <form id="search-bar" className={showSearchBar ? '' : 'hidden'} onSubmit={handleSearchCode} role="search">
                 <input id="search" type="search" placeholder="Search..." required />
-                <button id='search-btn' type="submit">Go</button>
+                <input id='reset' type="reset" value="x" alt="Clear the search form" />
+                <button id='search-btn' type="submit">
+                    <Image src="./code/search-code.svg" alt="Search" width={20} height={20} />
+                </button>
             </form>
 
-            {/* For floating action button */}
             <div className="floating-action-button">
                 <div className="adminActions">
                     <input
@@ -89,7 +109,6 @@ const Code = () => {
                 </div>
             </div>
 
-            {/* For modal */}
             <CodeUplodModal
                 language={title}
                 isOpen={isModalOpen}
@@ -97,22 +116,14 @@ const Code = () => {
                 onPublish={handleCodePublish}
             />
 
-            {/* For success message */}
             {showFileChooseSuccessMsg && <Snackbar message="Code will be published soon" />}
-
-            {/* For error message */}
             {showFileChooseErrorMsg && <Snackbar message="Failed. Try to publish again" />}
 
-
-            {/* For code list items */}
             <div className="code-list">
-                {codeListItemIds.map((id) => {
-                    return (
-                        <CodeListItem key={id} id={id} onClick={handleCodeListItemClick} />
-                    )
-                })}
+                {codeListItemIds.map((id) => (
+                    <CodeListItem key={id} id={id} onClick={handleCodeListItemClick} />
+                ))}
             </div>
-
         </div>
     )
 }
