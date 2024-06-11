@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import './qnaformat.css';
 import 'highlight.js/styles/pojoaque.css'
 import Snackbar from '../snackbar/snackbar';
-import dynamic from 'next/dynamic';
-
-const QuillEditor = dynamic(() => import('@/app/components/richtexteditor/richtexteditor'), {
-  ssr: false
-});
-
+import Image from 'next/image';
+import QuillEditor from '../richtexteditor/richtexteditor';
 
 
 interface QnAProps {
@@ -21,7 +17,7 @@ const QnAFormat: React.FC<QnAProps> = ({ id }) => {
     const [showUpvoteMsg, setShowUpvoteMsg] = useState(false);
     const [showDownvoteMsg, setShowDownvoteMsg] = useState(false);
 
-    const voteCount = 51;
+    const voteCount = 57;
     const isUpvotedByUser = false;
     const isDownvotedByUser = false;
     const isBookmarkedByUser = false;
@@ -60,8 +56,7 @@ const QnAFormat: React.FC<QnAProps> = ({ id }) => {
     };
 
 
-    const handlePublish = (content: string, rawContent: string) => {// remove all select elements with class name 'ql-ui'
-
+    const handlePublish = (content: string, rawContent: string) => {
         setAnswer([content, rawContent]);
         setIsEditMode(false);
     };
@@ -73,18 +68,18 @@ const QnAFormat: React.FC<QnAProps> = ({ id }) => {
                 <div className="qna-analytics">
                     <div className="upvote" onClick={handleUpvoteClick}>
                         {
-                            (isUpvotedByUser || isUpvoteClicked) ? <img src="/discuss/upvote-filled.svg" alt="upvote" /> : <img src="/discuss/upvote.svg" alt="upvote" />
+                            (isUpvotedByUser || isUpvoteClicked) ? <Image src="/discuss/chevron-up-filled.svg" alt="upvote" width={34} height={34} /> : <Image src="/discuss/chevron-up.svg" alt="upvote" width={27} height={27} />
                         }
                         {
                             showUpvoteMsg ? <Snackbar message="This answer is useful. Upvoted! " /> : null
                         }
                     </div>
-                    <div className="vote-count">
-                        {voteCountState}
+                    <div className="vote-count" style={{ letterSpacing: '1px', marginLeft: '-10px', fontSize: '0.8em' }}>
+                        <span style={{marginRight: '2px'}}>{voteCountState > 0 ? '+' : ""}</span>{voteCountState}
                     </div>
                     <div className="downvote" onClick={handleDownvoteClick}>
                         {
-                            (isDownvotedByUser || isDownvoteClicked) ? <img src="/discuss/downvote-filled.svg" alt="downvote" /> : <img src="/discuss/downvote.svg" alt="downvote" />
+                            (isDownvotedByUser || isDownvoteClicked) ? <Image src="/discuss/chevron-down-filled.svg" alt="downvote" width={34} height={34} /> : <Image src="/discuss/chevron-down.svg" alt="downvote" width={27} height={27} />
                         }
                         {
                             showDownvoteMsg ? <Snackbar message="This answer is not useful. Downvoted!" /> : null
@@ -99,7 +94,7 @@ const QnAFormat: React.FC<QnAProps> = ({ id }) => {
                     </div>
                 </div>
                 <div className="qna-content">
-                    <div className="qna-content-main"  dangerouslySetInnerHTML={{ __html: answer[0] }} ></div>
+                    <div className="qna-content-main" dangerouslySetInnerHTML={{ __html: answer[0] }} ></div>
                     <div className="qna-content-profile">
                         <div className="qna-content-profile-edit">
                             <button className='qna-edit-button' onClick={handleEditMode}>Edit</button>

@@ -20,13 +20,16 @@ const AskQuestion: React.FC = () => {
     const [tags, setTags] = useState<string[]>([]);
     const tagInputRef = useRef<HTMLInputElement>(null);
 
-    const handleTagInput = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.currentTarget.value.trim() !== '') {
-            event.preventDefault(); // Prevent the default behavior of the Enter key
+    const handleTagInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter' && event.currentTarget.value.trim() !== '') {
             setTags([...tags, event.currentTarget.value.trim()]);
             event.currentTarget.value = '';
         }
     };
+
+    const handleTagEnter = () => {
+        handleTagInput({ key: 'Enter', currentTarget: tagInputRef.current } as KeyboardEvent<HTMLInputElement>);
+    }
     
 
     const handleTagDelete = (tag: string) => {
@@ -58,14 +61,17 @@ const AskQuestion: React.FC = () => {
                         </div>
                     ))}
                 </div>
-                <input
+                <div className="input-and-button">
+                    <input
                     type="text"
                     id="tags"
                     ref={tagInputRef}
                     placeholder="Add tags (hit Enter to add)"
                     className="question-tags-input"
-                    onKeyDown={handleTagInput}
+                    onKeyUp={handleTagInput}
                 />
+                <button onClick={handleTagEnter}>Enter</button>
+                </div>
                 <p className="question-tags-hint">Info: About which your question is related to, e.g: JavaScript, Html, Css, Sorting Algorithm, Quick Sort, Python, etc.
                 </p>
             </div>

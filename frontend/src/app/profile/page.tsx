@@ -76,8 +76,8 @@ const Profile: React.FC = () => {
                     <Link href="/profile/useractivity"><button>See Activity</button></Link>
                 </div>
                 <div>
-                    <span style={{ fontSize: "12px" }}>Downloaded code bits, posts, questions etc.</span>
-                    <Link href="/profile/userdownloads"><button>Downloads</button></Link>
+                    <span style={{ fontSize: "12px" }}>Saved code bits, posts, questions etc.</span>
+                    <Link href="/profile/userdownloads"><button>Bookmarks</button></Link>
                 </div>
 
             </div>

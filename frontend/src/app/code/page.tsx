@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 import './page.css'
+import './searchbar.css'
 import CodeListItem from '../components/codelistitem/codelistitem'
 import { useRouter } from 'next/navigation'
 import CodeUplodModal from './codeuploadmodal/codeuploadmodal'
@@ -62,13 +63,13 @@ const Code = () => {
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
             if (scrollTop > lastScrollTop) {
                 // Scrolling down
-                if (scrollTop - lastScrollTop > 500) {
+                if (scrollTop - lastScrollTop > 200) {
                     setShowSearchBar(false);
                     setLastScrollTop(scrollTop);
                 }
             } else {
                 // Scrolling up
-                if (lastScrollTop - scrollTop > 500) {
+                if (lastScrollTop - scrollTop > 200) {
                     setShowSearchBar(true);
                     setLastScrollTop(scrollTop);
                 }
@@ -82,7 +83,7 @@ const Code = () => {
     }, [lastScrollTop]);
 
     return (
-        <div style={{ margin: '50px 0 50px 0' }}>
+        <div style={{margin: '90px 0 54px 0'}}>
             <form id="search-bar" className={showSearchBar ? '' : 'hidden'} onSubmit={handleSearchCode} role="search">
                 <input id="search" type="search" placeholder="Search..." required />
                 <input id='reset' type="reset" value="x" alt="Clear the search form" />

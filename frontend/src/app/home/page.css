@@ -1,64 +1,33 @@
+/*  hide the scrollbar for entire application */
 
-* {
-    /* For browsers that support webkit-scrollbar */
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE and Edge */
+body::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
 }
 
-/* Hide scrollbar for Chrome, Safari, and newer versions of Edge */
-* ::-webkit-scrollbar {
-    display: none;
-}
-
-
-
-.search-bar-and-post {
-    width: 100%;
-    padding: 7px 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    background-color: #333a40;
-}
-
-.search-bar {
-    width: 78%;
+.search-bar-and-post form {
+    width: 85% !important;
 }
 
 .post {
-    width: 20%;
+    position: fixed;
+    width: 15%;
+    right: 0;
+    top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1d1d;
+    height: 40px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #139ef1;
+    border-left: 1px solid #afb4b7;
 }
 
-.search-bar input {
-    border: 2px solid #afb4b7;
-    color: #afb4b7;
-    background-color: #2b3035;
-    border-radius: 3px;
-    padding: 8px 12px;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.search-bar input:focus {
-    outline: none;
-    border: 2px solid #3c99fd;
-}
-
-.post button {
-    padding: 8px 8px;
-    background-color: #149EF1;
-    color: white;
-    border-radius: 3px;
-    border: 1px solid #149EF1;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    font-size: 0.9em;
+.post.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
 button {

@@ -1,16 +1,14 @@
-div.main ul {
+div.main div.tab-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     list-style: none;
     isolation: isolate;
-    padding: 0 0 9px 0;
     box-sizing: border-box;
-    margin-block-end: 1px;
-    display: flex;
+    padding: 10px 0;
 }
 
-div.main ul:after {
+div.main div.tab-container:after {
     content: "";
     display: block;
     width: 20%;
@@ -24,34 +22,34 @@ div.main ul:after {
     color: #139ef0;
 }
 
-div.main ul > li {
+div.main div.tab-container > div {
     width: 20% !important;
 }
 
-div.main ul > li  label {
+div.main div.tab-container > div  label {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-div.main ul:has(#one:checked):after {
+div.main div.tab-container:has(#one:checked):after {
     --left: 0%;
 }
 
-div.main ul:has(#two:checked):after {
+div.main div.tab-container:has(#two:checked):after {
     --left: 20%;
 }
 
-div.main ul:has(#three:checked):after {
+div.main div.tab-container:has(#three:checked):after {
     --left: 40%;
 }
 
-div.main ul:has(#four:checked):after {
+div.main div.tab-container:has(#four:checked):after {
     --left: 60%;
 }
 
-div.main ul:has(#five:checked):after {
+div.main div.tab-container:has(#five:checked):after {
     --left: 80%;
 }
 

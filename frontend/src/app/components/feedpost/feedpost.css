@@ -11,7 +11,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 8px;
-    background-color: #2b3035;
+    background-color: #333a40;
 }
 
 .feed-post-header-left {
@@ -62,9 +62,9 @@
 .feed-post-content {
     display: flex;
     justify-content: space-between;
-    padding: 6px 3px 25px ;
-    background-color: #333a40;
-    border-bottom: 1px solid #1d1d1d;
+    padding: 6px 3px;
+    background-color: #2b3035;
+    border-bottom: 30px solid #272727;
 }
 
 .feed-post-content svg {
@@ -77,8 +77,8 @@
     align-items: center;
 }
 
-.feed-post-content-left > button ,
-.feed-post-content-right > button {
+.feed-post-content-left>button,
+.feed-post-content-right>button {
     background-color: transparent;
     border: none;
     color: #afb4b7;
@@ -86,4 +86,8 @@
     align-items: center;
     justify-content: space-between;
     column-gap: 4px;
+}
+
+.feed-post-content-right > button {
+    column-gap: 2px;
 }

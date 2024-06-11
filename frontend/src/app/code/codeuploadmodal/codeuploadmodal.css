@@ -49,11 +49,32 @@
 } */
 
 .modal-body {
-    margin-top: 20px;
     display: flex;
     padding: 20px;
     flex-direction: column;
     gap: 10px;
+}
+
+.input-title {
+    padding: 20px 20px 0;
+}
+
+.input-title input {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    background-color: #2b3035;
+    color: #afb4b7;
+    box-sizing: border-box;
+    font-size: 1.1em;
+}
+
+.input-title input:focus {
+    outline: none;
+    border: 1px solid #7db343;
 }
 
 .file-input-container {

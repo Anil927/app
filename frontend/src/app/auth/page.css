@@ -1,0 +1,105 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #333a40;
+    width: 100%;
+}
+
+.main {
+    width: 350px;
+    height: 500px;
+    background-image: linear-gradient( 320.7deg,  rgba(126,184,253,1) 5.6%, rgba(2,71,157,1) 95.3% );
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+}
+
+#chk {
+    display: none;
+}
+
+.signup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.signup a {
+    text-decoration: none;
+}
+
+label {
+    color: #fff;
+    font-size: 2.3em;
+    justify-content: center;
+    display: flex;
+    margin: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+input {
+    width: 60%;
+    height: 10px;
+    background: #333a40;
+    color: #afb4b7;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 12px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1.05em;
+}
+
+button {
+    width: 30%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #573b8a;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #6d44b8;
+}
+
+.login {
+    height: 460px;
+    background-image: linear-gradient( 240.1deg,  rgba(34,126,34,1) 2.9%, rgba(168,251,60,1) 90.3% );
+    border-radius: 60% / 10%;
+    transform: translateY(-160px);
+    transition: .8s ease-in-out;
+}
+
+.login label {
+    color: #fff;
+    transform: scale(.6);
+    padding-top: 30px;
+}
+
+#chk:checked~.login {
+    transform: translateY(-470px);
+}
+
+#chk:checked~.login label {
+    transform: scale(1);
+}
+
+#chk:checked~.signup label {
+    transform: scale(.6);
+}

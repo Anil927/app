@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import './sidenav.css'
 import BottomTab from '../bottomtab/bottomtab'
 import { useRouter, usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 const SideNav = () => {
     const router = useRouter()
@@ -36,17 +37,38 @@ const SideNav = () => {
         } else if (e === 'three' && pathName !== '/code/codearea') {
             setPageHeading("Code")
             router.push('/code')
-        } else if (e === 'four') {
+        } else if (e === 'four' && pathName !== '/discuss/ask' && pathName !== '/discuss/question') {
             setPageHeading("Discuss")
             router.push('/discuss')
-        } else if (e === 'five' && pathName !== '/profile/useractivity') {
+        } else if (e === 'five' && pathName !== '/profile/useractivity' && pathName !== '/profile/userdownloads') {
             setPageHeading("Profile")
             router.push('/profile')
         }
     }
 
+
+    const handleGoBack = () => {
+        router.back();
+    }
+
+
     useEffect(() => {
-        if (pathName.includes('/home')) {
+
+        const arrowSymbol = '<div class="small-arrow">\u276F</div>'; // Non-breaking space + heavy right-pointing angle quotation mark + Non-breaking space
+
+        if (pathName.includes('/createpost')) {
+            setPageHeading(`<div>Home</div>${arrowSymbol}<div>Create Post</div>`);
+        } else if (pathName.includes('/codearea')) {
+            setPageHeading(`<div>Code</div>${arrowSymbol}<div>Code Area</div>`);
+        } else if (pathName.includes('/ask')) {
+            setPageHeading(`<div>Discuss</div>${arrowSymbol}<div>Ask</div>`);
+        } else if (pathName.includes('/question')) {
+            setPageHeading(`<div>Discuss</div>${arrowSymbol}<div>Question</div>`);
+        } else if (pathName.includes('/useractivity')) {
+            setPageHeading(`<div>Profile</div>${arrowSymbol}<div>Activity</div>`);
+        } else if (pathName.includes('/userdownloads')) {
+            setPageHeading(`<div>Profile</div>${arrowSymbol}<div>Bookmarks</div>`);
+        } else if (pathName.includes('/home')) {
             setPageHeading('Home');
         } else if (pathName.includes('/learn')) {
             setPageHeading('Learn');
@@ -57,7 +79,9 @@ const SideNav = () => {
         } else if (pathName.includes('/profile')) {
             setPageHeading('Profile');
         }
-    }, [pathName])
+    }, [pathName]);
+
+
 
     const toggleDrawer = () => {
         setDrawerOpen(!drawerOpen);
@@ -77,7 +101,7 @@ const SideNav = () => {
         if (drawerOpen) {
             document.body.style.overflow = 'hidden';
             document.addEventListener('click', closeDrawer);
-            window.history.pushState(null,'', window.location.href);
+            window.history.pushState(null, '', window.location.href);
             window.addEventListener('popstate', handlePopState);
         } else {
             document.body.style.overflow = 'auto';
@@ -93,19 +117,34 @@ const SideNav = () => {
 
     const userName = 'John Doe'; // Get username from backend or localstorage
 
-    
     return (
         <div>
             <div className="top-navbar"></div>
-            <a id="nav-expand" onClick={toggleDrawer}>
-                <span className="icon icon-menu"></span>&nbsp;
-            </a>
-            <div className="nav-heading">
-                <span>{pageHeading}</span>
+
+            {
+                (((pathName.match(/\//g) || []).length) === 1) && 
+                <a id="nav-expand" onClick={toggleDrawer}>
+                    <span style={{ marginBottom: '-7px' }}>
+                        <Image src='/home/hamburger-home.svg' alt='Menu' width={20} height={20} />
+                    </span>
+                </a>
+            }
+
+
+            {
+                (((pathName.match(/\//g) || []).length) > 1) && 
+                <a id="go-back" onClick={handleGoBack}>
+                    <span>
+                        <Image src='/home/arrow-left.svg' alt='Back' width={16} height={16} /> 
+                    </span>
+                </a>
+            }
+            <div className="nav-heading" >
+                <div dangerouslySetInnerHTML={{ __html: pageHeading }}></div>
             </div>
             <nav ref={drawerRef} id='drawer' className={drawerOpen ? 'active' : ''}>
                 <a id="nav-collapse" onClick={toggleDrawer}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill='#fff' d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
+                    <Image src='/home/chevron-left.svg' alt='Menu' width={25} height={25} />
                 </a>
                 <div className="drawer-profile-image">
                     <img src="https://www.w3schools.com/howto/img_avatar.png" alt="profile" />

@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import './codelistitem.css'
+import Image from 'next/image'
 
 interface Props {
     id: number
@@ -16,8 +17,8 @@ const CodeListItem: React.FC<Props> = ({ id, onClick }) => {
 
     // Generate random file type out of html, python, javascript. This needs to be fetched from the backend
     const fileTypes = ['html', 'python', 'javascript']
-    // const fileType = fileTypes[Math.floor(Math.random() * fileTypes.length)]
-    const fileType = 'html'
+    const fileType = fileTypes[Math.floor(Math.random() * fileTypes.length)]
+    // const fileType = 'html'
 
     const handleClick = () => {
         onClick(id, fileType)
@@ -25,29 +26,32 @@ const CodeListItem: React.FC<Props> = ({ id, onClick }) => {
 
     let src;
     if (fileType === 'html') {
-        src = '/code/html-5.svg'
+        src = 'web'
     } else if (fileType === 'python') {
-        src = '/code/python.svg'
+        src = 'python'
     } else if (fileType === 'javascript') {
-        src = '/code/javascript.svg'
+        src = 'javascript'
     }
 
     return (
         <div onClick={handleClick} className='code-list-item'>
-            <div className="code-list-item-icon">
-                <img src={src} alt="ic" />
+            <div className="code-list-item-profile-photo">
+                <Image src="/img_avatar.png" alt="photo" width={40} height={40} />
             </div>
             <div className="code-list-item-content">
                 <div className="code-list-item-title">
                     <div>{title}</div>
                 </div>
+                <div className="code-list-item-file-type">
+                    {src}
+                </div>
                 <div className="code-list-item-views-comments-time">
                     <div className="code-list-item-views-comments">
                         <div className="code-list-item-views">
-                            <img src="/code/eye.svg" alt="views" /> <div>{views}</div>
+                            <Image src="/code/eye.svg" alt="views" width={16} height={16} /> <div>{views}</div>
                         </div>
                         <div className="code-list-item-comments">
-                            <img src="/code/comment-black.svg" alt="comments" /> <div>{commentIds.length}</div>
+                        <Image src="/code/comment-code-list.svg" alt="views" width={16} height={16} /> <div style={{marginBottom: '-2px'}}>{commentIds.length}</div>
                         </div>
                     </div>
                     <div className="code-list-item-time">

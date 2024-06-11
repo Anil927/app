@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/pojoaque.css'
+// import 'highlight.js/styles/pojoaque.css'
 import './richtexteditor.css';
 import DOMPurify from 'dompurify';
 
@@ -24,7 +24,7 @@ const QuillEditor: React.FC<EditorProps> = ({ value, onPublish }) => {
         template.innerHTML = cleanContent.trim();
         template.content.querySelectorAll('.ql-ui').forEach((el) => el.remove());
         quillRef.current?.root.querySelectorAll('.ql-ui').forEach((el) => el.remove());
-        onPublish(template.innerHTML, quillRef.current?.root.innerHTML || '');
+        onPublish(template.innerHTML, `<pre>${quillRef.current?.root.innerHTML}</pre>` || '');
     };
 
     const colors = ["#f52314", "#fc6405", "#fcf805", "#4bfc05", "#4bfc05", "#149ef1", "#000"];

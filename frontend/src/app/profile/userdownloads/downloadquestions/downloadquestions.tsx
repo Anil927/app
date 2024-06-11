@@ -48,7 +48,6 @@ const Questions: React.FC<QuestionsProps> = ({ id }) => {
                 </div>
             </div>
             <QuestionFormat id={id} />
-            <hr style={{ width: '100%', textAlign: 'center', height: '0.3px', opacity: '0.3', margin: '0' }} />
         </>
     )
 }

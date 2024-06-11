@@ -97,10 +97,6 @@
     cursor: pointer;
 }
 
-/* .floating-comment-button .comment-actions > .comment-btn:active {
-    background-color: #5e8f2d;
-} */
-
 .floating-comment-button .comment-actions > .comment-btn > div {
     margin-top: 2px;
     align-self: flex-start;

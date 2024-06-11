@@ -2,7 +2,6 @@
     touch-action: pan-x pan-y;
 }
 
-
 @font-face {
     font-family: customSans;
     src: local("OpenSans-Regular"), url('./../../../fonts/OpenSans-Regular.ttf') format(truetype);
@@ -12,6 +11,7 @@
 body {
     font-family: customSans, sans-serif;
 }
+
 
 .top-navbar {
     background-color: #139EF1;
@@ -26,15 +26,28 @@ body {
 .nav-heading {
     background-color: transparent;
     position: fixed;
-    top: 11px;
-    left: 56px;
+    top: 15px;
+    left: 60px;
     color: white;
     font-weight: 600;
-    font-size: 19px;
     z-index: 7;
 }
 
+.nav-heading > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+}
 
+div.small-arrow {
+    margin-top: -4px;
+    font-size: 0.85em;
+}
+
+a#go-back {
+    margin-top: -1px;
+}
 
 nav {
     position: fixed;
@@ -78,7 +91,8 @@ nav a {
     transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 
-#nav-expand {
+#nav-expand,
+#go-back {
     background-color: transparent !important;
     color: white;
     cursor: pointer;
@@ -87,12 +101,16 @@ nav a {
     align-items: center;
     position: fixed;
     left: 25px;
-    top: 13px;
+    top: 16px;
     text-decoration: none;
     transition: .5s linear;
     user-select: none;
     -webkit-user-drag: none;
     z-index: 7;
+}
+
+#go-back {
+    top: 17px;
 }
 
 
@@ -101,20 +119,6 @@ nav a {
     transition-delay: .25s;
     position: fixed;
 }
-
-.icon {
-    display: inline-block;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 12px;
-    width: 12px;
-}
-
-
-.icon-menu {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAABHNCSVQICAgIfAhkiAAAAB5JREFUKJFj/P///38GEgATKYoHKWAc9TQRgGRPAwD0IAv+FT8LPwAAAABJRU5ErkJggg==');
-}
-
 
 #drawer {
     display: flex;
@@ -125,8 +129,8 @@ nav a {
 
 #drawer #nav-collapse {
     position: absolute;
-    top: 2px;
-    right: 20px;
+    bottom: 16px;
+    right: 12px;
 }
 
 #drawer #nav-collapse svg {
@@ -187,14 +191,14 @@ nav a {
 
 
 .bottom-tab {
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     right: 0;
-    margin: 0;
     position: fixed;
     width: 100% !important;
     background-color: #2b3035;
     z-index: 3;
     color: #afb4b7;
     font-weight: bold;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 }

@@ -11,8 +11,8 @@ const SplashScreen = () => {
     useEffect(() => {
         // Hide the component after 2 seconds
         const timer = setTimeout(() => {
-            router.push('/home');
-        }, 2000);
+            router.push('/auth');
+        }, 500);
 
         // Clean up the timer when the component unmounts
         return () => {

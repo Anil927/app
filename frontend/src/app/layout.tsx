@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import React from "react";
 import ClientSideComponent from "./clientlayout";
 import type { Metadata } from "next";

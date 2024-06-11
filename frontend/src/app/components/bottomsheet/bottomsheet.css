@@ -5,13 +5,11 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0);
-    /* Initial transparency */
     display: flex;
     justify-content: center;
     align-items: center;
     animation: fadeIn 0.3s ease-in-out forwards;
     z-index: 12;
-    /* Fade-in effect */
 }
 
 
@@ -21,13 +19,12 @@
     position: fixed;
     left: 0;
     right: 0;
-    border-radius: 25px 25px 0 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     animation: slideUpBottomSheet 0.3s ease-in-out forwards;
     z-index: 12;
     display: flex;
     flex-direction: column;
     bottom: 0;
+    background-color: #333a40;
 }
 
 
@@ -43,10 +40,15 @@
 
 .close-button {
     position: absolute;
-    top: 11px;
+    top: 7px;
     right: 10px;
     border: none;
     cursor: pointer;
+    background-color: transparent;
+}
+
+.close-button > svg {
+    height: 3.5vmin;
 }
 
 @keyframes slideUpBottomSheet {
@@ -99,17 +101,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    border-bottom: 0.4px solid rgb(170, 170, 170);
-    border-radius: 25px 25px 0 0;
+    padding: 5px;
+    font-size: 0.9em;
+    color: #afb4b7;
+    background-color: #272727;
+    /* give a decent box shadow to bottom side */
+    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.5);
+
 }
 
 .comment-area {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 14px 10px;
     align-items: stretch;
-    border-bottom: 0.4px solid rgb(170, 170, 170);
+    border-bottom: 1px solid #272727;
 }
 
 .avatar-and-comment-area {
@@ -126,21 +132,23 @@
     margin-right: 20px;
 }
 
-.avatar-and-comment-area > div {
+.avatar-and-comment-area>div {
     width: 100%;
 }
 
 .avatar-and-comment-area textarea {
     width: 100%;
     height: 50px;
-    border-radius: 5px;
+    border-radius: 3px;
     margin-right: 10px;
-    border: 1px solid rgb(170, 170, 170);
+    border: 1px solid rgb(87, 83, 83);
+    color: #afb4b7;
+    background-color: #2b2f32;
+    font-family: inherit;
 }
 
 .avatar-and-comment-area textarea:focus {
     outline: none;
-    border: 1px solid #007BFF;
 }
 
 .cancel-and-comment-btn {
@@ -149,20 +157,24 @@
     align-items: center;
     gap: 10px;
     margin-top: 0.4em;
+    margin-right: 4px;
 }
 
-.cancel-and-comment-btn > button:first-child {
-    border: none;
-}
-
-.cancel-and-comment-btn > button:last-child {
-    background-color: #2793ff;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
+.cancel-and-comment-btn>button:first-child {
+    border: 1px solid #7db343;
+    background-color: transparent;
+    color: #afb4b7;
+    border-radius: 3px;
     padding: 5px 15px;
 }
 
+.cancel-and-comment-btn>button:last-child {
+    background-color: #7db343;
+    color: #fff;
+    border: 1px solid #7db343;
+    border-radius: 3px;
+    padding: 5px 15px;
+}
 
 .user-comments {
     height: calc(60vh - 160px);
@@ -180,6 +192,7 @@
     padding: 10px;
     justify-content: flex-start;
     gap: 20px;
+    /* border-bottom: 1px solid #272727; */
 }
 
 .comment-body img {
@@ -189,34 +202,40 @@
     align-self: flex-start;
 }
 
-.comment-body > div {
+.comment-body button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-body>div {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items:self-start;
+    align-items: self-start;
     align-self: flex-start;
 }
 
-.comment-body > div > div:first-child {
+.comment-body>div>div:first-child {
     font-size: 0.84em;
     margin-bottom: 5px;
 }
 
-.comment-body > div > div:first-child > svg:first-child {
+.comment-body>div>div:first-child>svg:first-child {
     height: 1.7vmin;
-    fill: #059df5 ;
+    fill: #059df5;
 }
 
-.comment-body > div > div:first-child > span {
+.comment-body>div>div:first-child>span {
     opacity: 0.6;
 }
 
-.comment-body > div > div:first-child > button > svg:last-child {
+.comment-body>div>div:first-child>button>svg:last-child {
     height: 3.6vmin;
 }
 
 
-.comment-body > div > div:last-child {
+.comment-body>div>div:last-child {
     font-size: 0.9em;
 }
 
@@ -230,10 +249,6 @@
     font-size: 1.1em;
     opacity: 1;
 }
-
-
-
-
 
 
 

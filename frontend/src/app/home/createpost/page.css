@@ -25,6 +25,8 @@
     box-sizing: border-box;
     background-color: #2b3035;
     color: #afb4b7;
+    font-family: inherit;
+    font-size: 1.05em;
 }
 
 .post-textarea:focus {
