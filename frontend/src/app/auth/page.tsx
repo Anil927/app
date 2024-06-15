@@ -1,32 +1,51 @@
+'use client'
 import React from 'react'
 import './page.css'
-import Link from 'next/link'
 
 const Auth = () => {
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+    }
+
     return (
         <div className='auth-container'>
-            <div className="main">
-                <input type="checkbox" id="chk" aria-hidden="true" />
+            <input type="checkbox" id="chk" aria-hidden="true"/>
 
-                <div className="signup">
-                    <form>
-                        <label htmlFor="chk" aria-hidden="true">Sign up</label>
-                        <input type="text" name="txt" placeholder="User name" required />
-                        <input type="email" name="email" placeholder="Email" required />
-                        <input type="number" name="broj" placeholder="Phone" required />
-                        <input type="password" name="pswd" placeholder="Password" required />
-                        <Link href="/home"> <button>Sign up</button> </Link>
-                    </form>
-                </div>
+            <div className="signup">
+                <form className="modal-container">
+                    <div className="modal-header">
+                        <div>Register</div>
+                    </div>
+                    <div className="modal-body">
+                        <input type="text" placeholder='Your Name' />
+                        <input type="email" placeholder='Email' />
+                        <input type="password" placeholder='Password' />
+                        <input type="password" placeholder='Confirm Password' />
+                        <input type="number" placeholder='Phone Number' />
+                    </div>
+                    <div className="modal-footer">
+                        <button className="submit-button" onClick={handleSubmit}>Register</button>
+                        <span>Already have an account ? <label htmlFor='chk'>Sign in</label></span>
+                    </div>
+                </form>
+            </div>
 
-                <div className="login">
-                    <form>
-                        <label htmlFor="chk" aria-hidden="true">Login</label>
-                        <input type="email" name="email" placeholder="Email" required />
-                        <input type="password" name="pswd" placeholder="Password" required />
-                        <button>Login</button>
-                    </form>
-                </div>
+            <div className="login">
+                <form className="modal-container">
+                    <div className="modal-header">
+                        <div>Login</div>
+                    </div>
+                    <div className="modal-body">
+                        <input type="text" placeholder='User Name or Email' />
+                        <input type="password" placeholder='Password' />
+                    </div>
+                    <div className="modal-footer">
+                        <button className="submit-button" onClick={handleSubmit}>Login</button>
+                        <span>Don't have an account ? <label htmlFor='chk'>Sign up</label></span>
+                    </div>
+
+                </form>
             </div>
         </div>
     )
