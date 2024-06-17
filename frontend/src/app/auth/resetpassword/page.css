@@ -1,0 +1,16 @@
+
+#reset-chk {
+    display: none;
+}
+
+.auth-container .forgot-password {
+    display: none;
+}
+
+#reset-chk:checked~.forgot-password {
+    display: block;
+}
+
+#reset-chk:checked~.reset-password {
+    display: none;
+}

@@ -1,11 +1,13 @@
 'use client'
 import React from 'react'
 import './page.css'
+import Link from 'next/link'
 
 const Auth = () => {
 
     const handleSubmit = (e: any) => {
-        e.preventDefault()
+        // e.preventDefault()
+        console.log('submit')
     }
 
     return (
@@ -18,14 +20,14 @@ const Auth = () => {
                         <div>Register</div>
                     </div>
                     <div className="modal-body">
-                        <input type="text" placeholder='Your Name' />
+                        <input type="text" placeholder='Your Full Name' />
                         <input type="email" placeholder='Email' />
-                        <input type="password" placeholder='Password' />
+                        <input type="password" placeholder='New Password' />
                         <input type="password" placeholder='Confirm Password' />
                         <input type="number" placeholder='Phone Number' />
                     </div>
                     <div className="modal-footer">
-                        <button className="submit-button" onClick={handleSubmit}>Register</button>
+                        <Link href='/home'><button className="submit-button" onClick={handleSubmit}>Register</button></Link>
                         <span>Already have an account ? <label htmlFor='chk'>Sign in</label></span>
                     </div>
                 </form>
@@ -39,10 +41,11 @@ const Auth = () => {
                     <div className="modal-body">
                         <input type="text" placeholder='User Name or Email' />
                         <input type="password" placeholder='Password' />
+                        <Link href='/auth/resetpassword'><span style={{color: '#139ef1', fontSize: '0.8em'}}>Forgot Password ?</span></Link>
                     </div>
                     <div className="modal-footer">
                         <button className="submit-button" onClick={handleSubmit}>Login</button>
-                        <span>Don't have an account ? <label htmlFor='chk'>Sign up</label></span>
+                        <span>Don&apos;t have an account ? <label htmlFor='chk'>Sign up</label></span>
                     </div>
 
                 </form>

@@ -6,6 +6,7 @@ import QuestionFormat from '@/app/components/qnaformat/qnaformat'
 import AnswerFormat from '@/app/components/qnaformat/qnaformat'
 import { useSearchParams } from 'next/navigation'
 
+
 const QnA = () => {
 
     const searchParams = useSearchParams()

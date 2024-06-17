@@ -1,12 +1,4 @@
-/* Change autocomplete styles in WebKit */
-:-webkit-autofill,
-:-webkit-autofill:hover,
-:-webkit-autofill:focus {
-    -webkit-text-fill-color: #afb4b7;
-    -webkit-box-shadow: 0 0 0px 1000px #1B1B1C inset;
-    transition: background-color 5000s ease-in-out 0s;
-    border-radius: 4px;
-}
+
 
 .auth-container {
     display: flex;
@@ -40,7 +32,14 @@
     display: flex;
     padding: 40px 30px 15px;
     flex-direction: column;
+    justify-content: center;
     gap: 20px;
+}
+
+.auth-container .modal-body a {
+    margin-top: -15px;
+    text-decoration: none;
+    text-indent: 2px;
 }
 
 .auth-container .modal-body input {
@@ -57,6 +56,11 @@
 
 .auth-container .modal-body input:focus {
     outline: 2px solid #7db343;
+}
+
+.auth-container .modal-body .success-message {
+    color: #afb4b7;
+    text-align: center;
 }
 
 .auth-container .modal-footer {
@@ -80,7 +84,7 @@
     background: #7db343;
     color: white;
     border: none;
-    padding: 8px 16px 4px;
+    padding: 7px 16px 8px;
     border-radius: 4px;
     font-size: 1.2em;
     cursor: pointer;

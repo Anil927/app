@@ -1,4 +1,4 @@
-.user-activity.tabs {
+.user-downloads.tabs {
     display: flex;
     background-color: #149EF1;
     position: fixed;
@@ -8,11 +8,11 @@
     box-sizing: border-box;
 }
 
-.user-activity.tabs input[type='checkbox'].tab {
+.user-downloads.tabs input[type='checkbox'].tab {
     display: none;
 }
 
-.user-activity.tabs input[type='checkbox'].tab + label {
+.user-downloads.tabs input[type='checkbox'].tab + label {
     padding: 10px;
     cursor: pointer;
     border: none;
@@ -28,31 +28,31 @@
     align-items: center;
 }
 
-.user-activity.tabs input[type='checkbox'].tab:checked + label {
+.user-downloads.tabs input[type='checkbox'].tab:checked + label {
     color: white;
 }
 
-.user-activity.tabs input[type='checkbox'].tab:checked ~ .slider-useractivity {
+.user-downloads.tabs input[type='checkbox'].tab:checked ~ .slider-userdownloads {
     left: calc(100% / 4 * var(--tab-index));
 }
 
-.user-activity.tabs input[type='checkbox'].tab:nth-of-type(1):checked ~ .slider-useractivity {
+.user-downloads.tabs input[type='checkbox'].tab:nth-of-type(1):checked ~ .slider-userdownloads {
     left: calc(100% / 4 * 0);
 }
 
-.user-activity.tabs input[type='checkbox'].tab:nth-of-type(2):checked ~ .slider-useractivity {
+.user-downloads.tabs input[type='checkbox'].tab:nth-of-type(2):checked ~ .slider-userdownloads {
     left: calc(100% / 4 * 1);
 }
 
-.user-activity.tabs input[type='checkbox'].tab:nth-of-type(3):checked ~ .slider-useractivity {
+.user-downloads.tabs input[type='checkbox'].tab:nth-of-type(3):checked ~ .slider-userdownloads {
     left: calc(100% / 4 * 2);
 }
 
-.user-activity.tabs input[type='checkbox'].tab:nth-of-type(4):checked ~ .slider-useractivity {
+.user-downloads.tabs input[type='checkbox'].tab:nth-of-type(4):checked ~ .slider-userdownloads {
     left: calc(100% / 4 * 3);
 }
 
-.slider-useractivity {
+.slider-userdownloads {
     background: #fff;
     width: calc(100% / 4);
     height: 3px;
@@ -65,12 +65,6 @@
 .pre-tag-wrapper > pre {
     padding: 0 !important; 
     margin: 0 !important;    
-}
-
-.swipeable-views {
-    display: flex;
-    transition: transform 0.5s ease;
-    will-change: transform;
 }
 
 .tabpanel {

@@ -102,13 +102,18 @@
     align-self: flex-start;
     font-size: 1em;
 }
-
+.download-button-wrapper,
 .copy-button-wrapper {
     position: fixed;
     top: 120px; 
     right: 10px;
 }
 
+.download-button-wrapper {
+    top: 160px;
+}
+
+.download-btn,
 .copy-btn {
     position: absolute;
     right: 4px;
@@ -123,6 +128,16 @@
     align-items: center;
 }
 
+.download-btn {
+    background-color: #7db343;
+    padding-top: -2px;
+    padding-bottom: 2px;
+}
+
+.download-btn:hover {
+    background-color: #57822a;
+
+}
 .copy-btn:hover {
     background-color: #0056b3;
 }

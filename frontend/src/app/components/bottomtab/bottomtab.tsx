@@ -50,7 +50,7 @@ const BottomTab = ({
 
     // when the user presses back button in the browser, the pathName changes and the radio button should be checked accordingly
     useEffect(() => {
-        if (pathName === '/home' || pathName === '/home/createpost') {
+        if (pathName === '/home' || pathName === '/home/createpost' || pathName === '/home/readmore') {
             checkRadioButtonById('one');
         } else if (pathName === '/learn') {
             checkRadioButtonById('two');

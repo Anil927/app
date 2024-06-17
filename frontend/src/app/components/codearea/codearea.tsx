@@ -291,6 +291,11 @@ function testIsPrime() {
                     <img src="/code/copy.svg" alt="copy" />
                 </button>
             </div>
+            <div className="download-button-wrapper">
+                <button onClick={handleCopyButtonClick} className="download-btn">
+                    <img src="/code/download.svg" alt="download" />
+                </button>
+            </div>
             {tabPanelCode}
             <div className="floating-comment-button">
                 <div className="comment-actions">

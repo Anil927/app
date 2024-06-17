@@ -1,5 +1,37 @@
 :root {
     touch-action: pan-x pan-y;
+    -webkit-touch-callout: none;
+    /* Safari */
+    -webkit-user-select: none;
+    /* Chrome */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed */
+}
+
+/* Change autocomplete styles in WebKit */
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+    -webkit-text-fill-color: #afb4b7;
+    -webkit-box-shadow: 0 0 0px 1000px #1B1B1C inset;
+    transition: background-color 5000s ease-in-out 0s;
+    border-radius: 4px;
+}
+
+::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide the number input spinner for Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 @font-face {
@@ -33,7 +65,7 @@ body {
     z-index: 7;
 }
 
-.nav-heading > div {
+.nav-heading>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,13 +73,10 @@ body {
 }
 
 div.small-arrow {
-    margin-top: -4px;
+    margin-top: -2px;
     font-size: 0.85em;
 }
 
-a#go-back {
-    margin-top: -1px;
-}
 
 nav {
     position: fixed;
@@ -82,13 +111,13 @@ nav a {
     z-index: 500;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
 
 .backdrop.active {
     opacity: 1;
     visibility: visible;
-    transition: opacity 1.2s ease, visibility 1.2s ease;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 #nav-expand,

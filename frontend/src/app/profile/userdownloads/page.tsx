@@ -41,7 +41,7 @@ const UserActivity: React.FC = () => {
 
     return (
         <div style={{margin: '50px 0 46px 0'}}>
-            <div className="user-activity tabs">
+            <div className="user-downloads tabs">
                 <input
                     type="checkbox"
                     id="tab-0"
@@ -78,7 +78,7 @@ const UserActivity: React.FC = () => {
                 />
                 <label htmlFor="tab-3">Answers</label>
 
-                <div className="slider-useractivity"></div>
+                <div className="slider-userdownloads"></div>
 
 
             </div>

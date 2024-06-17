@@ -51,7 +51,18 @@
 .feed-post-body {
     padding: 12px 7px;
     background-color: #333a40;
+}
 
+.feed-post-body .read-more {
+    color: #474c4f;
+    cursor: pointer;
+}
+
+.feed-post-body .read-more button {
+    background-color: transparent;
+    border: none;
+    color: #bfc7cb;
+    font-size: 1em;
 }
 
 .feed-post-image img {

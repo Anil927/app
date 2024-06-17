@@ -3,7 +3,9 @@ import './qnaformat.css';
 import 'highlight.js/styles/pojoaque.css'
 import Snackbar from '../snackbar/snackbar';
 import Image from 'next/image';
-import QuillEditor from '../richtexteditor/richtexteditor';
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(() => import('../richtexteditor/richtexteditor'), { ssr: false });
 
 
 interface QnAProps {
@@ -101,7 +103,7 @@ const QnAFormat: React.FC<QnAProps> = ({ id }) => {
                         </div>
                         <div className="qna-content-profile-info">
                             <div className="qna-info-time">
-                                {questionOrAnswerType} 2 days ago
+                                {questionOrAnswerType}  &nbsp; 2 days ago
                             </div>
                             <div className="qna-info-user">
                                 <div className="qna-user-profile">
@@ -122,7 +124,7 @@ const QnAFormat: React.FC<QnAProps> = ({ id }) => {
             </div>
             :
             <div>
-                <QuillEditor value={answer[1]} onPublish={handlePublish} />
+                <Editor value={answer[1]} onPublish={handlePublish} />
             </div>
 
     );

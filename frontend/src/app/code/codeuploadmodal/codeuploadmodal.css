@@ -15,7 +15,7 @@
 .modal-container {
     background-color: #333a40;
     border-radius: 8px;
-    width: 90%;
+    width: 82%;
     max-width: 350px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -41,20 +41,20 @@
 }
 
 .input-title {
-    padding: 20px 20px 0;
+    padding: 10px 20px 0;
 }
 
 .input-title input {
     margin-top: 20px;
     width: 100%;
-    padding: 10px;
+    padding: 7px;
     border-radius: 4px;
     border: 1px solid gray;
     box-sizing: border-box;
     background-color: #2b3035;
     color: #afb4b7;
     box-sizing: border-box;
-    font-size: 1.1em;
+    font-size: 0.9em;
 }
 
 .input-title input:focus {
@@ -69,21 +69,22 @@
     border: 1.4px dashed #8b9093;
     color: #afb4b7;
     border-radius: 10px;
-    height: 36px;
+    height: 30px;
     padding: 3px;
 }
 
 .file-input-container img {
-    width: 32px;
+    width: 26px;
     aspect-ratio: 1;
 }
 
 
 input[type=file]::file-selector-button {
     margin-right: 20px;
+    height: 100%;
     border: none;
     background: #149EF1;
-    padding: 10px 20px;
+    padding: 0 10px;
     border-radius: 8px;
     color: #fff;
     cursor: pointer;
@@ -105,7 +106,6 @@ input[type=file]::file-selector-button:hover {
     display: flex;
     justify-content: flex-end;
     column-gap: 8px;
-    margin-top: 5px;
     background-color: #333a40;
     padding: 10px 20px 20px;
     border-radius: 0 0 8px 8px;

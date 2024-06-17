@@ -31,14 +31,13 @@
 
 .post-textarea:focus {
     outline: none;
-    border: 2px solid #149EF1;
+    border: 2px solid #7db343;
 }
 
 .image-upload-container {
     margin-bottom: 30px;
     border: 2px dashed #a3a3a3;
-    border-radius: 10px;
-    padding: 5px auto;
+    border-radius: 14px;
     margin-top: 10px;
 }
 
@@ -48,7 +47,7 @@ input[type=file]::file-selector-button {
     border: none;
     background: #149EF1;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 7px;
     color: #fff;
     cursor: pointer;
     transition: background .2s ease-in-out;
@@ -83,8 +82,8 @@ input[type=file]::file-selector-button {
 
 .post-button {
     display: block;
-    padding: 10px 20px;
-    background-color: #149EF1;
+    padding: 7px 20px;
+    background-color: #7db343;
     color: white;
     border: none;
     border-radius: 4px;
@@ -143,7 +142,7 @@ input[type=file]::file-selector-button {
 
 .tags-input:focus {
     outline: none;
-    border: 1px solid #149EF1;
+    border: 1px solid #7db343;
 }
 
 .tags-hint {

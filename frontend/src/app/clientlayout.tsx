@@ -12,7 +12,7 @@ const ClientSideComponent: React.FC<{ children: React.ReactNode }> = ({ children
   return (
     <>
       {/* {(pathname !== '/' && pathname !== '/auth') ? <SideNav /> : <SplashScreen />} */}
-      {pathname !== '/' && pathname !== '/auth' ? <SideNav />: pathname !== '/auth' ? <SplashScreen /> : null}
+      {pathname !== '/' && pathname !== '/auth' && pathname !== '/auth/resetpassword' ? <SideNav /> : pathname !== '/auth' && pathname !== '/auth/resetpassword' ? <SplashScreen /> : null}
       {children}
     </>
   );
