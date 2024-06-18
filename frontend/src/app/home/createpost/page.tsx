@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import './page.css'; // Import your CSS file
 import styles from '../../page.module.css'
-import Snackbar from '@/app/components/snackbar/snackbar';
+import Snackbar from '@/components/snackbar/snackbar';
 import { useRouter } from 'next/navigation';
 
 const CreatePost: React.FC = () => {

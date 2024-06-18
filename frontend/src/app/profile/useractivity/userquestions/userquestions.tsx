@@ -1,5 +1,5 @@
 import React from 'react'
-import QuestionFormat from '@/app/components/qnaformat/qnaformat'
+import QuestionFormat from '@/components/qnaformat/qnaformat'
 import './userquestion.css'
 
 const UserQuestions = () => {

@@ -102,6 +102,7 @@
     align-self: flex-start;
     font-size: 1em;
 }
+
 .download-button-wrapper,
 .copy-button-wrapper {
     position: fixed;

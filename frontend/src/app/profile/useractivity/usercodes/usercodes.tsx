@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import CodeListItem from '@/app/components/codelistitem/codelistitem'
+import CodeListItem from '@/components/codelistitem/codelistitem'
 
 
 const Code = () => {

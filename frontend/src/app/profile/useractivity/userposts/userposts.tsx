@@ -1,4 +1,4 @@
-import FeedPost from '@/app/components/feedpost/feedpost'
+import FeedPost from '@/components/feedpost/feedpost'
 import React from 'react'
 
 const UserPosts = () => {

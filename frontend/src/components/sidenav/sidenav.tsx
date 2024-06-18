@@ -127,7 +127,7 @@ const SideNav = () => {
                 (((pathName.match(/\//g) || []).length) === 1) && 
                 <a id="nav-expand" onClick={toggleDrawer}>
                     <span style={{ marginBottom: '-7px' }}>
-                        <Image src='/home/hamburger-home.svg' alt='Menu' width={20} height={20} />
+                        <Image src='/home/hamburger-home.svg' alt='Menu' width={18} height={18} />
                     </span>
                 </a>
             }
@@ -137,7 +137,7 @@ const SideNav = () => {
                 (((pathName.match(/\//g) || []).length) > 1) && 
                 <a id="go-back" onClick={handleGoBack}>
                     <span>
-                        <Image src='/home/arrow-left.svg' alt='Back' width={16} height={16} /> 
+                        <Image src='/home/arrow-left.svg' alt='Back' width={20} height={20} /> 
                     </span>
                 </a>
             }
@@ -146,7 +146,7 @@ const SideNav = () => {
             </div>
             <nav ref={drawerRef} id='drawer' className={drawerOpen ? 'active' : ''}>
                 <a id="nav-collapse" onClick={toggleDrawer}>
-                    <Image src='/home/chevron-left.svg' alt='Menu' width={25} height={25} />
+                    <Image src='/home/chevron-left.svg' alt='Menu' width={20} height={20} />
                 </a>
                 <div className="drawer-profile-image">
                     <img src="https://www.w3schools.com/howto/img_avatar.png" alt="profile" />

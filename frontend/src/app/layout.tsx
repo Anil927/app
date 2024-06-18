@@ -1,7 +1,7 @@
 import React from "react";
 import ClientSideComponent from "./clientlayout";
-import type { Metadata } from "next";
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
+
 
 export const metadata: Metadata = {
     title: "codeguru",

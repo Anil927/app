@@ -2,10 +2,10 @@
 import React, { useState, useRef, KeyboardEvent } from 'react';
 import './page.css';
 import styles from '../../page.module.css';
-import Snackbar from '@/app/components/snackbar/snackbar';
+import Snackbar from '@/components/snackbar/snackbar';
 import dynamic from 'next/dynamic';
 
-const QuillEditor = dynamic(() => import('@/app/components/richtexteditor/richtexteditor'), {
+const QuillEditor = dynamic(() => import('@/components/richtexteditor/richtexteditor'), {
   ssr: false
 });
 

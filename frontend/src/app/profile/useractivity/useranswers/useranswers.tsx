@@ -1,4 +1,4 @@
-import AnswerFormat from '@/app/components/qnaformat/qnaformat'
+import AnswerFormat from '@/components/qnaformat/qnaformat'
 import React from 'react'
 
 const UserAnswers = () => {

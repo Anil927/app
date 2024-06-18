@@ -2,8 +2,8 @@
 import React, { Suspense } from 'react'
 import styles from '@/app/page.module.css'
 import './page.css'
-import QuestionFormat from '@/app/components/qnaformat/qnaformat'
-import AnswerFormat from '@/app/components/qnaformat/qnaformat'
+import QuestionFormat from '@/components/qnaformat/qnaformat'
+import AnswerFormat from '@/components/qnaformat/qnaformat'
 import { useSearchParams } from 'next/navigation'
 
 

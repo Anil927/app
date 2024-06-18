@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import './page.css'
 import '@/app/code/searchbar.css'
-import FeedPost from '../components/feedpost/feedpost'
+import FeedPost from '../../components/feedpost/feedpost'
 import Link from 'next/link'
 import Image from 'next/image'
 

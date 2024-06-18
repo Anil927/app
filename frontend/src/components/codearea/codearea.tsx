@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import './codearea.css';
-import styles from "../../page.module.css";
+import styles from "@/app/page.module.css";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus as pojoaque } from 'react-syntax-highlighter/dist/esm/styles/prism';
 

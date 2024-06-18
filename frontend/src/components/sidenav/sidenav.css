@@ -34,16 +34,6 @@ input[type=number] {
     appearance: textfield;
 }
 
-@font-face {
-    font-family: customSans;
-    src: local("OpenSans-Regular"), url('./../../../fonts/OpenSans-Regular.ttf') format(truetype);
-}
-
-
-body {
-    font-family: customSans, sans-serif;
-}
-
 
 .top-navbar {
     background-color: #139EF1;

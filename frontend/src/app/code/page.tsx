@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react'
 import './page.css'
 import './searchbar.css'
-import CodeListItem from '../components/codelistitem/codelistitem'
+import CodeListItem from '../../components/codelistitem/codelistitem'
 import { useRouter } from 'next/navigation'
 import CodeUplodModal from './codeuploadmodal/codeuploadmodal'
-import Snackbar from '../components/snackbar/snackbar'
+import Snackbar from '../../components/snackbar/snackbar'
 import Image from 'next/image'
 
 const Code = () => {

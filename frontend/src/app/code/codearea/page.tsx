@@ -1,7 +1,7 @@
 'use client'
 import React, { Suspense } from 'react'
 import styles from '../../page.module.css'
-import CodeArea from '@/app/components/codearea/codearea'
+import CodeArea from '@/components/codearea/codearea'
 import { useSearchParams } from 'next/navigation'
 
 
