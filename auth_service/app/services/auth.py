@@ -1,17 +1,18 @@
 from fastapi import HTTPException, status, Depends
 from pymongo.errors import PyMongoError
-from datetime import timedelta
+from datetime import timedelta, datetime, timezone
 from typing import Annotated
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from pydantic import EmailStr
+from jwt import InvalidTokenError
 import jwt
+
 
 from app.models.token import Token, TokenData
 from app.utils.security import get_password_hash, verify_password, create_token
 from app.config.settings import settings
 from app.config.database import mongo_client
-
-
+from app.services.mail import send_successful_account_creation_mail
 
 
 db = mongo_client["LearnCodeDB"]
@@ -23,7 +24,7 @@ def get_users_collection():
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
-async def create_user_account(user_dict, db):
+async def create_user_account(user_dict, background_tasks, db ):
     """Create a new user account
 
     Args:
@@ -36,16 +37,15 @@ async def create_user_account(user_dict, db):
     Returns:
         User: User model
     """
-    try:
-        # check if user already exists
-        user_exists = await db.find_one({"email": user_dict.email})
-        if user_exists:
-            raise HTTPException(status_code=400, detail="User already exists")
-        # create user
-        user_dict.password = get_password_hash(user_dict.password)
-        user = await db.insert_one(user_dict.dict())
-    except PyMongoError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+    # check if user already exists
+    user_exists = await db.find_one({"email": user_dict.email})
+    if user_exists:
+        raise HTTPException(status_code=400, detail="User already exists")
+    # create user
+    user_dict.password = get_password_hash(user_dict.password)
+    await db.insert_one(user_dict.dict())
+    
+    # await send_successful_account_creation_mail(user_dict, background_tasks)
     return user_dict
 
 
@@ -99,6 +99,76 @@ async def login_for_access_token(db, form_data) -> Token:
     return {"access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
     
 
+async def get_new_access_token(token):
+    """ Get new access token
+
+    Args:
+        token (str): Refresh token
+
+    Raises:
+        HTTPException: Could not validate credentials
+
+    Returns:
+        access_token, token_type
+    """
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, settings.REFRESH_SECRET_KEY, algorithms=[settings.ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+        token_data = TokenData(username=username)
+    except InvalidTokenError:
+        raise credentials_exception
+    access_token = create_token(
+        data={"sub": token_data.username, "type": "access"},
+        expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+
+
+async def forgot_password(username_or_email, db):
+    """Forgot password
+
+    Args:
+        username_or_email (str): Username or email
+        db (Database): Database connection
+    
+    Raises:
+        HTTPException: Invalid email or username
+
+    Returns:
+        dict: Response message
+    """
+    username_or_email_exists = await db.find_one({"$or": [{"username": username_or_email}, {"email": username_or_email}]})
+    if not username_or_email_exists:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid email or username",
+        )
+    # logic to send verification code to user
+    return {"message": "correct username or email. proceed with forgot password request"}
+
+
+async def reset_password(username, new_password, db):
+    """Reset password
+
+    Args:
+        username (str): Username
+        new_password (str): New password
+        db (Database): Database connection
+
+    Returns:
+        dict: Response message
+    """
+    new_password = get_password_hash(new_password)
+    await db.update_one({"username": username}, {"$set": {"password": new_password}})
+    return {"message": "Password reset successful"}
+    
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db=Depends(get_users_collection)):
     """ Get current user
@@ -108,7 +178,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db=Dep
 
     Raises:
         HTTPException: Could not validate credentials
-
+ 
     Returns:
         User: User model
     """
@@ -129,6 +199,3 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db=Dep
     if user is None:
         raise credentials_exception
     return user
-
-
-    
