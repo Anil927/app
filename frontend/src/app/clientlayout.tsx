@@ -1,20 +1,17 @@
-// src/app/components/ClientSideComponent.tsx
 'use client';
 
 import React from "react";
 import { usePathname } from "next/navigation";
 import SideNav from '@/components/sidenav/sidenav';
 import SplashScreen from "@/components/splashscreen/splashscreen";
-
 import "@/app/globals.css";
+import { Nunito } from 'next/font/google'
 
-// import {AdjustFontFallback} from 'next/font'
-
-// const dm_sans = DM_Sans({
-//   display: "swap",
-//   subsets: ["latin"],
-//   weight: ["500"],
-// });
+const nunito = Nunito({
+  display: "swap",
+  subsets: ["latin"],
+  weight: ["500"],
+});
 
 const ClientSideComponent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
@@ -23,7 +20,7 @@ const ClientSideComponent: React.FC<{ children: React.ReactNode }> = ({ children
     <>
       <style jsx global>{`
         :root {
-          --dm-font: ${dm_sans.style.fontFamily};
+          --nunito-font: ${nunito.style.fontFamily};
         }
       `}</style>
       {/* {(pathname !== '/' && pathname !== '/auth') ? <SideNav /> : <SplashScreen />} */}

@@ -136,8 +136,8 @@ const SideNav = () => {
             {
                 (((pathName.match(/\//g) || []).length) > 1) && 
                 <a id="go-back" onClick={handleGoBack}>
-                    <span>
-                        <Image src='/home/arrow-left.svg' alt='Back' width={20} height={20} /> 
+                    <span style={{ marginTop: '-1px' }}>
+                        <Image src='/home/arrow-left.svg' alt='Back' width={17} height={17} /> 
                     </span>
                 </a>
             }

@@ -1,11 +1,9 @@
-body {
-    font-family: var(--dm-font);
+body,
+button {
+    font-family: var(--nunito-font);
+    letter-spacing: 0.6px;
 }
 
 code {
     font-family: monospace !important;
-}
-
-button {
-    font-family: var(--dm-font);
 }

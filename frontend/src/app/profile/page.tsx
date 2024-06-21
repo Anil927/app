@@ -77,7 +77,7 @@ const Profile: React.FC = () => {
                 </div>
                 <div>
                     <span style={{ fontSize: "12px" }}>Saved code bits, posts, questions etc.</span>
-                    <Link href="/profile/userdownloads"><button>Bookmarks</button></Link>
+                    <Link href="/profile/userdownloads"><button>Downloads</button></Link>
                 </div>
 
             </div>
