@@ -116,25 +116,23 @@ const Modal: React.FC<Props> = ({ language, isOpen, onClose, onPublish }) => {
 
 
     return (
-        <>
-            <div className="modal-overlay" onClick={(e) => handleOverlayClick(e)}>
-                <div className="modal-container">
-                    <div className="modal-header">
-                        <div>Upload Code Files</div>
-                    </div>
-                    <div className="input-title">
-                        <input type="text" placeholder='Title of code' />
-                    </div>
-                    <div className="modal-body">
-                        {modalBody}
-                    </div>
-                    <div className="modal-footer">
-                        <button className="cancel-button" onClick={onClose}>cancel</button>
-                        <button className="publish-button" onClick={handlePublishClick}>Publish</button>
-                    </div>
+        <div className="modal-overlay" onClick={(e) => handleOverlayClick(e)}>
+            <div className="modal-container">
+                <div className="modal-header">
+                    <div>Upload Code Files</div>
+                </div>
+                <div className="input-title">
+                    <input type="text" placeholder='Title of code' />
+                </div>
+                <div className="modal-body">
+                    {modalBody}
+                </div>
+                <div className="modal-footer">
+                    <button className="cancel-button" onClick={onClose}>cancel</button>
+                    <button className="publish-button" onClick={handlePublishClick}>Publish</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

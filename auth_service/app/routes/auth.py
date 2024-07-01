@@ -10,7 +10,6 @@ from app.services import auth
 
 
 auth_router = APIRouter(tags=["auth"], responses={404: {"description": "Not found"}})
-get_current_user = auth.get_current_user
 get_users_collection = auth.get_users_collection
 
 
@@ -39,6 +38,6 @@ async def reset_password(username: str, new_password: str, db=Depends(get_users_
     return await auth.reset_password(username, new_password, db)
 
 
-@auth_router.get("/protected", response_model=dict, status_code=status.HTTP_200_OK)
-async def protected_route(current_user: Annotated[User, Depends(get_current_user)]):
-    return {"message": "This is a protected route"}
+@auth_router.get("/validate-token", response_model=dict, status_code=status.HTTP_200_OK)
+async def validate_token(token: Annotated[str, Depends(auth.oauth2_scheme)], db=Depends(get_users_collection)):
+    return await auth.get_token_payload(token, db)

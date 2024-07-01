@@ -6,17 +6,18 @@ from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from pydantic import EmailStr
 from jwt import InvalidTokenError
 import jwt
+from bson import ObjectId
+from datetime import datetime
 
-
-from app.models.token import Token, TokenData
+from app.models.token import Token
 from app.utils.security import get_password_hash, verify_password, create_token
 from app.config.settings import settings
 from app.config.database import mongo_client
 from app.services.mail import send_successful_account_creation_mail
 
 
-db = mongo_client["LearnCodeDB"]
-users_collection = db["users"]
+database = mongo_client["LearnCodeDB"]
+users_collection = database["users"]
 
 def get_users_collection():
     return users_collection
@@ -43,8 +44,12 @@ async def create_user_account(user_dict, background_tasks, db ):
         raise HTTPException(status_code=400, detail="User already exists")
     # create user
     user_dict.password = get_password_hash(user_dict.password)
-    await db.insert_one(user_dict.dict())
+    user_dict.created_at = datetime.now(tz=timezone.utc)
+    user_dict.updated_at = datetime.now(tz=timezone.utc)
+    result = await db.insert_one(user_dict.dict())
     
+    # for inserting blank values in other collections for user
+    await insert_blank_values_for_user(result.inserted_id)
     # await send_successful_account_creation_mail(user_dict, background_tasks)
     return user_dict
 
@@ -89,11 +94,11 @@ async def login_for_access_token(db, form_data) -> Token:
             headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = create_token(
-        data={"sub": user["username"], "type": "access"},
+        data={"user_id": str(user["_id"]), "type": "access"},
         expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     refresh_token = create_token(
-        data={"sub": user["username"], "type": "refresh"},
+        data={"user_id": str(user["_id"]), "type": "refresh"},
         expires_delta=timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
     )
     return {"access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
@@ -118,14 +123,16 @@ async def get_new_access_token(token):
     )
     try:
         payload = jwt.decode(token, settings.REFRESH_SECRET_KEY, algorithms=[settings.ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
+        user_id: str = payload.get("user_id")
+        token_type: str = payload.get("type")
+        if user_id is None:
             raise credentials_exception
-        token_data = TokenData(username=username)
     except InvalidTokenError:
         raise credentials_exception
+    if token_type != "refresh":
+        raise credentials_exception
     access_token = create_token(
-        data={"sub": token_data.username, "type": "access"},
+        data={"user_id": user_id, "type": "access"},
         expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     return {"access_token": access_token, "token_type": "bearer"}
@@ -166,21 +173,21 @@ async def reset_password(username, new_password, db):
         dict: Response message
     """
     new_password = get_password_hash(new_password)
-    await db.update_one({"username": username}, {"$set": {"password": new_password}})
+    await db.update_one({"username": username}, {"$set": {"password": new_password, "updated_at": datetime.now(tz=timezone.utc)}})
     return {"message": "Password reset successful"}
     
 
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db=Depends(get_users_collection)):
-    """ Get current user
+async def get_token_payload(token, db):
+    """ Get token payload
 
     Args:
         token (str): Access token
 
     Raises:
         HTTPException: Could not validate credentials
- 
+
     Returns:
-        User: User model
+        dict: Token payload
     """
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -189,13 +196,26 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db=Dep
     )
     try:
         payload = jwt.decode(token, settings.ACCESS_SECRET_KEY, algorithms=[settings.ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
+        user_id: str = payload.get("user_id")
+        if user_id is None:
             raise credentials_exception
-        token_data = TokenData(username=username)
     except InvalidTokenError:
         raise credentials_exception
-    user = await db.find_one({"username": token_data.username})
-    if user is None:
-        raise credentials_exception
-    return user
+    user = db.find_one({"_id": ObjectId(user_id)})
+    if not user:
+        return credentials_exception
+    return {"user_id": user_id}
+
+
+async def insert_blank_values_for_user(user_id):
+    """Insert blank values for user_profiles and user_activities
+
+    Args:
+        user_id (str): User ID
+        db (Database): Database connection
+
+    Returns:
+        None
+    """
+    await database["user_profiles"].insert_one({"user_id": ObjectId(user_id), "profile_pic": "https://avatar.iran.liara.run/public/boy?username=Ash", "bio": "Set your bio", "following": [], "followers": [], "level": "Noob"})
+    await database["user_activities"].insert_one({"user_id": ObjectId(user_id), "codes_uploaded": [], "posts_posted": [], "questions_asked": [], "answers_given": [], "codes_saved": [], "posts_saved": [], "questions_saved": [], "answers_saved": [], "engagement_streak": []})

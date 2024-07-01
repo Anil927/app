@@ -79,7 +79,7 @@
 }
 
 
-input[type=file]::file-selector-button {
+.file-input-container input[type=file]::file-selector-button {
     margin-right: 20px;
     height: 100%;
     border: none;
@@ -91,7 +91,7 @@ input[type=file]::file-selector-button {
     transition: background .2s ease-in-out;
 }
 
-input[type=file]::file-selector-button:hover {
+.file-input-container input[type=file]::file-selector-button:hover {
     background: #0d45a5;
 }
 

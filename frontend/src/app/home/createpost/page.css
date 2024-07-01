@@ -1,4 +1,3 @@
-
 .post-container {
     max-width: 100%;
     height: calc(100vh - 105px);
@@ -42,7 +41,7 @@
 }
 
 
-input[type=file]::file-selector-button {
+.image-upload-container input[type=file]::file-selector-button {
     margin-right: 20px;
     border: none;
     background: #149EF1;
@@ -51,11 +50,11 @@ input[type=file]::file-selector-button {
     color: #fff;
     cursor: pointer;
     transition: background .2s ease-in-out;
-  }
-  
-  input[type=file]::file-selector-button:hover {
+}
+
+.image-upload-container input[type=file]::file-selector-button:hover {
     background: #0d45a5;
-  }
+}
 
 .image-upload-input {
     display: block;
@@ -150,4 +149,3 @@ input[type=file]::file-selector-button {
     font-size: 0.8em;
     color: #666;
 }
-

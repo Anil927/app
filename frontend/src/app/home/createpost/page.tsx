@@ -1,13 +1,14 @@
 'use client'
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './page.css'; // Import your CSS file
 import styles from '../../page.module.css'
 import Snackbar from '@/components/snackbar/snackbar';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const CreatePost: React.FC = () => {
     const [text, setText] = useState<string>('');
-    const [image, setImage] = useState<File | null>(null);
+    const [image, setImage] = useState<Blob | null>(null);
     const [tags, setTags] = useState<string[]>([]);
     const tagInputRef = useRef<HTMLInputElement>(null);
     const [showPostSuccessfulMsg, setShowPostSuccessfulMsg] = useState(false);
@@ -52,6 +53,33 @@ const CreatePost: React.FC = () => {
         setText('');
         setImage(null);
     };
+
+    useEffect(() => {
+        const createPost = async () => {
+            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjY3ZmY3NDNjYTk3NDYzNDMyZThmNjM5IiwidHlwZSI6ImFjY2VzcyIsImV4cCI6MTcxOTgwNTMzN30.edgDZ9Z8mZNld3wm4cP9S9lH4JcJsaFBrz4HHQ5cqQI'; // Replace with your actual JWT token
+            const formData = new FormData();
+            formData.append('post', JSON.stringify({
+              content: text,
+              tags: tags
+            }));
+            formData.append('image',  image ?? ""); // Assuming an <input type="file">
+          
+            try {
+              const response = await axios.post('http://0.0.0.0:8000/post/createpost', formData, {
+                headers: {
+                  'Authorization': `Bearer ${token}`,
+                  'Content-Type': 'multipart/form-data'
+                }
+              });
+              console.log(response.data);
+            } catch (error) {
+              console.error('Error creating post:', error);
+            }
+          };
+          
+          // Call the function to create a post
+          createPost();
+    },[])
 
     return (
         <div className={styles.topBottomMargin}>
