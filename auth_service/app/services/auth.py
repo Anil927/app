@@ -217,5 +217,5 @@ async def insert_blank_values_for_user(user_id):
     Returns:
         None
     """
-    await database["user_profiles"].insert_one({"user_id": ObjectId(user_id), "profile_pic": "https://avatar.iran.liara.run/public/boy?username=Ash", "bio": "Set your bio", "following": [], "followers": [], "level": "Noob"})
+    await database["user_profiles"].insert_one({"user_id": ObjectId(user_id), "profile_pic": "https://avatar.iran.liara.run/public/boy?username=Ash", "bio": "Set your bio", "level": "Noob"})
     await database["user_activities"].insert_one({"user_id": ObjectId(user_id), "codes_uploaded": [], "posts_posted": [], "questions_asked": [], "answers_given": [], "codes_saved": [], "posts_saved": [], "questions_saved": [], "answers_saved": [], "engagement_streak": []})

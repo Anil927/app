@@ -19,7 +19,7 @@
                 "--port",
                 "8000"
             ],
-            "cwd": "home/anil/work/app/core-service"
+            "cwd": "${workspaceFolder}/core_service"
         }
     ]
 }

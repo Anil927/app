@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from app.utils.security import get_context
-from app.schema.schema import schema
+from app.schemas.schema import schema
 from app.extra.services.services import STATIC_DIR
 from app.extra.routes.routes import extra_router
 
