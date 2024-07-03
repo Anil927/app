@@ -100,6 +100,76 @@ class FollowOrUnFollowUserResponse:
     following: FollowOrUnFollow | None = None
 
 
+@strawberry.type
+class CodeFile:
+    _id: str
+    code_title: str
+    file_type: str
+    file_urls: list[str]
+    views: int
+    comments_count: int
+    upload_date: datetime
+
+@strawberry.type
+class CodeFileResponse:
+    success: bool
+    message: str
+    code_file: CodeFile | None = None
+    next_cursor: str | None = None
+
+
+@strawberry.type
+class CodeFileComments:
+    _id: str
+    comment_text: str
+    created_at: datetime
+    updated_at: datetime
+    user: User
+
+@strawberry.type
+class CodeFileCommentsResponse:
+    success: bool
+    message: str
+    comments: list[CodeFileComments] | None = None
+    next_cursor: str | None = None
+
+
+@strawberry.type
+class CodeFileViewsCount:
+    views: int
+
+@strawberry.type
+class CodeFileViewsCountResponse:
+    success: bool
+    message: str
+    count: CodeFileViewsCount | None = None
+
+
+@strawberry.type
+class CodeFileCommentCount:
+    count: int
+
+@strawberry.type
+class CodeFileCommentCountResponse:
+    success: bool
+    message: str
+    count: CodeFileCommentCount | None = None
+
+
+@strawberry.type
+class CommentOnCodeFile:
+    _id: str
+    comment_text: str
+    created_at: datetime
+    updated_at: datetime
+
+@strawberry.type
+class CommentOnCodeFileResponse:
+    success: bool
+    message: str
+    comment: CommentOnCodeFile | None = None
+    
+
 
 # Post query
 @strawberry.type
@@ -109,16 +179,18 @@ class PostQuery:
         return await post.get_posts(info, limit, next_cursor, post_ids)
 
     @strawberry.field
-    async def get_comments(self, info, limit: int, post_id: str, next_cursor: str | None=None) -> PostCommentResponse:
-        return await post.get_comments(info, limit, post_id, next_cursor)
+    async def get_comments_for_post(self, info, limit: int, post_id: str, next_cursor: str | None=None) -> PostCommentResponse:
+        return await post.get_comments_for_post(info, limit, post_id, next_cursor)
 
     @strawberry.field
-    async def get_likes_count(self, info, post_id: str) -> LikeOrCommentCountResponse:
-        return await post.get_likes_count(info, post_id)
+    async def get_likes_count_for_post(self, info, post_id: str) -> LikeOrCommentCountResponse:
+        return await post.get_likes_count_for_post(info, post_id)
 
     @strawberry.field
-    async def get_comments_count(self, info, post_id: str) -> LikeOrCommentCountResponse:
-        return await post.get_comments_count(info, post_id)
+    async def get_comments_count_for_post(self, info, post_id: str) -> LikeOrCommentCountResponse:
+        return await post.get_comments_count_for_post(info, post_id)
+
+    
 
 
 
@@ -134,8 +206,8 @@ class PostMutation:
         return await post.comment_on_post(info, post_id, comment_text)
 
     @strawberry.mutation
-    async def update_comment_on_post(self, info, post_id: str, new_comment_text: str) -> CommentOnPostResponse:
-        return await post.update_comment_on_post(info, post_id, new_comment_text)
+    async def update_comment_on_post(self, info, _id: str, new_comment_text: str) -> CommentOnPostResponse:
+        return await post.update_comment_on_post(info, _id, new_comment_text)
 
     @strawberry.mutation
     async def like_or_unlike_post(self, info, post_id: str) -> LikePostResponse:

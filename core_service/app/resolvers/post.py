@@ -62,7 +62,7 @@ async def get_posts(info, limit, next_cursor, post_ids):
         )
         
 
-async def get_comments(info, limit, post_id, next_cursor):
+async def get_comments_for_post(info, limit, post_id, next_cursor):
     _, db = get_context_info(info)
     try:
         query = {}
@@ -112,7 +112,7 @@ async def get_comments(info, limit, post_id, next_cursor):
         )
 
 
-async def get_likes_count(info, post_id):
+async def get_likes_count_for_post(info, post_id):
     _, db = get_context_info(info)
     try:
         post = await db.posts.find_one({"_id": ObjectId(post_id)})
@@ -121,7 +121,6 @@ async def get_likes_count(info, post_id):
                 success=True,
                 message="Post not found"
             )
-
         return schema.LikeOrCommentCountResponse(
             success=True,
             message="Likes count retrieved successfully",
@@ -133,7 +132,7 @@ async def get_likes_count(info, post_id):
             message=f"An error occurred: {str(e)}"
         )
 
-async def get_comments_count(info, post_id):
+async def get_comments_count_for_post(info, post_id):
     _, db = get_context_info(info)
     try:
         post = await db.posts.find_one({"_id": ObjectId(post_id)})
@@ -142,7 +141,6 @@ async def get_comments_count(info, post_id):
                 success=True,
                 message="Post not found"
             )
-
         return schema.LikeOrCommentCountResponse(
             success=True,
             message="Comments count retrieved successfully",
@@ -230,11 +228,11 @@ async def comment_on_post(info, post_id, comment_text):
         )
 
 
-async def update_comment_on_post(info, post_id, new_comment_text):
+async def update_comment_on_post(info, _id, new_comment_text):
     user_id, db = get_context_info(info)
     try:
         result = await db.post_comments.update_one(
-            {"post_id": ObjectId(post_id), "user_id": ObjectId(user_id)},
+            {"_id": ObjectId(_id), "user_id": ObjectId(user_id)},
             {"$set": {
                 "comment_text": new_comment_text,
                 "updated_at": datetime.now(tz=timezone.utc)
@@ -242,7 +240,7 @@ async def update_comment_on_post(info, post_id, new_comment_text):
         )
         if result.modified_count == 1:
             comment = await db.post_comments.find_one(
-                {"post_id": ObjectId(post_id), "user_id": ObjectId(user_id)}
+                {"_id": ObjectId(_id), "user_id": ObjectId(user_id)}
             )
             comment = schema.CommentOnPost(
                 _id=comment["_id"],
