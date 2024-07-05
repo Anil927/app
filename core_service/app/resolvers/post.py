@@ -1,13 +1,12 @@
 from bson import ObjectId
 from datetime import datetime, timezone
 
-import app.schemas.post as schema 
+import app.schemas.post as schema
 from app.utils.helper_fun import get_context_info
 
 
-
 async def get_posts(info, limit, next_cursor, post_ids):
-    _, db = get_context_info(info)
+    user_id, db = get_context_info(info)
     try:
         posts = None
 
@@ -32,6 +31,10 @@ async def get_posts(info, limit, next_cursor, post_ids):
 
         post_list = []
         for post in posts:
+            is_bookmarked = await db.user_activities.find_one({
+                "user_id": ObjectId(user_id),
+                "posts_saved": {"$in": [ObjectId(post["_id"])]}
+            })
             user = await db.user_profiles.find_one({"user_id": ObjectId(post["user_id"])})
             post_list.append(schema.Post(
                 _id=post["_id"],
@@ -39,6 +42,7 @@ async def get_posts(info, limit, next_cursor, post_ids):
                 image_url=post["image_url"],
                 likes_count=post["likes_count"],
                 comments_count=post["comments_count"],
+                is_bookmarked=bool(is_bookmarked),
                 created_at=post["created_at"],
                 user=schema.User(
                     profile_pic=user["profile_pic"],
@@ -46,21 +50,22 @@ async def get_posts(info, limit, next_cursor, post_ids):
                     level=user["level"],
                 )
             ))
-        
-        next_cursor = str(post_list[-1]._id) if len(post_list) == limit else None        
+
+        next_cursor = str(
+            post_list[-1]._id) if len(post_list) == limit else None
 
         return schema.PostResponse(
             success=True,
             message="Posts retrieved successfully",
             posts=post_list,
             next_cursor=next_cursor
-            )
+        )
     except Exception as e:
         return schema.PostResponse(
             success=False,
             message=f"An error occurred: {str(e)}"
         )
-        
+
 
 async def get_comments_for_post(info, limit, post_id, next_cursor):
     _, db = get_context_info(info)
@@ -97,7 +102,8 @@ async def get_comments_for_post(info, limit, post_id, next_cursor):
                 )
             ))
 
-        next_cursor = str(comment_list[-1]._id) if len(comment_list) == limit else None
+        next_cursor = str(
+            comment_list[-1]._id) if len(comment_list) == limit else None
 
         return schema.PostCommentResponse(
             success=True,
@@ -131,6 +137,7 @@ async def get_likes_count_for_post(info, post_id):
             success=False,
             message=f"An error occurred: {str(e)}"
         )
+
 
 async def get_comments_count_for_post(info, post_id):
     _, db = get_context_info(info)
@@ -228,11 +235,11 @@ async def comment_on_post(info, post_id, comment_text):
         )
 
 
-async def update_comment_on_post(info, _id, new_comment_text):
+async def update_comment_on_post(info, post_comment_id, new_comment_text):
     user_id, db = get_context_info(info)
     try:
         result = await db.post_comments.update_one(
-            {"_id": ObjectId(_id), "user_id": ObjectId(user_id)},
+            {"_id": ObjectId(post_comment_id), "user_id": ObjectId(user_id)},
             {"$set": {
                 "comment_text": new_comment_text,
                 "updated_at": datetime.now(tz=timezone.utc)
@@ -240,7 +247,8 @@ async def update_comment_on_post(info, _id, new_comment_text):
         )
         if result.modified_count == 1:
             comment = await db.post_comments.find_one(
-                {"_id": ObjectId(_id), "user_id": ObjectId(user_id)}
+                {"_id": ObjectId(post_comment_id),
+                 "user_id": ObjectId(user_id)}
             )
             comment = schema.CommentOnPost(
                 _id=comment["_id"],
@@ -315,7 +323,7 @@ async def follow_or_unfollow_another_user(info, post_id):
         # first find the user_id of the user of the post
         post = await db.posts.find_one({"_id": ObjectId(post_id)})
         user_id_of_the_user_of_the_post = post["user_id"]
-        
+
         # check if the user is already following the user of the post
         existing_follow = await db.user_relationships.find_one({
             "user_id": ObjectId(user_id),
@@ -342,7 +350,13 @@ async def follow_or_unfollow_another_user(info, post_id):
                     following=schema.FollowOrUnFollow(
                         _id=result.inserted_id,
                         target_id=user_id_of_the_user_of_the_post
-                        )
+                    )
+                )
+            # This block handles the rare case where inserted_id is None or invalid
+            else:
+                return schema.FollowOrUnFollowUserResponse(
+                    success=False,
+                    message="Failed to follow the user"
                 )
     except Exception as e:
         return schema.FollowOrUnFollowUserResponse(
@@ -350,4 +364,46 @@ async def follow_or_unfollow_another_user(info, post_id):
             message=f"An error occurred: {str(e)}"
         )
 
-    
+
+async def bookmark_post(info, post_id):
+    user_id, db = get_context_info(info)
+    try:
+        existing_bookmark = await db.user_activities.find_one({
+            "user_id": ObjectId(user_id),
+            "posts_saved": {"$in": [ObjectId(post_id)]}
+        })
+
+        if existing_bookmark:
+            # User already bookmarked the post, so remove the bookmark
+            await db.user_activities.update_one(
+                {"user_id": ObjectId(user_id)},
+                {"$pull": {"posts_saved": ObjectId(post_id)}}
+            )
+            return schema.BookmarkPostResponse(
+                success=True,
+                message="Post unbookmarked successfully",
+                bookmark=schema.BookmarkPost(is_bookmarked=False)
+            )
+        else:
+            # User has not bookmarked the post, so add the bookmark
+            result = await db.user_activities.update_one(
+                {"user_id": ObjectId(user_id)},
+                {"$addToSet": {"posts_saved": ObjectId(post_id)}}
+            )
+            if result.modified_count == 1:
+                return schema.BookmarkPostResponse(
+                    success=True,
+                    message="Post bookmarked successfully",
+                    bookmark=schema.BookmarkPost(is_bookmarked=True)
+                )
+            # This block handles the rare case where inserted_id is None or invalid
+            else:
+                return schema.BookmarkPostResponse(
+                    success=False,
+                    message="Failed to bookmark the post"
+                )
+    except Exception as e:
+        return schema.BookmarkPostResponse(
+            success=False,
+            message=f"An error occurred: {str(e)}"
+        )

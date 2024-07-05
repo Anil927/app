@@ -25,6 +25,7 @@ class Post:
     image_url: str
     likes_count: int
     comments_count: int
+    is_bookmarked: bool | None = None
     created_at: datetime
     user: User
 
@@ -168,6 +169,17 @@ class CommentOnCodeFileResponse:
     success: bool
     message: str
     comment: CommentOnCodeFile | None = None
+
+
+@strawberry.type
+class BookmarkPost:
+    is_bookmarked: bool
+
+@strawberry.type
+class BookmarkPostResponse:
+    success: bool
+    message: str
+    bookmark: BookmarkPost | None = None
     
 
 
@@ -206,8 +218,8 @@ class PostMutation:
         return await post.comment_on_post(info, post_id, comment_text)
 
     @strawberry.mutation
-    async def update_comment_on_post(self, info, _id: str, new_comment_text: str) -> CommentOnPostResponse:
-        return await post.update_comment_on_post(info, _id, new_comment_text)
+    async def update_comment_on_post(self, info, post_comment_id: str, new_comment_text: str) -> CommentOnPostResponse:
+        return await post.update_comment_on_post(info, post_comment_id, new_comment_text)
 
     @strawberry.mutation
     async def like_or_unlike_post(self, info, post_id: str) -> LikePostResponse:
@@ -216,3 +228,7 @@ class PostMutation:
     @strawberry.mutation
     async def follow_or_unfollow_another_user(self, info, post_id: str) -> FollowOrUnFollowUserResponse:
         return await post.follow_or_unfollow_another_user(info, post_id)
+
+    @strawberry.mutation
+    async def bookmark_post(self, info, post_id: str) -> BookmarkPostResponse:
+        return await post.bookmark_post(info, post_id)

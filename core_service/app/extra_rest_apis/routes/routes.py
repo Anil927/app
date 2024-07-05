@@ -2,9 +2,9 @@
 
 from fastapi import HTTPException, APIRouter, status, Depends, UploadFile, File
 
-from app.extra.services.services import save_image_to_local
+from app.extra_rest_apis.services.services import save_image_to_local
 from app.utils.security import get_current_user
-import app.extra.services.services as services
+import app.extra_rest_apis.services.services as services
 from app.config.database import mongo_client
 
 

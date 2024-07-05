@@ -6,8 +6,8 @@ from fastapi.staticfiles import StaticFiles
 
 from app.utils.security import get_context
 from app.schemas.schema import schema
-from app.extra.services.services import STATIC_DIR
-from app.extra.routes.routes import extra_router
+from app.extra_rest_apis.services.services import STATIC_DIR
+from app.extra_rest_apis.routes.routes import extra_router
 
 
 app = FastAPI()

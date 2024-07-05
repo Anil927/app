@@ -194,11 +194,11 @@ async def comment_on_code_file(info, code_file_id, comment_text):
         )
 
 
-async def update_comment_on_code_file(info, _id, new_comment_text):
+async def update_comment_on_code_file(info, code_file_comment_id, new_comment_text):
     user_id, db = get_context_info(info)
     try:
         result = await db.code_file_comments.update_one(
-            {"_id": ObjectId(_id), "user_id": ObjectId(user_id)},
+            {"_id": ObjectId(code_file_comment_id), "user_id": ObjectId(user_id)},
             {"$set": {
                 "comment_text": new_comment_text,
                 "updated_at": datetime.now(tz=timezone.utc)
@@ -206,7 +206,7 @@ async def update_comment_on_code_file(info, _id, new_comment_text):
         )
         if result.modified_count == 1:
             comment = await db.code_file_comments.find_one(
-                {"_id": ObjectId(_id), "user_id": ObjectId(user_id)}
+                {"_id": ObjectId(code_file_comment_id), "user_id": ObjectId(user_id)}
             )
             comment = schema.CommentOnCodeFile(
                 _id=comment["_id"],
@@ -249,6 +249,48 @@ async def increase_code_file_views_count(info, code_file_id):
             )
     except Exception as e:
         return schema.IncreaseCodeFileViewsCountResponse(
+            success=False,
+            message=f"An error occurred: {str(e)}"
+        )
+
+async def bookmark_code_file(info, code_file_id):
+    user_id, db = get_context_info(info)
+    try:
+        existing_bookmark = await db.user_activities.find_one({
+            "user_id": ObjectId(user_id),
+            "codes_saved": {"$in": [ObjectId(code_file_id)]}
+        })
+        if existing_bookmark:
+            # User already bookmarked the code_file, so remove the bookmark
+            await db.user_activities.update_one(
+                {"user_id": ObjectId(user_id)},
+                {"$pull": {"codes_saved": ObjectId(code_file_id)}}
+            )
+            return schema.BookmarkCodeFileResponse(
+                success=True,
+                message="CodeFile unbookmarked successfully",
+                bookmark=schema.BookmarkCodeFile(is_bookmarked=False)
+            )
+        else:
+            # User has not bookmarked the code_file, so add the bookmark
+            result = await db.user_activities.update_one(
+                {"user_id": ObjectId(user_id)},
+                {"$addToSet": {"codes_saved": ObjectId(code_file_id)}}
+            )
+            if result.modified_count == 1:
+                return schema.BookmarkCodeFileResponse(
+                    success=True,
+                    message="CodeFile bookmarked successfully",
+                    bookmark=schema.BookmarkCodeFile(is_bookmarked=True)
+                )
+            # This block handles the rare case where inserted_id is None or invalid
+            else:
+                return schema.BookmarkCodeFileResponse(
+                    success=False,
+                    message="Failed to bookmark the code_file"
+                )
+    except Exception as e:
+        return schema.BookmarkCodeFileResponse(
             success=False,
             message=f"An error occurred: {str(e)}"
         )

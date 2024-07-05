@@ -86,6 +86,17 @@ class CommentOnCodeFileResponse:
     success: bool
     message: str
     comment: CommentOnCodeFile | None = None
+
+
+@strawberry.type
+class BookmarkCodeFile:
+    is_bookmarked: bool
+
+@strawberry.type
+class BookmarkCodeFileResponse:
+    success: bool
+    message: str
+    bookmark: BookmarkCodeFile | None = None
     
 
 # Post query
@@ -117,9 +128,13 @@ class CodeFileMutation:
         return await code_file.comment_on_code_file(info, code_file_id, comment_text)
 
     @strawberry.mutation
-    async def update_comment_on_code_file(self, info, _id: str, new_comment_text: str) -> CommentOnCodeFileResponse:
-        return await code_file.update_comment_on_code_file(info, _id, new_comment_text)
+    async def update_comment_on_code_file(self, info, code_file_comment_id: str, new_comment_text: str) -> CommentOnCodeFileResponse:
+        return await code_file.update_comment_on_code_file(info, code_file_comment_id, new_comment_text)
 
     @strawberry.mutation
     async def increase_code_file_views_count(self, info, code_file_id: str) -> IncreaseCodeFileViewsCountResponse:
         return await code_file.increase_code_file_views_count(info, code_file_id)
+
+    @strawberry.mutation
+    async def bookmark_code_file(self, info, code_file_id: str) -> BookmarkCodeFileResponse:
+        return await code_file.bookmark_code_file(info, code_file_id)
