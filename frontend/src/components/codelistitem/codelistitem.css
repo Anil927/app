@@ -3,10 +3,10 @@
     justify-content: flex-start;
     column-gap: 20px;
     padding: 8px;
-    border-bottom: 0.8px solid #2b3034;
-    background-color: #333a40;
+    border-bottom: 0.8px solid var(--secondary-background-color);
+    background-color: var(--primary-background-color);
     padding-left: 1.2em;
-    color: #afb4b7;
+    color: var(--primary-text-color);
     font-size: 0.9em;
     font-weight: bolder;
     letter-spacing: 0.4px;

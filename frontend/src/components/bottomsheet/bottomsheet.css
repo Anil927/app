@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     bottom: 0;
-    background-color: #333a40;
+    background-color: var(--primary-background-color);
 }
 
 
@@ -103,8 +103,8 @@
     align-items: center;
     padding: 5px;
     font-size: 0.9em;
-    color: #afb4b7;
-    background-color: #272727;
+    color: var(--primary-text-color);
+    background-color: ;
     /* give a decent box shadow to bottom side */
     box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.5);
 
@@ -115,7 +115,7 @@
     flex-direction: column;
     padding: 14px 10px;
     align-items: stretch;
-    border-bottom: 1px solid #272727;
+    border-bottom: 1px solid ;
 }
 
 .avatar-and-comment-area {
@@ -142,7 +142,7 @@
     border-radius: 3px;
     margin-right: 10px;
     border: 1px solid rgb(87, 83, 83);
-    color: #afb4b7;
+    color: var(--primary-text-color);
     background-color: #2b2f32;
     font-family: inherit;
 }
@@ -163,7 +163,7 @@
 .cancel-and-comment-btn>button:first-child {
     border: 1px solid #7db343;
     background-color: transparent;
-    color: #afb4b7;
+    color: var(--primary-text-color);
     border-radius: 3px;
     padding: 5px 15px;
 }
@@ -192,7 +192,7 @@
     padding: 10px;
     justify-content: flex-start;
     gap: 20px;
-    /* border-bottom: 1px solid #272727; */
+    /* border-bottom: 1px solid ; */
 }
 
 .comment-body img {

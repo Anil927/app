@@ -1,7 +1,7 @@
 div.editor {
     min-height: 200px;
-    color: #afb4b7;
-    background-color: #2b3035;
+    color: var(--primary-text-color);
+    background-color: var(--tertiary-background-color);
 }
 
 .ql-snow .ql-picker-options {
@@ -31,7 +31,7 @@ div.editor-container {
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    background-color: #333a40;
+    background-color: var(--primary-background-color);
 }
 
 .qna-publish-button {

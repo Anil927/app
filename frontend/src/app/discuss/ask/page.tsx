@@ -91,9 +91,6 @@ const AskQuestion: React.FC = () => {
                 isAsked && (!question[0] || !questionTitle || (tags.length === 0)) && <Snackbar message="! Tags, Question and Description can't be empty" />
             }
 
-            <div style={{ width: '100%', height: 'calc(100vh - 600px)', backgroundColor: '#333a40' }}>
-
-            </div>
         </div>
     );
 };

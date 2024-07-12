@@ -3,9 +3,9 @@
     flex-direction: row;
     justify-content: flex-start;
     padding: 16px 8px;
-    background-color: #333a40;
-    color: #afb4b7;
-    border-bottom: 4px solid #272727;
+    background-color: var(--primary-background-color);
+    color: var(--primary-text-color);
+    border-bottom: 4px solid var(--secondary-background-color);
 }
 
 .qna-format .qna-analytics {

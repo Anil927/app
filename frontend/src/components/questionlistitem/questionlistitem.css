@@ -5,10 +5,10 @@
     flex-direction: row;
     justify-content: flex-start;
     column-gap: 8px;
-    border-bottom: 0.8px solid #2b3034;
+    border-bottom: 0.8px solid var(--secondary-background-color);
     padding: 10px;
-    background-color: #333a40;
-    color: #afb4b7;
+    background-color: var(--primary-background-color);
+    color: var(--primary-text-color);
     font-size: 0.7em;
     font-weight: bold;
     letter-spacing: 0.4px;

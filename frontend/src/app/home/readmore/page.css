@@ -1,5 +1,5 @@
 .post-read-more {
     padding: 5px;
-    color: #afb4b7;
-    background-color: #333a40;
+    color: var(--primary-text-color);
+    background-color: var(--primary-background-color);
 }

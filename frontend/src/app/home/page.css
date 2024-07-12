@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     border-bottom: 2px solid #139ef1;
-    border-left: 1px solid #afb4b7;
+    border-left: 1px solid var(--primary-text-color);
 }
 
 .post.hidden {

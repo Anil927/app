@@ -6,8 +6,8 @@
     justify-content: flex-start;
     column-gap: 8px;
     padding: 10px 10px 5px 10px;
-    background-color: #333a40;
-    color: #afb4b7;
+    background-color: var(--primary-background-color);
+    color: var(--primary-text-color);
 }
 
 .question-answer .question-icon {

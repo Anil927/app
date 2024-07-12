@@ -35,7 +35,7 @@ const QnA = () => {
                 </div>
             </div>
             <QuestionFormat id={id} />
-            <div style={{ fontWeight: 'bold', padding: "5px 15px", fontSize: '1.2em', backgroundColor: '#333a40', color: '#afb4b7' }}>{answerIds.length} Answers</div>
+            <div style={{ fontWeight: 'bold', padding: "5px 15px", fontSize: '1.2em', backgroundColor: 'var(--primary-background-color)', color: '#afb4b7' }}>{answerIds.length} Answers</div>
             {
                 answerIds.map((answerId) => {
                     return (

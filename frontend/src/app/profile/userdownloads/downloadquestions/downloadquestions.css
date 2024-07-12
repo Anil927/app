@@ -6,7 +6,7 @@
     justify-content: flex-start;
     column-gap: 8px;
     padding: 10px 10px 5px 10px;
-    background-color: #333a40;
+    background-color: var(--primary-background-color);
     color: #afb4b7
 }
 

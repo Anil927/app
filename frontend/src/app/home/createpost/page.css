@@ -5,8 +5,8 @@
     overflow-x: hidden;
     margin: 0 auto;
     padding: 20px;
-    background-color: #333a40;
-    color: #afb4b7;
+    background-color: var(--primary-background-color);
+    color: var(--primary-text-color);
     box-sizing: border-box;
 }
 
@@ -22,8 +22,8 @@
     margin-bottom: 20px;
     border: 2px solid #a3a3a3;
     box-sizing: border-box;
-    background-color: #2b3035;
-    color: #afb4b7;
+    background-color: var(--tertiary-background-color);
+    color: var(--primary-text-color);
     font-family: inherit;
     font-size: 1.05em;
 }
@@ -117,8 +117,8 @@
 
 .tag-item {
     padding: 2px 6px;
-    background-color: #272727;
-    color: #afb4b7;
+    background-color: ;
+    color: var(--primary-text-color);
     border-radius: 5px;
     font-size: 0.9em;
     cursor: pointer;
@@ -135,8 +135,8 @@
     border-radius: 4px;
     border: 1px solid gray;
     box-sizing: border-box;
-    background-color: #2b3035;
-    color: #afb4b7;
+    background-color: var(--tertiary-background-color);
+    color: var(--primary-text-color);
 }
 
 .tags-input:focus {

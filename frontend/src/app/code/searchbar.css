@@ -19,7 +19,7 @@
 
 form {
     width: 100%;
-    background: #2b2e31;
+    background: var(--tertiary-background-color);
     position: fixed;
     top: 50px;
 }
@@ -50,7 +50,7 @@ input[type=search] {
     transition-property: width, border-radius;
     z-index: 1;
     position: relative;
-    background-color: #2b2e31;
+    background-color: var(--tertiary-background-color);
     color: #afb4b7 !important;
 }
 
@@ -71,7 +71,7 @@ input#reset {
 }
 
 button#search-btn {
-    background-color: #25272a;
+    background-color: var(--secondary-background-color);
     right: 0;
     width: var(--btn-width);
     top: 0 !important;
@@ -84,10 +84,10 @@ button#search-btn > img {
 input#reset {
     top: 10px;
     height: 20px;
-    background-color: #2b2e31;
+    background-color: var(--tertiary-background-color);
     right: var(--btn-width);
     border-radius: 50%;
-    color: #afb4b7;
+    color: var(--primary-text-color);
 }
 
 input#search:not(:-moz-placeholder-shown) {

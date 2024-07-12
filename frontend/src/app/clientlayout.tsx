@@ -18,7 +18,7 @@ const ClientSideComponent: React.FC<{ children: React.ReactNode }> = ({ children
 
   return (
     <>
-      <style jsx global>{`
+      <style>{`
         :root {
           --nunito-font: ${nunito.style.fontFamily};
         }

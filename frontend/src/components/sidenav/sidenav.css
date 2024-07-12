@@ -10,13 +10,19 @@
     /* Internet Explorer/Edge */
     user-select: none;
     /* Non-prefixed */
+
+    --primary-background-color: #333a40;
+    --secondary-background-color: #272727;
+    --tertiary-background-color: #2b3035;
+    --primary-text-color: #afb4b7;
+    --secondary-text-color: #ffffff;
 }
 
 /* Change autocomplete styles in WebKit */
 :-webkit-autofill,
 :-webkit-autofill:hover,
 :-webkit-autofill:focus {
-    -webkit-text-fill-color: #afb4b7;
+    -webkit-text-fill-color: var(--primary-text-color);
     -webkit-box-shadow: 0 0 0px 1000px #1B1B1C inset;
     transition: background-color 5000s ease-in-out 0s;
     border-radius: 4px;
@@ -26,6 +32,10 @@
 ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+body {
+    background-color: var(--primary-background-color);
 }
 
 /* Hide the number input spinner for Firefox */
@@ -142,8 +152,7 @@ nav a {
 #drawer {
     display: flex;
     flex-direction: column;
-    background-color: #333a40;
-
+    background-color: var(--primary-background-color);
 }
 
 #drawer #nav-collapse {
@@ -188,7 +197,7 @@ nav a {
 }
 
 #drawer .drawer-buttons button {
-    color: #afb4b7;
+    color: var(--primary-text-color);
     padding: 10px;
     text-align: left;
     text-decoration: none;
@@ -204,10 +213,16 @@ nav a {
 
 #drawer .drawer-buttons button>svg {
     height: 4.3vmin;
+    margin-top: -1px;
 }
 
+#drawer .drawer-buttons .theme-change-btn > img {
+    margin-top: -3px;
+}
 
-
+#drawer #theme-change-btn {
+    padding-top: auto;
+}
 
 .bottom-tab {
     bottom: -2px;
@@ -215,9 +230,59 @@ nav a {
     right: 0;
     position: fixed;
     width: 100% !important;
-    background-color: #2b3035;
+    background-color: var(--tertiary-background-color);
     z-index: 3;
-    color: #afb4b7;
+    color: var(--primary-text-color);
     font-weight: bold;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* for theme changing button */
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+
+.checkbox-label {
+    box-sizing: border-box;
+    background-color: #767676;
+    width: 44px;
+    height: 20px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px 2px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.moon,
+.sun {
+    margin-top: 2px;
+    z-index: 5;
+}
+
+.checkbox-label .ball {
+    background-color: #fff;
+    z-index: 6;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked+.checkbox-label .ball {
+    transform: translateX(24px);
+}
+
+.checkbox:checked+.checkbox-label {
+    background-color: #333a40;
 }
