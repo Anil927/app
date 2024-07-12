@@ -18,7 +18,7 @@
     border: none;
     color: rgb(255, 255, 255, 0.6);
     outline: none;
-    color: white;
+    background-color: #149EF1;
     font-size: 1em;
     transition: background 0.3s;
     width: 25%;

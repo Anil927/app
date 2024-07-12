@@ -69,6 +69,7 @@
 }
 
 .question-tags-input {
+    height: 34px;
     width: 80%;
     padding: 8px;
     border-radius: 4px;
@@ -85,7 +86,7 @@
 
 .input-and-button > button {
     width: 18%;
-    padding: 9px 15px 7px;
+    padding: 8px 15px 6px;
     border: none;
     border-radius: 4px;
     background-color: #7db343;
