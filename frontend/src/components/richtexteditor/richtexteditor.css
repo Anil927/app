@@ -14,7 +14,7 @@ div.editor {
 
 .ql-toolbar.ql-snow {
     border: none;
-    background-color: rgba(16, 16, 16, 0.3);
+    background-color: rgba(16, 16, 16, 0.3) !important;
     z-index: 2;
 }
 
@@ -25,6 +25,7 @@ div.editor-container {
     flex-direction: column;
     align-items: stretch;
     z-index: 10;
+    background-color: white !important;
 }
 
 .publish-button-container {
@@ -48,5 +49,4 @@ div.editor-container {
 
 .qna-publish-button:hover {
     background: #6e9738;
-
 }

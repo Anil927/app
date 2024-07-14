@@ -7,7 +7,7 @@
 
 #search-bar {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
     z-index: 2;
     border-bottom: 2px solid #139ef1;
 }
@@ -51,7 +51,7 @@ input[type=search] {
     z-index: 1;
     position: relative;
     background-color: var(--tertiary-background-color);
-    color: #afb4b7 !important;
+    color: var(--secondary-text-color);
 }
 
 /* Change the color of the Webkit search cancel button */

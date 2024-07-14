@@ -4,6 +4,7 @@ import './sidenav.css'
 import BottomTab from '../bottomtab/bottomtab'
 import { useRouter, usePathname } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const SideNav = () => {
     const router = useRouter()
@@ -55,7 +56,7 @@ const SideNav = () => {
 
     useEffect(() => {
 
-        const arrowSymbol = '<div className="small-arrow">\u276F</div>'; // Non-breaking space + heavy right-pointing angle quotation mark + Non-breaking space
+        const arrowSymbol = '<div class="small-arrow">\u276F</div>'; // Non-breaking space + heavy right-pointing angle quotation mark + Non-breaking space
 
         if (pathName.includes('/createpost')) {
             setPageHeading(`<div>Home</div>${arrowSymbol}<div>Create Post</div>`);
@@ -81,6 +82,8 @@ const SideNav = () => {
             setPageHeading('Discuss');
         } else if (pathName.includes('/profile')) {
             setPageHeading('Profile');
+        } else if (pathName.includes('/notifications')) {
+            setPageHeading('Notifications')
         }
     }, [pathName]);
 
@@ -104,15 +107,21 @@ const SideNav = () => {
         setIsThemeChecked(!isThemeChecked);
         if (typeof window !== 'undefined') {
             if (!isThemeChecked) {
-                document.documentElement.style.setProperty('--primary-background-color', "#fafafa");
-                document.documentElement.style.setProperty('--primary-text-color', "#353535")
+                document.documentElement.style.setProperty('--primary-background-color', "#fafafa")
+                document.documentElement.style.setProperty('--primary-text-color', "#454545")
                 document.documentElement.style.setProperty('--secondary-background-color', "#e9e9e9")
-                document.documentElement.style.setProperty('--tertiary-background-color', '#f5f5f5')
+                document.documentElement.style.setProperty('--secondary-text-color', "#565656")
+                document.documentElement.style.setProperty('--tertiary-background-color', '#f2f2f2')
+                document.documentElement.style.setProperty('--profile-tab-box-shadow', '0px 1px 5px 0.1px #9f8383')
+                document.documentElement.style.setProperty('--floating-btn-shadow:', '0 4px 9px 2px rgb(200 200 200 / 30%)')
             } else {
-                document.documentElement.style.setProperty('--primary-background-color', "#333a40");
+                document.documentElement.style.setProperty('--primary-background-color', "#333a40")
                 document.documentElement.style.setProperty('--primary-text-color', "#afb4b7")
                 document.documentElement.style.setProperty('--secondary-background-color', "#272727")
+                document.documentElement.style.setProperty('--secondary-text-color', "#8b9093")
                 document.documentElement.style.setProperty('--tertiary-background-color', '#2b3035')
+                document.documentElement.style.setProperty('--profile-tab-box-shadow', '0px 2px 5px 0px #1a1a1a')
+                document.documentElement.style.setProperty('--floating-btn-shadow:', '0 4px 9px 2px rgb(0 0 0 / 30%)')
             }
         }
     }
@@ -162,6 +171,14 @@ const SideNav = () => {
             <div className="nav-heading" >
                 <div dangerouslySetInnerHTML={{ __html: pageHeading }}></div>
             </div>
+            {
+                !pathName.startsWith('/profile') && !pathName.startsWith('/learn') && !pathName.startsWith('/notifications') &&
+                <Link href='/notifications'>
+                    <button className="nav-bell">
+                        <Image src='/home/bell.svg' alt='Bell' width={20} height={20} />
+                    </button>
+                </Link>
+            }
             <nav ref={drawerRef} id='drawer' className={drawerOpen ? 'active' : ''}>
                 <a id="nav-collapse" onClick={toggleDrawer}>
                     <Image src='/home/chevron-left.svg' alt='Menu' width={20} height={20} />
@@ -174,10 +191,10 @@ const SideNav = () => {
                     <button className="theme-change-btn" onClick={handleChangeThemeClick}>
                         <Image src="./icons/theme.svg" alt="moon" width={17} height={17} />
                         <span>Change Theme</span>
-                        <input type="checkbox" className="checkbox" id="checkbox" checked={isThemeChecked} />
+                        <input type="checkbox" className="checkbox" id="checkbox" onChange={e => e} checked={isThemeChecked} />
                         <label htmlFor="checkbox" className="checkbox-label">
                             <div className='moon'><Image src="./icons/moon.svg" alt="moon" width={17} height={17} /></div>
-                            <div className='sun'><Image src="./icons/sun.svg" alt="sun" width={16} height={16} /></div>
+                            <div className='sun'><Image src="./icons/sun.svg" alt="sun" width={16} height={15} /></div>
                             <span className="ball"></span>
                         </label>
                     </button>

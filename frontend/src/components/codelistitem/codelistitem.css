@@ -2,10 +2,8 @@
     display: flex;
     justify-content: flex-start;
     column-gap: 20px;
-    padding: 8px;
-    border-bottom: 0.8px solid var(--secondary-background-color);
+    padding: 8px 0 0 1.2em;
     background-color: var(--primary-background-color);
-    padding-left: 1.2em;
     color: var(--primary-text-color);
     font-size: 0.9em;
     font-weight: bolder;
@@ -19,6 +17,8 @@
     justify-content: center;
     row-gap: 3px;
     width: 100%;
+    padding: 0 8px 8px 0;
+    border-bottom: 1.5px solid var(--tertiary-background-color);
 }
 
 .code-list-item-profile-photo {

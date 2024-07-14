@@ -5,7 +5,7 @@ import Accordion from './accordion/accordion'
 
 const Learn = () => {
     return (
-        <div className={styles.topBottomMargin} style={{backgroundColor: "rgba(26, 25, 25, 0.95)"}}>
+        <div className={styles.topBottomMargin}>
             <Accordion />
         </div>
     )

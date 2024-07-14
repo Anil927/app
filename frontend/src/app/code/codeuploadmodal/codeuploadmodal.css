@@ -25,7 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #282b30;
+    background-color: var(--secondary-background-color);
     color: var(--primary-text-color);
     border-radius: 8px 8px 0 0;
     font-size: 1.1em;
@@ -123,7 +123,7 @@
 .cancel-button {
     background: transparent;
     border: 1px solid #7db343;
-    color: #fff;
+    color: var(--primary-text-color);
     padding: 6px 16px;
     border-radius: 4px;
     cursor: pointer;

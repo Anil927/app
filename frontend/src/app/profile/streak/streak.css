@@ -43,14 +43,15 @@
 .days-grid {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
-    grid-gap: 7px;
+    column-gap: 2.4%;
+    row-gap: 10px;
 }
 
 .day {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 38px;
+    height: 37px;
     box-sizing: border-box;
 }
 

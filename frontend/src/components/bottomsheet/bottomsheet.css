@@ -104,7 +104,7 @@
     padding: 5px;
     font-size: 0.9em;
     color: var(--primary-text-color);
-    background-color: ;
+    background-color: var(--tertiary-background-color);
     /* give a decent box shadow to bottom side */
     box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.5);
 
@@ -115,7 +115,7 @@
     flex-direction: column;
     padding: 14px 10px;
     align-items: stretch;
-    border-bottom: 1px solid ;
+    border-bottom: 1px solid var(--secondary-background-color);
 }
 
 .avatar-and-comment-area {
@@ -141,9 +141,9 @@
     height: 50px;
     border-radius: 3px;
     margin-right: 10px;
-    border: 1px solid rgb(87, 83, 83);
+    border: 1px solid #888888;
     color: var(--primary-text-color);
-    background-color: #2b2f32;
+    background-color: var(--tertiary-background-color);
     font-family: inherit;
 }
 
@@ -192,7 +192,6 @@
     padding: 10px;
     justify-content: flex-start;
     gap: 20px;
-    /* border-bottom: 1px solid ; */
 }
 
 .comment-body img {

@@ -21,6 +21,7 @@
     background-color: #149EF1;
     font-size: 1em;
     transition: background 0.3s;
+    font-weight: 600;
     width: 25%;
     text-align: center;
     display: flex;

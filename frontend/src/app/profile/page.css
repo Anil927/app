@@ -117,7 +117,7 @@
     box-sizing: border-box;
     border-radius: 7px;
     background-color: var(--primary-background-color);
-    box-shadow: 0px 2px 5px 0px #1a1a1a;
+    box-shadow: var(--profile-tab-box-shadow);
     color: var(--primary-text-color);
 }
 

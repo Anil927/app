@@ -17,7 +17,7 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1e1d1d;
+    background-color: var(--secondary-background-color);
     height: 40px;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -39,6 +39,5 @@ button {
 
 
 button:active {
-    /* background-color: #bdccd8; */
     transition: background 0s;
 }

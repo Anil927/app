@@ -54,14 +54,13 @@
 }
 
 .feed-post-body .read-more {
-    color: #474c4f;
     cursor: pointer;
 }
 
 .feed-post-body .read-more button {
     background-color: transparent;
     border: none;
-    color: #bfc7cb;
+    color: var(--secondary-text-color);
     font-size: 1em;
 }
 

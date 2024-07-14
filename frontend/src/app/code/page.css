@@ -7,7 +7,7 @@
     height: 50px;
     border-radius: 50%;
     transition: box-shadow .2s ease-in-out;
-    box-shadow: 0 1px 5px 1px rgba(116, 109, 109, 0.3);
+    box-shadow: var(--floating-btn-shadow);
 }
 
 .adminButton {

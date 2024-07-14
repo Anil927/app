@@ -1,0 +1,36 @@
+.notification {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 20px;
+    padding: 8px 0 0 1.2em;
+    background-color: var(--primary-background-color);
+    color: var(--primary-text-color);
+    font-size: 0.9em;
+    letter-spacing: 0.4px;
+}
+
+
+.notification-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 3px;
+    width: 100%;
+    padding: 0 8px 8px 0;
+    border-bottom: 1.5px solid var(--tertiary-background-color);
+}
+
+.notification-profile-photo {
+    justify-self: flex-start;
+    margin-top: 4px;
+}
+
+.notification-profile-photo img {
+    border-radius: 50%;
+}
+
+.notification-content .message {
+    font-size: 1em;
+    text-decoration: none;
+}
