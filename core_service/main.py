@@ -1,4 +1,3 @@
-from fastapi import FastAPI, Depends, HTTPException
 import strawberry
 from strawberry.fastapi import GraphQLRouter
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,9 +7,8 @@ from app.utils.security import get_context
 from app.schemas.schema import schema
 from app.extra_rest_apis.services.services import STATIC_DIR
 from app.extra_rest_apis.routes.routes import extra_router
+from app.main import app
 
-
-app = FastAPI()
 
 # add cors middleware
 app.add_middleware(
@@ -32,7 +30,6 @@ graphql_app = GraphQLRouter(
 app.include_router(graphql_app, prefix="/graphql")
 app.include_router(extra_router)
 
-
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

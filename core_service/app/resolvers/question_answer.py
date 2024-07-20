@@ -214,9 +214,43 @@ async def get_question_answer(info, question_id):
         )
 
 
-async def ask_question(info, question_title, question_text, question_tags):
+async def ask_question(info, question_title, question_text, question_tags, question_id):
     user_id, db = get_context_info(info)
     try:
+        # check if question_id is not None, if not None means user is trying to update the question
+        if question_id:
+            question = await db.questions.find_one({"_id": ObjectId(question_id)})
+            if not question:
+                return schema.AskQuestionResponse(
+                    success=False,
+                    message="Question not found"
+                )
+            # update the question
+            result = await db.questions.update_one(
+                {"_id": ObjectId(question_id)},
+                {
+                    "$set": {
+                        "question_title": question_title,
+                        "question_text": question_text,
+                        "updated_at": datetime.now(timezone.utc)
+                    }
+                }
+            )
+            if result.modified_count == 1:
+                return schema.AskQuestionResponse(
+                    success=True,
+                    message="Question updated successfully",
+                    question=schema.AskQuestion(
+                        _id=question_id,
+                        question_title=question_title,
+                        updated_at=question["updated_at"]
+                    )
+                )
+            else:
+                return schema.AskQuestionResponse(
+                    success=False,
+                    message="Failed to update question"
+                )
         # check if the question_title already exist in db
         existing_question = await db.questions.find_one({"question_title": question_title})
         if existing_question:
@@ -228,7 +262,7 @@ async def ask_question(info, question_title, question_text, question_tags):
             "question_title": question_title,
             "question_text": question_text,
             "question_tags": question_tags,
-            "user_id": user_id,
+            "user_id": ObjectId(user_id),
             "answer_count": 0,
             "views_count": 0,
             "upvotes": [],
@@ -261,9 +295,41 @@ async def ask_question(info, question_title, question_text, question_tags):
         )
 
 
-async def give_answer(info, question_id, answer_text):
+async def give_answer(info, question_id, answer_text, answer_id):
     user_id, db = get_context_info(info)
     try:
+        # check if answer_id is not None, if not None means user is trying to update the answer
+        if answer_id:
+            answer = await db.answers.find_one({"_id": ObjectId(answer_id)})
+            if not answer:
+                return schema.GiveAnswerResponse(
+                    success=False,
+                    message="Answer not found"
+                )
+            # update the answer
+            result = await db.answers.update_one(
+                {"_id": ObjectId(answer_id)},
+                {
+                    "$set": {
+                        "answer_text": answer_text,
+                        "updated_at": datetime.now(timezone.utc)
+                    }
+                }
+            )
+            if result.modified_count == 1:
+                return schema.GiveAnswerResponse(
+                    success=True,
+                    message="Answer updated successfully",
+                    answer=schema.GiveAnswer(
+                        _id=answer_id,
+                        updated_at=answer["updated_at"]
+                    )
+                )
+            else:
+                return schema.GiveAnswerResponse(
+                    success=False,
+                    message="Failed to update answer"
+                )
         question = await db.questions.find_one({"_id": ObjectId(question_id)})
         if not question:
             return schema.GiveAnswerResponse(
@@ -271,9 +337,9 @@ async def give_answer(info, question_id, answer_text):
                 message="Question not found"
             )
         answer = {
-            "question_id": question_id,
+            "question_id": ObjectId(question_id),
             "answer_text": answer_text,
-            "user_id": user_id,
+            "user_id": ObjectId(user_id),
             "upvotes": [],
             "downvotes": [],
             "created_at": datetime.now(timezone.utc),

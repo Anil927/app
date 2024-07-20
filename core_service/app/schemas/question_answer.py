@@ -74,7 +74,8 @@ class QuestionAnswerResponse:
 class AskQuestion:
     _id: str
     question_title: str
-    created_at: datetime
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
 
 @strawberry.type
 class AskQuestionResponse:
@@ -86,7 +87,8 @@ class AskQuestionResponse:
 @strawberry.type
 class GiveAnswer:
     _id: str
-    created_at: datetime
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
 
 @strawberry.type
 class GiveAnswerResponse:
@@ -144,12 +146,12 @@ class QuestionAnswerQuery:
 @strawberry.type
 class QuestionAnswerMutation:
     @strawberry.mutation
-    async def ask_question(self, info, question_title: str, question_text: str, question_tags: list[str]) -> AskQuestionResponse:
-        return await question_answer.ask_question(info, question_title, question_text, question_tags)
+    async def ask_question(self, info, question_title: str, question_text: str, question_tags: list[str], question_id: str | None=None) -> AskQuestionResponse:
+        return await question_answer.ask_question(info, question_title, question_text, question_tags, question_id)
 
     @strawberry.mutation
-    async def give_answer(self, info, question_id: str, answer_text: str) -> GiveAnswerResponse:
-        return await question_answer.give_answer(info, question_id, answer_text)
+    async def give_answer(self, info, question_id: str, answer_text: str, answer_id: str | None=None) -> GiveAnswerResponse:
+        return await question_answer.give_answer(info, question_id, answer_text, answer_id)
 
     @strawberry.mutation
     async def toggle_upvote_question(self, info, question_id: str) -> UpvoteDownvoteResponse:

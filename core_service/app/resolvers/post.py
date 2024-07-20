@@ -1,9 +1,11 @@
 from bson import ObjectId
 from datetime import datetime, timezone
+import asyncio
 
 import app.schemas.post as schema
 from app.utils.helper_fun import get_context_info
-
+from app.logging.logger import logger
+from app.kafka.send_message import send_message
 
 async def get_posts(info, limit, next_cursor, post_ids):
     user_id, db = get_context_info(info)
@@ -53,7 +55,7 @@ async def get_posts(info, limit, next_cursor, post_ids):
 
         next_cursor = str(
             post_list[-1]._id) if len(post_list) == limit else None
-
+        await send_message("post", str(user_id), {"post_id": "34354h34f4gh", "type": "update"})
         return schema.PostResponse(
             success=True,
             message="Posts retrieved successfully",

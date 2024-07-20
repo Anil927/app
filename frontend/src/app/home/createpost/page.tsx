@@ -82,7 +82,7 @@ const CreatePost: React.FC = () => {
                     applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
                 });
 
-                await fetch('http://localhost:8000/subscribe', {
+                await fetch('https://9ea5-157-41-255-160.ngrok-free.app/subscribe', {
                     method: 'POST',
                     body: JSON.stringify(subscription),
                     headers: {
@@ -143,7 +143,7 @@ const CreatePost: React.FC = () => {
 
 
     const handleSubmit = async () => {
-        await fetch('http://localhost:8000/sendnotification', {
+        await fetch('https://9ea5-157-41-255-160.ngrok-free.app/sendnotification', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
