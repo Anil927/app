@@ -82,11 +82,12 @@ const CreatePost: React.FC = () => {
                     applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
                 });
 
-                await fetch('https://9ea5-157-41-255-160.ngrok-free.app/subscribe', {
+                await fetch('http://localhost:4000/subscribe', {
                     method: 'POST',
                     body: JSON.stringify(subscription),
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjY3ZmY3NDNjYTk3NDYzNDMyZThmNjM5IiwidHlwZSI6ImFjY2VzcyIsImV4cCI6MTcyMTkyNjg3NX0._nymi64vw1tkdeEGVukSUssdVacHmHyL69CFaNA1_VI'
                     }
                 }).then(response => {
                     if (response.ok) {
@@ -143,7 +144,7 @@ const CreatePost: React.FC = () => {
 
 
     const handleSubmit = async () => {
-        await fetch('https://9ea5-157-41-255-160.ngrok-free.app/sendnotification', {
+        await fetch('http://localhost:4000/sendnotification', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

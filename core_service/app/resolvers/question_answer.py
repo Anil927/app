@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 
 import app.schemas.question_answer as schema
 from app.utils.helper_fun import get_context_info
+from app.kafka.send_message import send_message
 
 
 async def get_question_titles(info, limit, next_cursor):
@@ -237,6 +238,8 @@ async def ask_question(info, question_title, question_text, question_tags, quest
                 }
             )
             if result.modified_count == 1:
+                # send message to kafka
+                await send_message("qna", str(user_id), {"question_id": str(question_id), "type": "update-question"})
                 return schema.AskQuestionResponse(
                     success=True,
                     message="Question updated successfully",
@@ -273,6 +276,8 @@ async def ask_question(info, question_title, question_text, question_tags, quest
         # Check if the insertion was successful
         result = await db.questions.insert_one(question)
         if result.inserted_id:
+            # send message to kafka
+            await send_message("qna", str(user_id), {"question_id": str(result.inserted_id), "type": "new-question"})
             return schema.AskQuestionResponse(
                 success=True,
                 message="Question posted successfully",
@@ -317,6 +322,8 @@ async def give_answer(info, question_id, answer_text, answer_id):
                 }
             )
             if result.modified_count == 1:
+                # send message to kafka
+                await send_message("qna", str(user_id), {"answer_id": str(answer_id), "type": "update-answer"})
                 return schema.GiveAnswerResponse(
                     success=True,
                     message="Answer updated successfully",
@@ -350,7 +357,8 @@ async def give_answer(info, question_id, answer_text, answer_id):
         if result.inserted_id:
             # Increment the answer_count in the question document
             await db.questions.update_one({"_id": ObjectId(question_id)}, {"$inc": {"answer_count": 1}})
-            answer
+            # send message to kafka
+            await send_message("qna", str(user_id), {"answer_id": str(result.inserted_id), "type": "create-answer"})
             return schema.GiveAnswerResponse(
                 success=True,
                 message="Answer posted successfully",
@@ -386,6 +394,8 @@ async def toggle_upvote_question(info, question_id):
             await db.questions.update_one({"_id": ObjectId(question_id)}, {"$pull": {"upvotes": ObjectId(user_id)}})
         else:
             await db.questions.update_one({"_id": ObjectId(question_id)}, {"$addToSet": {"upvotes": ObjectId(user_id)}})
+            # send message to kafka
+            await send_question_vote_msg(user_id, question_id, question)
             is_upvoted = True
         return schema.UpvoteDownvoteResponse(
             success=True,
@@ -413,6 +423,8 @@ async def toggle_downvote_question(info, question_id):
             await db.questions.update_one({"_id": ObjectId(question_id)}, {"$pull": {"downvotes": ObjectId(user_id)}})
         else:
             await db.questions.update_one({"_id": ObjectId(question_id)}, {"$addToSet": {"downvotes": ObjectId(user_id)}})
+            # send message to kafka
+            await send_question_vote_msg(user_id, question_id, question)
             is_downvoted = True
         return schema.UpvoteDownvoteResponse(
             success=True,
@@ -440,6 +452,8 @@ async def toggle_upvote_answer(info, answer_id):
             await db.answers.update_one({"_id": ObjectId(answer_id)}, {"$pull": {"upvotes": ObjectId(user_id)}})
         else:
             await db.answers.update_one({"_id": ObjectId(answer_id)}, {"$addToSet": {"upvotes": ObjectId(user_id)}})
+            # send message to kafka
+            await send_answer_vote_msg(user_id, answer_id, answer)
             is_upvoted = True
         return schema.UpvoteDownvoteResponse(
             success=True,
@@ -467,6 +481,8 @@ async def toggle_downvote_answer(info, answer_id):
             await db.answers.update_one({"_id": ObjectId(answer_id)}, {"$pull": {"downvotes": ObjectId(user_id)}})
         else:
             await db.answers.update_one({"_id": ObjectId(answer_id)}, {"$addToSet": {"downvotes": ObjectId(user_id)}})
+            # send message to kafka
+            await send_answer_vote_msg(user_id, answer_id, answer)
             is_downvoted = True
         return schema.UpvoteDownvoteResponse(
             success=True,
@@ -568,3 +584,17 @@ async def toggle_bookmark_answer(info, answer_id):
             success=False,
             message=f"An error occurred: {str(e)}"
         )
+
+
+async def send_question_vote_msg(user_id, question_id, question):
+    if (question["upvotes"] - question["downvotes"]) > 5:
+        await send_message("qna", str(user_id), {"question_id": str(question_id), "type": "upvote-question"})
+    elif (question["upvotes"] - question["downvotes"]) < -3:
+        await send_message("qna", str(user_id), {"question_id": str(question_id), "type": "downvote-question"})
+
+async def send_answer_vote_msg(user_id, answer_id, answer):
+    if (answer["upvotes"] - answer["downvotes"]) > 5:
+        await send_message("qna", str(user_id), {"answer_id": str(answer_id), "type": "upvote-answer"})
+    elif (answer["upvotes"] - answer["downvotes"]) < -3:
+        await send_message("qna", str(user_id), {"answer_id": str(answer_id), "type": "downvote-answer"})
+

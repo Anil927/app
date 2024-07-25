@@ -5,7 +5,9 @@ from bson import ObjectId
 # import boto3
 # from botocore.exceptions import NoCredentialsError
 from PIL import Image
-from datetime import datetime,timezone
+from datetime import datetime
+
+from app.kafka.send_message import send_message
 
 
 
@@ -140,16 +142,8 @@ async def upload_code_file(code_title, file_type, files, current_user, db):
 
     try:
         result = await db.code_files.insert_one(code_file_urls)
-        return {"_id": str(result.inserted_id), "message": "code files uploaded successfully"}
+        if result.inserted_id:
+            await send_message("code", str(current_user["user_id"]), {"codefile_id": str(result.inserted_id), "type": "create-codefile"})
+            return {"_id": str(result.inserted_id), "message": "code files uploaded successfully"}
     except Exception as e:
         return {"error": f"An error occurred while uploading the code files: {e}"}
-    
-
-
-
-        
-
-    
-
-
-

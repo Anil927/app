@@ -101,6 +101,7 @@ async def login_for_access_token(db, form_data) -> Token:
         data={"user_id": str(user["_id"]), "type": "refresh"},
         expires_delta=timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
     )
+    print(access_token)
     return {"access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
     
 

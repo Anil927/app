@@ -1,5 +1,8 @@
 import { Kafka, logLevel } from 'kafkajs';
+import { ObjectId } from 'mongodb';
 
+import Subscription from '../../models/models.js';
+import sendNotification from '../../utils/sendNotification.js';
 
 export default async function startKafkaConsumer() {
     let kafka;
@@ -26,33 +29,41 @@ export default async function startKafkaConsumer() {
         await consumer.connect();
         console.log('Connected to Kafka broker');
 
-        await consumer.subscribe({ topic: 'notify', fromBeginning: false });
-        console.log('Subscribed to topic: notifications');
+        const topics = ["post", "code", "qna", "connection", "logs"]
+
+        topics.forEach(async element => {
+            await consumer.subscribe({topic: element, fromBeginning: false})
+        });
+
+        console.log('Subscribed to topics(post, code, qna, connection, logs)')
 
         await consumer.run({
             eachMessage: async ({ topic, partition, message }) => {
                 console.log({
                     partition,
+                    topic,
                     offset: message.offset,
+                    key: message.key.toString(),
                     value: message.value.toString(),
                 });
 
+                // perform action like send notification to client
                 const notificationPayload = {
-                    title: 'Kafka Notification',
+                    title: 'New Notification from notification service, hello anil',
                     body: message.value.toString(),
                 };
 
-                const promises = subscriptions.map(subscription =>
-                    webpush.sendNotification(subscription, JSON.stringify(notificationPayload))
-                );
+                // Send notification to all clients
+                const userId = new ObjectId(message.key.toString())
+                const subscriptions = await Subscription.find({userId});
+                console.log(subscriptions)
 
-                Promise.all(promises)
-                    .catch(err => {
-                        console.error('Error sending notification:', err);
-                    });
+                await sendNotification(subscriptions, notificationPayload);
+
             },
         });
     }
 
     await createConsumer();
 }
+

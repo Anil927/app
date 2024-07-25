@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 
 import app.schemas.code_file as schema 
 from app.utils.helper_fun import get_context_info
+from app.kafka.send_message import send_message
 
 
 
@@ -171,6 +172,8 @@ async def comment_on_code_file(info, code_file_id, comment_text):
                 {"$set": {"comments_count": code_file["comments_count"] + 1}}
             )
             comment = await db.code_file_comments.find_one({"_id": result.inserted_id})
+            # send message to kafka
+            await send_message("code", str(user_id), {"code_file_id": str(code_file_id), "comment_id": str(comment["_id"]), "type": "create-codefile-comment"})
             comment = schema.CommentOnCodeFile(
                 _id=comment["_id"],
                 comment_text=comment["comment_text"],
@@ -208,6 +211,8 @@ async def update_comment_on_code_file(info, code_file_comment_id, new_comment_te
             comment = await db.code_file_comments.find_one(
                 {"_id": ObjectId(code_file_comment_id), "user_id": ObjectId(user_id)}
             )
+            # send message to kafka
+            await send_message("code", str(user_id), {"code_file_id": str(code_file_id), "comment_id": str(comment["_id"]), "type": "update-codefile-comment"})
             comment = schema.CommentOnCodeFile(
                 _id=comment["_id"],
                 comment_text=comment["comment_text"],
@@ -238,6 +243,8 @@ async def increase_code_file_views_count(info, code_file_id):
             {"$inc": {"views": 1}}
         )
         if result.modified_count == 1:
+            # send message to kafka
+            await send_message("code", str(user_id), {"code_file_id": str(code_file_id), "type": "increase-codefile-views"})
             return schema.IncreaseCodeFileViewsCountResponse(
                 success=True,
                 message="Views count updated successfully"

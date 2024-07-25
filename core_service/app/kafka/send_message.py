@@ -8,7 +8,7 @@ async def send_message(topic: str, key: str, value: dict):
     
         # Check if result contains an error
         if result.error():
-            logger.error({"status": "failure", "message": f"Failed to send message to topic {topic}: {result.error()}"})
+            logger.error({"message": f"Failed to send message to topic {topic}: {result.error()}"})
         else:
             logger.success({
                 "partition": result.partition(),

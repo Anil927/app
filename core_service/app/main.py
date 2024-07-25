@@ -23,7 +23,6 @@ async def lifespan(app: FastAPI):
     app.state.producer.close()
     
 
-# app = FastAPI(lifespan=lifespan)
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 

@@ -52,10 +52,8 @@ async def get_posts(info, limit, next_cursor, post_ids):
                     level=user["level"],
                 )
             ))
-
         next_cursor = str(
             post_list[-1]._id) if len(post_list) == limit else None
-        await send_message("post", str(user_id), {"post_id": "34354h34f4gh", "type": "update"})
         return schema.PostResponse(
             success=True,
             message="Posts retrieved successfully",
@@ -163,7 +161,7 @@ async def get_comments_count_for_post(info, post_id):
 
 
 async def create_post(info, unique_mongodb_id, content, tags):
-    _, db = get_context_info(info)
+    user_id, db = get_context_info(info)
     try:
         result = await db.posts.update_one(
             {"_id": ObjectId(unique_mongodb_id)},
@@ -176,6 +174,8 @@ async def create_post(info, unique_mongodb_id, content, tags):
         )
         if result.modified_count == 1:
             post = await db.posts.find_one({"_id": ObjectId(unique_mongodb_id)})
+            # send message to kafka
+            await send_message("post", str(user_id), {"post_id": str(post["_id"]), "type": "create"})
             post = schema.CreatePost(
                 _id=post["_id"],
                 created_at=post["created_at"]
@@ -214,6 +214,8 @@ async def comment_on_post(info, post_id, comment_text):
                 {"$set": {"comments_count": post["comments_count"] + 1}}
             )
             comment = await db.post_comments.find_one({"_id": result.inserted_id})
+            # send message to kafka
+            await send_message("post", str(user_id), {"post_id": str(post["_id"]), "comment_id": str(comment["_id"]), "type": "create"})
             comment = schema.CommentOnPost(
                 _id=comment["_id"],
                 comment_text=comment["comment_text"],
@@ -252,6 +254,8 @@ async def update_comment_on_post(info, post_comment_id, new_comment_text):
                 {"_id": ObjectId(post_comment_id),
                  "user_id": ObjectId(user_id)}
             )
+            # send message to kafka
+            await send_message("post", str(user_id), {"post_id": str(comment["post_id"]), "comment_id": str(comment["_id"]), "type": "update"})
             comment = schema.CommentOnPost(
                 _id=comment["_id"],
                 comment_text=comment["comment_text"],
@@ -306,7 +310,9 @@ async def like_or_unlike_post(info, post_id):
                     {"_id": ObjectId(post_id)},
                     {"$inc": {"likes_count": 1}}
                 )
+                # send message to kafka
                 like = schema.LikePost(_id=result.inserted_id)
+                await send_message("post", str(user_id), {"post_id": str(post["_id"]), "like_id": str(like["_id"]), "type": "create"})
                 return schema.LikePostResponse(
                     success=True,
                     message="Post liked successfully",
@@ -334,6 +340,8 @@ async def follow_or_unfollow_another_user(info, post_id):
         if existing_follow:
             # User already follows the user of the post, so unfollow
             await db.user_relationships.delete_one({"_id": existing_follow["_id"]})
+            # send message to kafka
+            await send_message("connection", str(user_id), {"target_id": str(user_id_of_the_user_of_the_post), "type": "unfollow"})
             return schema.FollowOrUnFollowUserResponse(
                 success=True,
                 message="User unfollowed successfully",
@@ -346,6 +354,8 @@ async def follow_or_unfollow_another_user(info, post_id):
                 "created_at": datetime.now(tz=timezone.utc)
             })
             if result.inserted_id:
+                # send message to kafka
+                await send_message("connection", str(user_id), {"target_id": str(user_id_of_the_user_of_the_post), "type": "follow"})
                 return schema.FollowOrUnFollowUserResponse(
                     success=True,
                     message="User followed successfully",
